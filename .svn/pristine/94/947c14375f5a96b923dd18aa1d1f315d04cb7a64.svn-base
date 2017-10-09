@@ -1,0 +1,145 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="New.ascx.cs" Inherits="meihu.New" %>
+<link href="Css/I_index.css" rel="stylesheet" />
+
+<div class="new">
+    <div class="health-time">
+        <h2>
+            『健康时刻』 &nbsp;
+           <script src="Jscript/index.js"></script>      
+        </h2>
+        <span class="x"><img class="new-message_img" src= "image/collapsed_no.gif" onclick="slide('new-message')"></span>
+        <span class="y"><a href="#">下载桌面快捷访问</a></span>
+        <div id="new-message">
+            <ul class="new-title">
+                <li><strong>『 最新图片 』</strong></li>
+                <li><strong>『 最新主题 』</strong></li>
+                <li><strong>『 最新回复 』</strong></li>
+                <li><strong>『 精华帖 』</strong></li>
+            </ul>
+            <ul class="new-message-content">
+                <li></li>
+                <li>
+                    <ul class="new-topics">
+                        <li style="margin-top:10px;">
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="new-topics">
+                        <li style="margin-top:10px;">
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="new-topics">
+                        <li style="margin-top:10px;">
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                        <li>
+                            <img src="image/list_7ree.gif"/>
+                            <span><a href="#" target='_blank'>还有人没**</a></span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+</div>

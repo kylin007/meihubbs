@@ -1,0 +1,15 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Friend.master.cs" Inherits="meihu.Views.Friend.Friend"  MasterPageFile="~/Views/shared/Site.Master" %>
+
+<asp:Content ID="hd" ContentPlaceHolderID="TitleContent"  runat="server">
+     <asp:ContentPlaceHolder ID="FriendContentTtitle" runat="server">
+         </asp:ContentPlaceHolder>
+</asp:Content>
+
+  <asp:Content ContentPlaceHolderID="MainContent" runat="server">
+      <link href="../../Css/friendCss.css" rel="stylesheet" />
+      <div>
+        <asp:ContentPlaceHolder ID="FriendContent" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+  </asp:Content>

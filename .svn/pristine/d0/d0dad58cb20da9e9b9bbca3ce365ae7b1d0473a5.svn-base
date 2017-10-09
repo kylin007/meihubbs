@@ -1,0 +1,474 @@
+﻿/// <reference path="SettingScript.js" />
+window.setInterval("getfriendscheck()", 50);
+window.setInterval("recive0()", 50);
+$(document).ready(function usergroup() {
+    $("#user_reforms")[0].onclick = function () {
+        layer.msg('友情地提示：</br>这个没有做,非常抱歉');
+        //layer.open({
+        //          title: '友情提示',
+        //         content: '这个没有做,非常抱歉',
+        //        icon:1});
+    }    
+});
+//模板页中的设置背景颜色
+$(document).ready(function(){
+    $("#S-left tr").slice(0, 9).addClass("current1");
+    $("#S-mesleft1ID tr").slice(0, 2).addClass("current1");
+})
+//省份 城市 等联动
+function getgroup(value, index0) {
+    //隐藏于显示
+    if(index0==0)
+    {
+        if (value == '省') {
+            document.getElementById('MainContent_subcontent_DropDownListbir2').style.display = 'none';
+            document.getElementById('MainContent_subcontent_DropDownListbir3').style.display = 'none';
+            document.getElementById('MainContent_subcontent_DropDownListbir4').style.display = 'none';
+            return;
+        }
+        else
+            document.getElementById('MainContent_subcontent_DropDownListbir2').style.display = 'block';
+    }
+    if(index0==1)
+    {    
+        if (value == '市') {
+            document.getElementById('MainContent_subcontent_DropDownListbir3').style.display = 'none';
+            document.getElementById('MainContent_subcontent_DropDownListbir4').style.display = 'none';
+            return;
+        }
+        else
+            document.getElementById('MainContent_subcontent_DropDownListbir3').style.display = 'block';
+    }
+    if(index0==2)
+    {
+        if (value =='县')
+        {
+            document.getElementById('MainContent_subcontent_DropDownListbir4').style.display = 'none';
+            return;
+        }
+        else 
+            document.getElementById('MainContent_subcontent_DropDownListbir4').style.display = 'block';
+    }
+          
+        
+    
+    $.ajax({
+        url: '/Setting/province?value=' + value + '&disindex=' + index0 + '',
+        data: {
+        },
+        type: "POST",
+        success: function (data) {      
+            var ds = data.replace("]", "").replace("[", "").split(",");
+            var shu=index0+2;//ID下标
+                var el = document.getElementById('MainContent_subcontent_DropDownListbir'+shu+'');
+                el.length = 1;
+                var i = 0;
+                while (ds[i]!="null") {
+                    el.add(new Option(ds[i], ds[i]));
+                    i++;
+                }      
+        },
+        error: function () {
+            alert("请选择!");
+        }
+    });
+
+}
+function getgroup2(value, index0) {
+    if (index0 == 0) {
+        if (value == '省') {
+            document.getElementById('MainContent_subcontent_DropDownListlive2').style.display = 'none';
+            document.getElementById('MainContent_subcontent_DropDownListlive3').style.display = 'none';
+            document.getElementById('MainContent_subcontent_DropDownListlive4').style.display = 'none';
+            return;
+        }
+        else
+            document.getElementById('MainContent_subcontent_DropDownListlive2').style.display = 'block';
+    }
+    if (index0 == 1) {
+        if (value == '市') {
+            document.getElementById('MainContent_subcontent_DropDownListlive3').style.display = 'none';
+            document.getElementById('MainContent_subcontent_DropDownListlive4').style.display = 'none';
+            return;
+        }
+        else
+            document.getElementById('MainContent_subcontent_DropDownListlive3').style.display = 'block';
+    }
+    if (index0 == 2) {
+        if (value == '县') {
+            document.getElementById('MainContent_subcontent_DropDownListlive4').style.display = 'none';
+            return;
+        }
+        else
+            document.getElementById('MainContent_subcontent_DropDownListlive4').style.display = 'block';
+    }
+    $.ajax({
+        url: '/Setting/province?value=' + value + '&disindex=' + index0 + '',
+        data: {
+        },
+        type: "POST",
+        success: function (data) {
+            var ds = data.replace("]", "").replace("[", "").split(",");
+            var shu = index0 + 2;//ID下标
+            var el = document.getElementById('MainContent_subcontent_DropDownListlive'+shu+'');
+            el.length = 1;
+            var i = 0;
+            while (ds[i] != "null") {
+                el.add(new Option(ds[i], ds[i]));
+                i++;
+            }
+        },
+        error: function () {
+            alert("请选择!");
+        }
+    });
+
+}
+//省份 城市 等联动的（修改）与（省份）的隐藏和显示
+function updatebir()
+{
+    document.getElementById('updatebir').style.display = 'none';
+    document.getElementById('MainContent_subcontent_DropDownListbir').style.display = 'block';
+}
+function updatebir0() {
+    document.getElementById('updatebir0').style.display = 'none';
+    document.getElementById('MainContent_subcontent_DropDownListlive1').style.display = 'block';
+}
+//消息--好友选择-隐藏与显示
+function Kfriends(value){
+    if (value == "全部好友")
+    {
+        $("#friends ul").eq(0).css('display','block');
+    }
+   else
+    {
+        $("#friends ul").eq(0).hide();
+    }
+}
+function Kfriend(value) {
+    if (value== "全部好友") {
+        $("#friend ul").eq(0).css('display', 'block');
+    }
+    else {
+        $("#friend ul").eq(0).hide();
+    }
+}
+//z私聊-选择好友添加到相应框中
+function gettext(value) {
+    document.getElementById('MainContent_subcontent1_TextBoxreive_user').value = $(value).html();
+}
+//群聊-选择好友添加到相应框中
+var str = "";
+var falgfri=0;
+function gettexts(value) {
+    var strnames = str.split(',');
+    for (var i = 0; i < strnames.length; i++)
+    {
+        if (strnames[i] == $(value).html())
+          return;
+    }
+    if (falgfri == 0)
+    {
+        str += $(value).html();
+        falgfri = 1;
+    }
+    else {
+  
+        str += ','+$(value).html();
+    }
+   
+     document.getElementById('MainContent_subcontent1_TextBoxjoin').value = str;
+}
+
+//私聊时，提交信息
+function friendsend() {
+    var name = $("#MainContent_subcontent1_TextBoxreive_user").val();
+    var content = $("#TextAreatext").val();
+    if (content ==""||name=="") {
+        alert("文本为空！");
+        return;
+    }
+    $.ajax({
+        url: '/Message/friend',
+        data: {
+            "content": content,
+            "name":name,
+        },
+        type: "POST",
+        success: function (data) {
+            document.getElementById('MainContent_subcontent1_TextBoxreive_user').value = "";
+            document.getElementById('TextAreatext').value = "";
+            layer.alert("发送成功");
+        },
+        error: function () {
+            layer.alert("可能由于内容中符号问题 没有发送成功");
+        }
+    })
+};
+//群聊时-提交信息
+function friendsends() {
+    var title = $("#MainContent_subcontent1_TextBoxtitle").val();
+    var name = $("#MainContent_subcontent1_TextBoxjoin").val();
+    var names = name.split(',');
+    if (names.length < 2)
+    {
+        layer.alert("人数不能低于2个人")
+        return;
+    }
+    var content=$("#TextAreatext0").val();
+    if(content==""||name=="")
+    {
+        alert("文本为空！");
+        return;
+    }
+    $.ajax({
+        url: '/Message/friends',
+        data: {
+            "content":content,
+            "title": title,
+            "name":name,
+        },
+        type: "POST",
+        success: function (data) {
+            document.getElementById('MainContent_subcontent1_TextBoxjoin').value = "";
+            document.getElementById('TextAreatext0').value = "";
+            str = "";
+            layer.alert("发送成功");
+        },
+        error: function () {
+            // layer.alert("不好意思，信息暂时发不布出去!");
+            layer.alert("可能由于内容中符号问题 没有发送成功");
+        }
+    })
+};
+
+//// 在 图像更新 和 消息图像 框添加个人图像
+//$(document).ready()
+//{
+//    $.ajax({
+//        url: '/Setting/img',
+//        data: {
+//        },
+//        type: "POST",
+//        success: function (data) {
+//            if (data != "") {
+//                try
+//                {
+//                    var dom = document.getElementById('imagepoistion');
+//                    dom.style.width = '200px';
+//                    dom.style.height = '200px';
+//                    dom.src = "../../image/imgs/" + data;
+//                }
+//                catch(erer){
+//                    var doma= document.getElementById('imagesmessageimg');
+//                    doma.style.width = '54px';
+//                    doma.style.height = '54px';
+//                    doma.src = "../../image/imgs/" + data;
+//                };                                                                   
+//            }
+//        },
+//        error: function () {
+//            alert("错了");
+//        }
+//    });
+//    var dom = document.getElementById('MainContent_subcontent_Labelcheckimg').innerHTML;
+//    if (dom!= "") {
+//        alert(dom);
+//    }
+//}
+
+//在 图像更新中--预览个人头像
+function setImagePreview() {
+    var docObj = document.getElementById("doc");
+    var imgObjPreview = document.getElementById("imagepoistion");
+       if (docObj.files && docObj.files[0]) {
+        imgObjPreview.style.display = 'block';
+        imgObjPreview.style.width = '200px';
+        imgObjPreview.style.height = '200px';
+        imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+        //var urllocal = "http://localhost:" + docObj.baseURI.split(':')[2].split('/')[0] + "/" + "image";
+    }
+}
+//在私人消息中 隐藏 一部分其他消息，而全部显示一个对方好友消息
+function recive0()
+{
+    var recive = $('.Receivemessage');
+    for (var i = 0; i < recive.length; i++) {
+        recive[i].index = i;
+        recive[i].onclick = function () {                   
+           $('#R-mess0').css({ "display": "none" });
+           $('.Rtop0ss').eq(this.index).css({ "display": "block" });        
+          $('#friend_id').css({ "display": "block" });
+        }
+    }
+}
+//消息 -提醒 -发送信息
+function friendsend2() {
+    var name = $(".getfriendnames").eq(0).html();
+    var content = $("#TextAreatext").val();
+    if (content == "" || name == "") {
+        alert("文本为空！");
+        return;
+    }
+    $.ajax({
+        url: '/Message/friend',
+        data: {
+            "content": content,
+            "name": name,
+        },
+        type: "POST",
+        success: function (data) {
+            if (data == "1") {
+                document.getElementById('TextAreatext').value = "";
+                layer.alert("发送成功");
+            }
+            else { layer.alert("发送失败"); }
+                
+        },
+        error: function () {
+            layer.alert("发送失败");
+        }
+    })
+};
+//判断是否有新消息
+
+function Buttonreads()
+{
+    var str = "";
+    $.ajax({
+        url: '/Message/fund',
+        data: {
+        },
+        type: "POST",
+        success: function (data) {
+            document.getElementById('getcontent').value = "消息";
+            layer.msg('已没有未读消息', {time:2000})
+        },
+        error: function () {
+            alert("请选择!");
+        }
+    });
+}
+//判断是否有好友  以及忽视一些人
+function getfriendscheck(){
+    var get1 = $(".friclass1get"); // t同意按钮
+    var get2 = $(".friclasspost");  // 忽略按钮
+    var get3= $(".getfriname");  //获取好友name
+    for (var i=0; i < get1.length; i++)
+    {
+
+        get1[i].index = i;
+        
+        get1[i].onclick = function () {
+            var name = get3.eq(this.index).html();
+            $.ajax({
+                url: '/Message/getfriend1',
+                data: {
+                    "name":name,
+                },
+                type: "POST",
+                success: function (data) {
+                    if (data > 0) {              
+                        layer.msg(name+' 已经是你的好友了');
+                    }
+                },
+                error: function () {
+                    alert("请选择!");
+                }
+            });
+        }
+        get2[i].index = i;
+        get2[i].onclick = function () {
+            var name = get3.eq(this.index).html();
+            $.ajax({
+                url: '/Message/getfriend2',
+                data: {
+                    "name": name,
+                },
+                type: "POST",
+                success: function (data) {
+                    if (data > 0) {                 
+                        layer.msg('功能未实现');
+                    }
+                },
+                error: function () {
+                    alert("请选择!");
+                }
+            });
+        }
+    }
+  
+}
+
+
+/*$(document).ready(function usergroup() {
+    var user = $("#SY_Uname").html(); //判断用户名
+    user = user.replace(/(^\s*)|(\s*$)/g, '');
+    if(user!='用户名'&&user.length>1)
+    {
+        $.ajax({
+            url: '/Setting/Index',
+            data: {
+                "user": user,
+            },
+            type: "POST",
+            success: function (data) {
+            },
+            error: function () {
+                   }
+        });
+        //未读消息提示
+        $.ajax({
+            url: '/Message/getmessage',
+            data: {
+                "user": user,
+            },
+            type: "POST",
+            success: function (data) {
+                $.ajax({
+                    url: '/Message/func',
+                    data: {
+                        "user": user,
+                    },
+                    type: "POST",
+                    success: function (data) {
+                        if (data == "1")
+                        {
+                            document.getElementById('getcontent').innerHTML = "消息(1)";
+                            layer.msg("你有新消息",{time:50});
+                        }
+                    },
+                    error: function () {
+                    }
+                });
+            },
+            error: function () {
+                        }
+        });
+        //未读提醒
+        $.ajax({
+            url: '/Message/getfriend',
+            data: {
+                "user": user,
+            },
+            type: "POST",
+            success: function (data) {
+                if (data > 0) {
+                    document.getElementById('getfriendsid').innerHTML = "提醒(" + data + ")";
+                    document.getElementById('rereformsub1').style.display = 'none';
+                    document.getElementById('rereformsub2').style.display = 'block';
+                    layer.msg('有好友要加你哦，快去到--应用消息中 看看吧', {time:4000});
+                }
+                else {
+                    document.getElementById('rereformsub1').style.display = 'block';
+                    document.getElementById('rereformsub2').style.display = 'none';
+                }
+            },
+            error: function () {
+            
+            }
+        });
+    }
+});*/
+
+

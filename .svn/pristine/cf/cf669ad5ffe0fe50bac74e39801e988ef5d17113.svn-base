@@ -1,0 +1,37 @@
+﻿using meihu.Models;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace meihu.Controllers
+{
+    public class ClassifyController : Controller
+    {
+        // GET: /Classify/
+
+        public ActionResult OneLevel()
+        {
+            string str = Request.Params["oneclass"];
+            List<OneLevel> list = new List<OneLevel>();
+            OneLevel cs = new OneLevel();
+            DataTable dt = cs.selectForm();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                OneLevel level = new OneLevel();
+                level.First_forum = dt.Rows[i]["First_forum"].ToString();
+                list.Add(level);
+            }
+               TempData["list"] = list;
+                return View("OneLevel");
+        }
+
+        public ActionResult TwoLevel()
+        {
+            return View();
+        }
+
+    }
+}

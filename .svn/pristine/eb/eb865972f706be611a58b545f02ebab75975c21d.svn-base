@@ -1,0 +1,155 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="meihu.Views.shared.Site" %>
+
+<%@ Register Src="~/Login.ascx" TagPrefix="uc1" TagName="Login" %>
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+   <link href="../../Css/model.css" rel="stylesheet" />
+    <script src="../../Jscript/jquery-2.2.0.min.js"></script>
+</head>
+
+<body>
+       <div class="top">
+           <div id="topDiv">
+               <div id="topDiv2">
+                   <div id="collect">
+                       <a href="#">收藏本站</a>
+                   </div>
+                   <div id="assit">
+                       <a href="#">切换到宽版</a>
+                  </div>
+               </div>
+         </div>
+
+            <div id="head">
+                <div id="headBody">
+                    <div id="headB1">
+                        <h2><a href="#" title="郑州大学论坛,郑大眉湖论坛">
+                            <img src="../../image/logo.png" alt="郑州大学论坛,郑大眉湖论坛"/></a></h2>
+                        <form method="post">
+                            <div id="tab">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <select id="select">
+                                                    <option value="username">用户名</option>
+                                                    <option value="email">Email</option>
+                                                </select>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="username" autocomplete="off" tabindex="901" /></td>
+                                        <td>
+                                            <input type="checkbox" />自动登录&nbsp;&nbsp;
+                                        </td>
+                                        <td>&nbsp;<a href="#">找回密码</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;&nbsp;密码</td>
+                                        <td>
+                                            <input type="password" name="password" autocomplete="off" tabindex="902" /></td>
+                                        <td>
+                                            <button id="log" type="button" onclick="Login();">登录</button></td>
+                                        <td>&nbsp;<a href="../Home/User_Register" style="font-weight: bold">注册</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="QQLog">
+                                <a href="#">
+                                    <img src="../../image/qqlogo.gif" alt="QQ登录" /></a>
+                                <p style="padding: 0px 0px 0px 10px;">只需一步，快速开始</p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="headB2">
+                        <div id="fast">
+                            <a id="fastNav" href="#" style="color: #BA350F;">快捷导航</a>
+                            <div id="fastHide">
+                                <div style="position: absolute; top: 30px; left: 30px;">
+                                    请<a href="#" onclick="Login();"><strong>登录</strong></a>后使用快捷导航<br />没有账号？<a href="../Home/User_Register"><strong>注册</strong></a>
+                                </div>
+                            </div>
+                        </div>
+                        <ul id="hB2ul">
+                            <li><a href="#" title="BBS">论坛</a></li>
+                            <li><a href="#">红包中心</a></li>
+                            <li><a href="#">今日团购</a></li>
+                            <li><a href="#" title="Manyou">游戏</a></li>
+                            <li><a href="#" title="Ranklist">排行榜</a></li>
+                            <li><a href="#">签到得积分</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="headB3">
+                        <form method="post">
+                            <table id="tab2" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td id="td1"></td>
+                                    <td id="td2">
+                                        <input id="search" type="text" value="请输入搜索内容" /></td>
+                                    <td id="td3">
+                                        <select>
+                                            <option value="bbs">帖子</option>
+                                            <option value="user">用户</option>
+                                        </select>
+                                    </td>
+
+                                    <td id="td4">
+                                        <button id="btn1" type="submit" value="true"><strong>搜索</strong></button></td>
+                                    <td id="td5">
+                                        <div>
+                                            <strong>&nbsp;&nbsp;热搜: </strong>
+                                            <a href="#">&nbsp;床位</a>
+                                            <a href="#">&nbsp;郑大美女</a>
+                                            <a href="#">&nbsp;郑州大学论坛</a>
+                                            <a href="#">&nbsp;辅导员</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="center">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <%--<div class="foot"></div>--%>
+        <div id="taoba">
+            <a href="#" style="text-decoration: none;">taobao</a>
+        </div>
+
+        <div id="foot">
+            <div id="ftRight">
+                <p>
+                    <a href="#">手机版</a>&nbsp;|&nbsp;<a href="#">Archiver</a>&nbsp;|&nbsp;<a href="#">联系我们</a>&nbsp;|&nbsp;<strong><a href="#">郑州大学论坛</a></strong>
+                    ( <a href="#">沪ICP备12036685号 </a>)&nbsp;&nbsp;<span id="tcss"></span>
+                    <img src="../../image/百度logo.gif"/><img src="../../image/腾讯分析.gif"/>
+                    <br />
+                    <span>GMT+8, 2016-7-12 09:13</span>
+                </p>
+            </div>
+            <div id="ftLeft">
+                <p>
+                    Powered by <strong><a href="#">Discuz!</a></strong> <em>X2.5</em>
+                    <br />
+                    &copy; 2001-2012 <a href="#">Comsenz Inc.</a>
+                </p>
+            </div>
+        </div>
+    <uc1:Login runat="server" ID="Login" />
+</body>
+        <script src="../../Jscript/model.js"></script>
+</html>

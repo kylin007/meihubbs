@@ -1,0 +1,272 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Data;
+using meihu.App_Code;
+using System.Security.Cryptography;
+using Newtonsoft.Json;
+using meihu.Models;
+
+namespace meihu.Controllers
+{
+   
+    public class SettingController : Controller
+    {
+        //
+        // GET: /Setting/
+     
+        #region 基本信息
+        string[] ml = { "真实姓名", "性别", "生日", "出生地", "居住地", "情感状态", "交友目的", "血型", "年级" };//联系方式
+        string[] mj = { "证件类型","证件号","邮寄地址","邮编","个人主页","自我介绍", "兴趣爱好", "个人签名", "时区" };//基本资料
+        string[] me = { "固定电话", "手机","QQ", "阿里旺旺"};//教育情况
+        string[] mg = { "毕业学校", "学历" };//工作情况
+        string[] mp = { "公司", "职业", "职位", "年收入" };//个人情况
+        string[] mm = { "旧密码", "新密码", "确认密码", "Email", "安全提问", "回答"  };//密码安全
+        SettingModel dom = new SettingModel();
+        Goodfriend goods = new Goodfriend();
+        #endregion
+        //public string  USER() //获取用户名
+        //{
+        //    string user = Request.Form[0].ToString().Trim();
+        //    DataTable shu = goods.User_registration(user);  //根据姓名查找用户ID;
+        //    Session["User_id_User"]= Convert.ToInt32(shu.Rows[0]["ID"].ToString());
+        //    return "success";
+        //}
+        public ActionResult Index()
+        {
+            try
+            {
+                string user = Request.Form[0].ToString().Trim();
+                DataTable shu = goods.User_registration(user);  //根据姓名查找用户ID;
+                Session["User_id_User"] = Convert.ToInt32(shu.Rows[0]["ID"].ToString());
+            }
+            catch { }
+
+            //获取年等
+            ViewData["Year"]=dom.Dates("Year");
+            ViewData["Month"] = dom.Dates("Month");
+            ViewData["Day"] = dom.Dates("Day");
+            ViewData["User_province"] = dom.Dates("User_province");
+            ViewData["User_city"] = dom.Dates("User_city");
+            ViewData["User_country"] = dom.Dates("User_country");
+            ViewData["User_town"] = dom.Dates("User_town");
+
+            //获取用户信息 User_Message  
+            ViewData["user_mess"] =dom.User_Message(Convert.ToInt32(Session["User_id_User"]));
+            passwordq();
+            //ViewData["User_regist"] = ds8;
+
+            return View();
+        }
+        public ActionResult integral()
+        {      
+            return View();
+        }
+        public void passwordq() //根据用户名获取用户id
+        {
+            DataTable dov = dom.User_Registration(Convert.ToInt32(Session["User_id_User"]));
+            TempData["User_regist"] = dov;
+            if (dov.Rows.Count > 0)
+            {
+                TempData["User_regist2"] = dov.Rows[0]["User_pwd"].ToString(); //密码
+                ViewBag.User_regist3 = dov.Rows[0]["Email"].ToString(); //邮箱
+                ViewBag.User_regist4 = dov.Rows[0]["Question"].ToString(); //问题
+                TempData["User_regist5"] = dov.Rows[0]["Answer"].ToString(); //答案
+            }
+            ViewBag.extion= Convert.ToInt32(Session["User_id_User"]);
+            
+        }
+        public ActionResult updateimage()
+        {
+            try
+            {
+                int  str=Convert.ToInt32(Session["flagimg"]);
+                ViewBag.falgimg = str;
+            }
+            catch { };
+             passwordq();
+            return View();
+        }
+        public ActionResult PassWord()
+        {
+            passwordq();
+            return View();
+        }
+        public ActionResult   QQxiu()
+        {
+            return View();
+        }
+        public ActionResult QQbinding()
+        {
+            return View();
+        }
+        public ActionResult Extension()
+        {
+            passwordq();
+            return View();
+        }
+        public ActionResult screen()
+        {
+            return View();
+        }
+        //四个参数：数据库属性-Data_cont,是否公开，数组内名称 对应数据库-Data_name,用户ID- 以下类同
+        //基本资料
+        public ContentResult Index2()
+        {           
+            int t = 0;
+            for (int i = 0; i <9; i++)
+            {              
+                dom.Baseic(Request.Form[i + t].ToString(), Request.Form[i + 1 + t].ToString(), mj[i], Convert.ToInt32(Session["User_id_User"]));                        
+                t++;
+            }         
+            return Content("基本资料");
+        }
+        //联系方式
+        public string  contact()
+        {
+            int t = 0;    
+            for (int i = 0; i < 9; i++)
+            {
+                dom.Baseic(Request.Form[i + t].ToString(), Request.Form[i + 1 + t].ToString(), ml[i], Convert.ToInt32(Session["User_id_User"]));       
+                t++;
+            }          
+            return "联系方式";
+        }
+
+        //教育情况
+        public string  education()
+        {
+            int t = 0;      
+            for (int i = 0; i <4; i++)
+            {
+                dom.Baseic(Request.Form[i + t].ToString(), Request.Form[i + 1 + t].ToString(), me[i], Convert.ToInt32(Session["User_id_User"]));            
+                t++;
+            }     
+            return "教育情况";
+        }
+        //工作情况
+        public string  occup()
+        {
+            int t = 0;       
+            for (int i = 0; i < 2; i++)
+            {
+                dom.Baseic(Request.Form[i + t].ToString(), Request.Form[i + 1 + t].ToString(), mg[i], Convert.ToInt32(Session["User_id_User"]));
+                 t++;
+            }
+            //  Response.Write("<script type='text/javascript'>alert('更新成功');</script>");          
+            return "工作情况";
+        }
+        //个人信息
+        public string  persons()
+        {
+            int t = 0;    
+            for (int i = 0; i < 4; i++)
+            {
+                dom.Baseic(Request.Form[i + t].ToString(), Request.Form[i + 1 + t].ToString(), mp[i], Convert.ToInt32(Session["User_id_User"]));               
+                t++;
+            }       
+            return "个人信息";
+        }
+        //安全密码
+        public string  passwords()
+        { 
+            dom.password(Request.Form[1].ToString(), Request.Form[3].ToString(), Request.Form[4].ToString(), Request.Form[5].ToString(),Convert.ToInt32(Session["User_id_User"]));       
+            return "安全密码";
+        }
+        //省份变化
+        public ContentResult province(string value,int disindex)
+        {  
+            string[] dis = { "User_province", "User_city", "User_country", "User_town" };//省市县表名称
+            string[] dissub= { "Province", "City", "Country", "town" };//省市县名称
+            string[] ID = { "Province_id", "City_id","Country_id"};//ID
+            string[] copy = new string[100];
+                        
+            DataTable ds=dom.province("ID",dis[disindex],dissub[disindex],value);
+            DataTable ds1 = dom.province(dissub[disindex + 1],dis[disindex+1], ID[disindex],ds.Rows[0]["ID"].ToString());         
+            for (int i = 0; i < ds1.Rows.Count; i++)
+             {
+                    copy[i] =ds1.Rows[i][dissub[disindex + 1]].ToString().Trim();
+                  //group[i]=copy[i].ToArray();
+             }
+            return Content(JsonConvert.SerializeObject(copy).Replace("\"",""));
+        }
+        //插入图像路径
+        public int images(string path)
+        {
+            //去重 
+            if (path == "")
+               return 0;
+
+            string[] strrparh = path.Split('/');
+            DataTable dsw = dom.Urlimage1();
+            try
+            {
+                for (int h = 0; h < dsw.Rows.Count; h++)
+                {
+                    string[] strrl= dsw.Rows[h]["Data_cont"].ToString().Split('/');
+                    if (string.Compare(strrparh[strrparh.Length-1], strrl[strrl.Length-1]) ==0)
+                    {
+                        return 0;
+                    }     
+                }            
+             }
+            catch { }          
+            string url = path;
+            //是否有该用户信息头像    
+            DataTable ds = dom.Urlimage2(Convert.ToInt32(Session["User_id_User"]));
+            if (ds.Rows.Count > 0)
+            {                
+                dom.Urlimage3(url,"头像",Convert.ToInt32(Session["User_id_User"]));
+                dom.Urlimage3(url, "头像(小)", Convert.ToInt32(Session["User_id_User"]));
+            }
+            else
+            {
+                dom.Urlimage4(url,"头像",Convert.ToInt32(Session["User_id_User"]));
+                dom.Urlimage4(url, "头像(小)", Convert.ToInt32(Session["User_id_User"]));         
+            }
+            return 1;
+        }
+        //提取图像
+        public string  img()
+        {
+            string image = "";
+            DataTable ds = dom.Urlimage2(Convert.ToInt32(Session["User_id_User"]));
+            try
+            {
+               string[]   stra = ds.Rows[0]["Data_cont"].ToString().Split('/');
+               image= stra[stra.Length-1];
+            }
+            catch { }
+            return image; 
+        }
+        public ActionResult imgsd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult imgsd(HttpPostedFileBase file)
+        {
+            Session["flagimg"] = 1;
+            string path = string.Empty;
+            try
+            {
+                string filename = System.IO.Path.GetFileName(file.FileName);
+                path = System.IO.Path.Combine(Server.MapPath("~/image/imgs"), filename);
+
+                int flag = images(path.Replace('\\', '/'));
+                if (flag == 1)
+                {
+                    file.SaveAs(path);
+                }
+                else
+                {
+                   Session["flagimg"]=2;
+                }
+            }
+            catch { };
+            return RedirectToAction("updateimage");
+       }
+    }
+}

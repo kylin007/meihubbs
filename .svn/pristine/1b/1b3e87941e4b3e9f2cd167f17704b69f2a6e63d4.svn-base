@@ -1,0 +1,323 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Data;
+using meihu.App_Code;
+using System.Security.Cryptography;
+using Newtonsoft.Json;
+namespace meihu.Controllers
+{
+   
+    public class SettingController : Controller
+    {
+        #region 基本信息
+        string[] ml = { "真实姓名", "性别", "生日", "出生地", "居住地", "情感状态", "交友目的", "血型", "年级" };//联系方式
+        string[] mj = { "证件类型","证件号","邮寄地址","邮编","个人主页","自我介绍", "兴趣爱好", "个人签名", "时区" };//基本资料
+        string[] me = { "固定电话", "手机","QQ", "阿里旺旺"};//教育情况
+        string[] mg = { "毕业学校", "学历" };//工作情况
+        string[] mp = { "公司", "职业", "职位", "年收入" };//个人情况
+        string[] mm = { "旧密码", "新密码", "确认密码", "Email", "安全提问", "回答"  };//密码安全
+   
+        //
+        // GET: /Setting/
+        DataBase dom = new DataBase();                                
+       #endregion
+        public ActionResult Index()
+        {
+
+            try
+            {
+               Session["User_id_User"]=Convert.ToInt32(Request.QueryString.ToString().Split('=')[1]);
+            }
+            catch { Response.Write("<script>window.location.href='" + "http://localhost:3741" + "';</script>"); }
+            string str = "select *from Year order by Year desc";
+            DataTable ds=dom.getdata(str);
+            ViewData["Year"] = ds;
+            string str1 = "select *from Month";
+            DataTable ds1 = dom.getdata(str1);
+            ViewData["Month"] = ds1;
+            string str2 = "select* from Day where Flag <= 3";
+          
+            DataTable ds2 = dom.getdata(str2);
+            ViewData["Day"] = ds2;
+            string str3= "select *from User_province";
+            DataTable ds3 = dom.getdata(str3);
+            ViewData["User_province"] = ds3;
+            string str4 = "select *from User_city";
+            DataTable ds4 = dom.getdata(str4);
+            ViewData["User_city"] = ds4;
+            string str5 = "select *from User_country";
+            DataTable ds5 = dom.getdata(str5);
+            ViewData["User_country"] = ds5;
+            string str6 = "select *from User_town";
+            DataTable ds6 = dom.getdata(str6);
+            ViewData["User_town"] = ds6;
+            string str7 = "select *from User_message where  User_id='" + Convert.ToInt32(Session["User_id_User "])  + "'";
+            DataTable ds7 = dom.getdata(str7);
+            ViewData["user_mess"] = ds7;
+            passwordq();
+            //ViewData["User_regist"] = ds8;
+
+            return View();
+        }
+        public ActionResult integral()
+        {
+            return View();
+        }
+        public void passwordq()
+         {
+            string str8 = "select *from User_registration where  ID='" + Convert.ToInt32(Session["User_id_User "])  + "'";
+            DataTable ds8 = dom.getdata(str8);
+            TempData["User_regist"] = ds8;
+        }
+        public ActionResult updateimage()
+        {
+           passwordq();
+            return View();
+        }
+        public ActionResult PassWord()
+        {
+
+            return View();
+        }
+        public ActionResult   QQxiu()
+        {
+            return View();
+        }
+        public ActionResult QQbinding()
+        {
+            return View();
+        }
+        public ActionResult Extension()
+        {
+            ViewBag.extion = Convert.ToInt32(Session["User_id_User "]) ;
+            return View();
+        }
+        public ActionResult screen()
+        {
+            return View();
+        }
+        //基本资料
+        public ContentResult Index2()
+        {
+            int t = 0, flag = 1;
+            int don = 0;
+            for (int i = 0; i <9; i++)
+            {
+                string tra = "update User_message set Data_cont='" + Request.Form[i + t].ToString() + "', Is_show='" + Request.Form[i + 1 + t].ToString() + "' where Data_name='" + mj[i] + "' and User_id='" + Convert.ToInt32(Session["User_id_User "])  + "' ";
+                don = dom.check(tra);
+                if (don < 1)
+                {
+                    flag = 0;
+                }
+                t++;
+            }
+            if (flag == 1)
+            {
+                Response.Write("<script type='text/javascript'>alert('更新成功')</script>");
+            }
+            return Content("基本资料");
+        }
+        //联系方式
+        public ContentResult contact()
+        {
+            int t = 0, flag = 1; 
+            int don = 0;
+            for (int i = 0; i < 9; i++)
+            {
+                string ds = Request.Form[i + t].ToString();
+                string dsd = Request.Form[i + 1 + t].ToString();
+                string tra = "update User_message set Data_cont='" + Request.Form[i+t].ToString() + "', Is_show='" + Request.Form[i + 1+t].ToString() + "' where Data_name='" + ml[i] + "' and User_id='" + Convert.ToInt32(Session["User_id_User "])  + "' ";
+                don = dom.check(tra);
+                if (don < 1)
+                {
+                    flag = 0;
+                }
+                t++;
+            }
+            if (flag==1)
+            {
+                Response.Write("<script>alert('更新成功!')</script>");
+            }
+            return Content("联系方式");
+        }
+
+        //教育情况
+        public ContentResult education()
+        {
+            int t = 0, flag = 1;
+            int don = 0;
+            for (int i = 0; i <4; i++)
+            {
+                
+                string tra = "update User_message set Data_cont='" + Request.Form[i+t].ToString() + "', Is_show='" + Request.Form[i + 1+t].ToString() + "' where Data_name='" + me[i] + "' and User_id='" + Convert.ToInt32(Session["User_id_User "])  + "' ";
+                 don = dom.check(tra);
+                if (don < 1)
+                {
+                    flag = 0;
+                }
+                t++;
+            }
+            if (flag == 1)
+            {
+               Response.Write("<script type='text/javascript'>alert('更新成功')</script>");
+            }
+            return Content("教育情况");
+        }
+        //工作情况
+        public ContentResult occup()
+        {
+            int t = 0, flag = 1;
+            int don = 0;
+            for (int i = 0; i < 2; i++)
+            {
+
+                string tra = "update User_message set Data_cont='" + Request.Form[i + t].ToString() + "', Is_show='" + Request.Form[i + 1 + t].ToString() + "' where Data_name='" + mg[i] + "' and User_id='" +Convert.ToInt32(Session["User_id_User"]) + "' ";
+                don = dom.check(tra);
+                if (don < 1)
+                {
+                    flag = 0;
+                }
+                t++;
+            }
+            if (flag == 1)
+            {
+              //  Response.Write("<script type='text/javascript'>alert('更新成功');</script>");
+            }
+            return Content("工作情况");
+        }
+        //个人信息
+        public ContentResult persons()
+        {
+
+            int t = 0, flag = 1;
+            int don = 0;
+            for (int i = 0; i < 4; i++)
+            {
+
+                string tra = "update User_message set Data_cont='" + Request.Form[i + t].ToString() + "', Is_show='" + Request.Form[i + 1 + t].ToString() + "' where Data_name='" + mp[i] + "' and User_id='" + Convert.ToInt32(Session["User_id_User "])  + "' ";
+                don = dom.check(tra);
+                if (don < 1)
+                {
+                    flag = 0;
+                }
+                t++;
+            }
+            if (flag == 1)
+            {
+                Response.Write("<script type='text/javascript'>alert('更新成功')</script>");
+            }
+            return Content("个人信息");
+        }
+        //安全密码
+        public ContentResult passwords()
+        { 
+            int don = 0;
+            string tra = "update User_registration set User_pwd='" + Request.Form[1].ToString() + "', Email='" + Request.Form[3].ToString() + "'，Question='" + Request.Form[4].ToString() + "', Answer='" + Request.Form[5].ToString() + "' where  ID='" + Convert.ToInt32(Session["User_id_User "])  + "' ";
+            don = dom.check(tra);
+            return Content("安全密码");
+        }
+        //省份变化
+        public ContentResult province(string value,int disindex)
+        {
+
+            //var group = new Array[10];
+            string[] dis = { "User_province", "User_city", "User_country", "User_town" };//省市县表名称
+            string[] dissub= { "Province", "City", "Country", "town" };//省市县名称
+            string[] ID = { "Province_id", "City_id","Country_id"};//ID
+
+              string[] copy = new string[100];
+        
+                string str0 = "select ID from "+dis[disindex]+" where " + dissub[disindex] + "='" + value + "'";
+                DataTable ds = dom.getdata(str0);
+                string str1 = "select " + dissub[disindex+1] + " from " + dis[disindex+1] + " where " + ID[disindex] + "='" + ds.Rows[0]["ID"].ToString() + "'";
+                DataTable ds1 = dom.getdata(str1);
+                for (int i = 0; i < ds1.Rows.Count; i++)
+                {
+                    copy[i] =ds1.Rows[i][dissub[disindex + 1]].ToString().Trim();
+                    //group[i]=copy[i].ToArray();
+                }
+            return Content(JsonConvert.SerializeObject(copy).Replace("\"",""));
+        }
+        //插入图像路径
+        public int images(string path)
+        {
+            //去重
+            string stra = "";
+            string strcheck = "select distinct Data_cont from User_message where Data_name='头像'";
+            DataTable dsw = dom.getdata(strcheck);
+            try
+            {
+                for (int h = 0; h < dsw.Rows.Count; h++)
+                {
+                    if (string.Compare(path, dsw.Rows[h]["Data_cont"].ToString())==0)
+                    {
+                        return 0;
+                    }     
+                }            
+             }
+            catch { }
+
+            if (path == "")
+                return 0;
+            string url = path;
+            string str0 = "select *from User_message where Data_name='头像'  and  User_id='" + Convert.ToInt32(Session["User_id_User "])  + "'";
+            DataTable ds = dom.getdata(str0);
+            if (ds.Rows.Count > 0)
+            {
+                string str1 = "update User_message set Data_cont='" + url + "' where   Data_name='头像'  and  User_id='" + Convert.ToInt32(Session["User_id_User "])  + "'";
+                string str2 = "update User_message set Data_cont='" + url + "' where   Data_name='头像(小)'  and  User_id='" + Convert.ToInt32(Session["User_id_User "])  + "'";
+                int don = dom.check(str1);
+                int don2 = dom.check(str2);
+
+            }
+            else
+            {
+                string str1 = "insert into User_message values('" + Convert.ToInt32(Session["User_id_User "])  + "','头像' ,'" + url + "','公开')";
+                string str2 = "insert into User_message values('" + Convert.ToInt32(Session["User_id_User "])  + "','头像(小)' ,'" + url + "','公开')";
+                int don = dom.check(str1);
+                int don2 = dom.check(str2);
+            }
+            return 1;
+        }
+        //提取图像
+        public ContentResult img()
+        {
+            string image = "";
+            string str0 = "select Data_cont from User_message where Data_name='头像'  and  User_id='" + Convert.ToInt32(Session["User_id_User "])  + "'";
+            DataTable ds = dom.getdata(str0);
+            try
+            {
+               string[]   stra = ds.Rows[0]["Data_cont"].ToString().Split('/');
+               image= stra[stra.Length-1];
+            }
+            catch { }
+           
+            return Content(image); 
+        }
+        public ActionResult imgsd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult imgsd(HttpPostedFileBase file)
+        {
+            string path = string.Empty;
+            string filename = System.IO.Path.GetFileName(file.FileName);
+            path = System.IO.Path.Combine(Server.MapPath("~/image/imgs"),filename);
+            int flag=images(path.Replace('\\', '/'));
+            if (flag == 1)
+            {
+                file.SaveAs(path);
+            }
+            else
+            {
+                ViewBag.check= "姓名重复";
+            }
+         
+            return RedirectToAction("updateimage");
+       }
+    }
+}

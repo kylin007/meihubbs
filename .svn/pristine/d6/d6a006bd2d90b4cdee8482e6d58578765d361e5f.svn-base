@@ -1,0 +1,73 @@
+﻿using meihu.Models;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace meihu.Controllers
+{
+    public class ClassifyController : Controller
+    {
+        // GET: /Classify/
+
+        public ActionResult OneLevel()
+        {
+          
+            string str = Request.Params["oneclass"];
+            List<OneLevel> list = new List<OneLevel>();
+            List<OneLevel> list1 = new List<OneLevel>();
+            List<OneLevel> list2 = new List<OneLevel>();
+
+            OneLevel cs = new OneLevel();
+            DataTable dt = cs.selectForm();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string R = dt.Rows[i]["Second_forum"].ToString();
+                OneLevel level = new OneLevel();
+
+                DataTable dt1 = cs.selectSon(R);
+                DataTable dt2 = cs.is_son(R);
+                DataTable dt3 = cs.selectTime(R);
+                //DataTable dt4 = cs.selectname(R);
+                for (int n = 0; n < dt3.Rows.Count; n++)
+                {
+                    if (dt3.Rows[n]["Is_son"].ToString() == "0")
+                    {
+                        OneLevel on = new OneLevel();
+                        on.Create_on_time = dt3.Rows[n]["Create_on_time"].ToString();
+                        on.Title = dt3.Rows[n]["Title"].ToString();
+                        //level.User_name = dt4.Rows[0]["User_name"].ToString();
+                        list2.Add(on);
+                        break;
+                    }
+                }               
+
+                for (int m = 0; m < dt2.Rows.Count; m++)
+                {
+                    OneLevel ol = new OneLevel();
+                    ol.Is_son = dt2.Rows[m]["Is_son"].ToString();
+                    list1.Add(ol);
+                }
+                TempData["list1"] = list1;
+
+                for (int j = 0; j < dt1.Rows.Count; j++)
+                {
+                    level.secondlist.Add(dt1.Rows[j]["Son_forum"].ToString());
+                }
+
+                level.Second_forum = R;
+                list.Add(level);
+                         
+                TempData["list"] = list;
+                
+
+      }
+               TempData["list2"] = list2;
+
+                return View("OneLevel");           
+
+        }
+    }
+}

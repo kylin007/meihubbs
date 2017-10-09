@@ -1,0 +1,177 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using meihu.Models;
+using System.Data;
+
+namespace meihu.Controllers
+{
+    public class TwoLevelController : Controller
+    {
+        //
+        // GET: /TwoLevel/
+
+        public ActionResult TwoLevel()
+        {
+            //string STR = "郑大生活";
+            string STR = Request.Params["name"];
+            List<TwoLevel> list = new List<TwoLevel>();
+            List<TwoLevel> listIS = new List<TwoLevel>();
+            List<TwoLevel> listSM = new List<TwoLevel>();
+            List<TwoLevel> listNM = new List<TwoLevel>();
+            List<TwoLevel> listSN = new List<TwoLevel>();
+            List<TwoLevel> listC = new List<TwoLevel>();
+
+            TwoLevel cs = new TwoLevel();
+            TwoLevel tlC = new TwoLevel();
+            DataTable dt1 = cs.selectS(STR);
+            DataTable dt2 = cs.selectIS(STR);
+            DataTable dt5 = cs.selectPN(STR);
+
+            for (var i = 0; i < dt1.Rows.Count; i++)
+            {
+                TwoLevel tl = new TwoLevel();
+                tl.Son_forum = dt1.Rows[i]["Son_forum"].ToString();
+
+                DataTable dt3 = tl.selectSM(dt1.Rows[i]["Son_forum"].ToString());
+                int Post_num = 0;
+                for (var j = 0; j < dt3.Rows.Count; j++)
+                {
+                    if (dt3.Rows[j]["Is_son"].ToString() == "1")
+                    {
+                        TwoLevel tlSM = new TwoLevel();
+                        tlSM.Title = dt3.Rows[j]["Title"].ToString();
+                        //string s1 = string.Format("{0:g}", dt3.Rows[j]["Create_on_time"]);
+                        //string s2 = s1.Split('星')[0].Replace('/', '-');
+                        //string s3 = s1.Split('午')[1];
+                        //tlSM.Create_on_time = s2 + s3;
+                        tlSM.Create_on_time = dt3.Rows[j]["Create_on_time"].ToString();
+
+                        DataTable dt4 = tlSM.selectUM(dt3.Rows[j]["User_id"].ToString());
+                        tlSM.User_name = dt4.Rows[0]["User_name"].ToString();
+
+                        listSM.Add(tlSM);
+                        break;
+                    }
+                }
+                TempData["listSM"] = listSM;
+
+                int Topic_num = 0;
+                for (var k = 0; k < dt3.Rows.Count; k++)
+                {
+                    if (dt3.Rows[k]["Is_son"].ToString() == "1")
+                    {
+                        DataTable dt9 = tl.selectIT(dt3.Rows[k]["ID"].ToString());
+                        Post_num += Convert.ToInt32(dt9.Rows[0]["Reply_num"]);
+                        Topic_num++;
+                    }
+                }
+
+                tl.Topic_num = Topic_num;
+                Post_num += Topic_num;
+                tl.Post_num = Post_num;
+                list.Add(tl);
+            }
+            TempData["list"] = list;
+
+            for (var i = 0; i < dt2.Rows.Count; i++)
+            {
+                TwoLevel tl = new TwoLevel();
+                tl.Is_son = dt2.Rows[i]["Is_son"].ToString();
+                listIS.Add(tl);
+            }
+            TempData["listIS"] = listIS;
+
+            int C = 0;
+            for (var i = 0; i < dt5.Rows.Count; i++)
+            {
+                if (dt5.Rows[i]["Is_son"].ToString() == "0") C++;
+                if (C == 0)
+                {                  
+                    tlC.Today_topic_num = 0;
+                    tlC.Sum_topic_num = 0;
+                    listC.Add(tlC);
+                    TempData["listC"] = listC;
+                }
+            }
+
+            for (var i = 0; i < dt5.Rows.Count; i++)
+            {
+                TwoLevel tl = new TwoLevel();
+                if (dt5.Rows[i]["Is_son"].ToString() == "0")
+                {
+                    tl.Title = dt5.Rows[i]["Title"].ToString();
+                    if (dt5.Rows[i]["Is_close"].ToString() == "0")
+                    {
+                        tl.Top_img = "/image/folder_common.gif";
+                        tl.Mouse_title = "新窗口打开";
+                    }
+                    else tl.Top_img = "/image/folder_lock.gif";
+                    //string s1 = string.Format("{0:g}", dt5.Rows[i]["Create_on_time"]);
+                    //string s2 = s1.Split('星')[0].Replace('/', '-');
+                    //string s3 = s1.Split('午')[1];
+                    //tl.Create_on_time = s2 + s3;
+                    tl.Create_on_time = dt5.Rows[i]["Create_on_time"].ToString();
+                    DataTable dt6 = tl.selectIT(dt5.Rows[i]["ID"].ToString());
+                    tl.Reply_num = dt6.Rows[0]["Reply_num"].ToString();
+                    tl.Visit_num = dt6.Rows[0]["Visit_num"].ToString();
+                    //string s4 = string.Format("{0:g}", dt6.Rows[0]["Last_reply_time"]);
+                    //string s5 = s4.Split('星')[0].Replace('/', '-');
+                    //string s6 = s4.Split('午')[1];
+                    //tl.Last_reply_time = s5 + s6;
+                    tl.Last_reply_time = dt6.Rows[0]["Last_reply_time"].ToString();
+                    DataTable dt7 = tl.selectUM(dt5.Rows[i]["User_id"].ToString());
+                    tl.User_name = dt7.Rows[0]["User_name"].ToString();
+                    DataTable dt8 = tl.selectUM(dt6.Rows[0]["Last_reply_id"].ToString());
+                    tl.Last_user_name = dt8.Rows[0]["User_name"].ToString();
+
+                    int Sum_topic_num = 0;
+                    for (var j = 0; j < dt5.Rows.Count; j++)
+                        if (dt5.Rows[j]["Is_son"].ToString() == "0") Sum_topic_num++;
+                    tlC.Sum_topic_num = Sum_topic_num;
+
+                    int Today_topic_num = 0;
+                    DateTime now = DateTime.Now.ToLocalTime();
+                    string Now_time = now.ToLocalTime().ToString("yyyy-M-d HH:mm:ss");
+                    Now_time = Now_time.Replace('-', '/');
+                    for (var k = 0; k < dt5.Rows.Count; k++)
+                        if (dt5.Rows[k]["Is_son"].ToString() == "0" && dt5.Rows[k]["Create_on_time"].ToString().Split(' ')[0] == Now_time.Split(' ')[0])
+                            Today_topic_num++;
+                    for (var y = 0; y < dt5.Rows.Count; y++)
+                    {
+                        if (dt5.Rows[y]["Is_son"].ToString() == "0")
+                        {
+                            TwoLevel tlRN = new TwoLevel();
+                            DataTable dt10 = tlRN.selectRN(dt5.Rows[y]["ID"].ToString());
+                            for (var x = 0; x < dt10.Rows.Count; x++)
+                                if (dt10.Rows[x]["Reply_time"].ToString().Split(' ')[0] == Now_time.Split(' ')[0])
+                                    Today_topic_num++;
+                        }
+                    }
+                    tlC.Today_topic_num = Today_topic_num;
+
+                    if (dt6.Rows[0]["Is_top"].ToString() == "1")
+                    {
+                        if (dt5.Rows[i]["Is_close"].ToString() == "1")
+                            tl.Mouse_title = "本版置顶主题 - 关闭的主题 - 新窗口打开";
+                        listSN.Add(tl);
+                    }
+                    else
+                    {
+                        if (dt5.Rows[i]["Is_close"].ToString() == "1")
+                            tl.Mouse_title = "关闭的主题 - 新窗口打开";
+                        listNM.Add(tl);
+                    }
+                    listC.Add(tlC);
+                }
+            }
+            TempData["listSN"] = listSN;
+            TempData["listNM"] = listNM;
+            TempData["listC"] = listC;
+
+            return View();
+        }
+    }
+}

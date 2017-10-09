@@ -1,0 +1,118 @@
+﻿using meihu.App_Code;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+
+namespace meihu.Models
+{
+    public class Post
+    {
+        public string Second_forum { get; set; }
+        public string One_forum { get; set; }
+        public string title { get; set; }
+        public string time { get; set; }
+        public string vinum { get; set; }
+        public string ronum { get; set; }
+        public string ude { get; set; }
+        public string theme { get; set; }
+        public string firendNum { get; set; }
+        public string scoreNum { get; set; }
+        public string majorName { get; set; }
+        public string gradeName { get; set; }
+        public string moneyNum { get; set; }
+        public string expression { get; set; }
+        public string signtime { get; set; }
+        public string day { get; set; }
+        public string collect { get; set; }
+        public string evaluation { get; set; }
+        public string portrait { get; set; }
+        public string content { get; set; }
+        public string ti { get; set; }
+        public string flor { get; set; }
+        public string evnum { get; set; }
+        public string repcon { get; set; }
+
+        public List<string> secondlist = new List<string>();
+        DataBase db = new DataBase();
+        SqlConnection con = new SqlConnection();
+
+        string twoid;
+        string oneid;
+
+        
+        public DataTable OneClassify(string toid)
+        {
+            string isson = "select Is_son from Create_topic where ID = '" + toid + "'";
+            DataTable daisso = db.getdata(isson);
+
+            if (daisso.Rows[0]["Is_son"].ToString() == "1")
+            {
+                string getTwo = "select Second_forum_id from Son_forum where ID = (select Forum_id from Create_topic where ID = '" + toid + "')";
+                DataTable dtgt = db.getdata(getTwo);
+                twoid = dtgt.Rows[0]["Second_forum_id"].ToString();
+            }
+            else
+            {
+                string getTwo = "select Forum_id from Create_topic where ID = '" + toid + "'";
+                DataTable dtgt = db.getdata(getTwo);
+                twoid = dtgt.Rows[0]["Forum_id"].ToString();
+            }
+
+            string twoidstring = "select First_forum_id from Second_forum where ID = '" + twoid + "'";
+            DataTable dttwo = db.getdata(twoidstring);
+            oneid = dttwo.Rows[0]["First_forum_id"].ToString();
+            string title = "select First_forum from First_forum where ID = '" + oneid + "'";
+            DataTable dt = db.getdata(title);
+            return dt;
+        }
+
+        public DataTable twoClassify(string topicId)
+        {
+            string title = "select Second_forum from Second_forum where ID = '" + twoid + "'";
+            DataTable dt = db.getdata(title);
+
+            return dt;
+        }
+
+        public DataTable postTitle(string toid)
+        {
+            string str = "select title,Create_on_time,User_id,Topic_content from Create_topic where ID = '" + toid + "'";
+            DataTable dt = db.getdata(str);
+            return dt;
+        }
+        public DataTable selectSingleMessage(string toid)
+        {
+            String pmesage = "select Visit_num, Reply_num,Collection_num,Evaluation_num from Topic_message where Topic_id = '" + toid + "'";
+            DataTable dt = db.getdata(pmesage);
+            return dt;
+        }
+        public DataTable username(string usid)
+        {
+            string str = "select User_name from User_registration where ID = '" + usid + "'";
+            DataTable dt = db.getdata(str);
+            return dt;
+        }
+
+        public DataTable susermeage(string sdataName, string usid)
+        {
+            string str = "select Data_cont from User_message where User_id = '" + usid + "' AND  Data_name = '" + sdataName + "'";
+            DataTable dt = db.getdata(str);
+            return dt;
+        }
+        public DataTable signmesge(string usid)
+        {
+            string str = "select Expression,Sign_time,All_day from User_sign where User_id = '" + usid + "'";
+            DataTable dt = db.getdata(str);
+            return dt;
+        }
+        public DataTable reply(string toid)
+        {
+            string str = "select Reply_user_id,Reply_floor,Evaluation_num,Reply_content,Reply_time from Reply_message where Topic_id = '" + toid + "' order by Reply_floor";
+            DataTable dt = db.getdata(str);
+            return dt;
+        }
+    }
+}

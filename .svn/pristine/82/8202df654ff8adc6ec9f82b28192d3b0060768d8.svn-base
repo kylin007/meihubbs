@@ -1,0 +1,209 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Data;
+using meihu.App_Code;
+using System.Security.Cryptography;
+
+namespace meihu.Controllers
+{
+   
+    public class SettingController : Controller
+    {
+        #region 基本信息
+        string[] ml = { "真实姓名", "性别", "生日", "出生地", "居住地", "情感状态", "交友目的", "血型", "年级" };//联系方式
+        string[] mj = { "证件类型","证件号","邮寄地址","个人主页","自我介绍", "兴趣爱好", "个人签名", "时区" };//基本资料
+        string[] me = { "固定电话", "手机","QQ", "阿里旺旺"};//教育情况
+        string[] mg = { "毕业院校", "学历" };//工作情况
+        string[] mp = { "公司", "职业", "职位", "年收入" };//个人情况
+        string[] mm = { "旧密码", "新密码", "确认密码", "Email", "安全提问", "回答"  };//密码安全
+        int user_id = 1;
+        #endregion
+        //
+        // GET: /Setting/
+        DataBase dom = new DataBase();
+        public ActionResult Index()
+        {
+            string str = "select *from Year order by Year desc";
+            DataTable ds=dom.getdata(str);
+            ViewData["Year"] = ds;
+            string str1 = "select *from Month";
+            DataTable ds1 = dom.getdata(str1);
+            ViewData["Month"] = ds1;
+            string str2 = "select* from Day where Flag <= 3";
+            #region
+            
+            //int month = Convert.ToInt32(yea);
+            //int year = Convert.ToInt32(mon);
+            //string str2 = null;
+            //if ((year % 400 == 0 || year % 4 == 0 && year % 100 != 0) && month == 2)
+            //{
+            //    str2 = "select *from Day where Flag<=1";
+            //}
+            //else if (month == 2)
+            //{
+            //    str2 = "select *from Day where Flag<1";
+            //}
+            //else if (month == 4 || month == 6 || month == 9 || month == 11)
+            //{
+            //    str2 = "select *from Day where Flag<=2";
+            //}
+            //else if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+            //{
+            //    str2 = "select *from Day where Flag<=3";
+            //}
+            #endregion
+            DataTable ds2 = dom.getdata(str2);
+            ViewData["Day"] = ds2;
+            string str3= "select *from User_province";
+            DataTable ds3 = dom.getdata(str3);
+            ViewData["User_province"] = ds3;
+            string str4 = "select *from User_city";
+            DataTable ds4 = dom.getdata(str4);
+            ViewData["User_city"] = ds4;
+            string str5 = "select *from User_country";
+            DataTable ds5 = dom.getdata(str5);
+            ViewData["User_country"] = ds5;
+            string str6 = "select *from User_town";
+            DataTable ds6 = dom.getdata(str6);
+            ViewData["User_town"] = ds6;
+            
+
+            return View();
+        }
+        public ActionResult integral()
+        {
+            return View();
+        }
+        public ActionResult updateimage()
+        {
+            return View();
+        }
+        public ActionResult PassWord()
+        {
+            return View();
+        }
+        public ActionResult   QQxiu()
+        {
+            return View();
+        }
+        public ActionResult QQbinding()
+        {
+            return View();
+        }
+        public ActionResult Extension()
+        {
+            return View();
+        }
+        public ActionResult screen()
+        {
+            return View();
+        }
+        //基本资料
+        public ActionResult Index2()
+        {
+            int t = 0;
+            for (int i = 0; i < 8; i++)
+            {
+              string tra= "update User_message set Data_cont='" + Request.Form[i].ToString() + "', Is_show='" + Request.Form[i+1].ToString() + "' where Data_name='" + mj[i]+ "' and User_id='"+user_id+"' ";
+            int don = dom.check(tra);
+              t++;
+            if (don > 0)
+            {
+               Response.Write("<script>alert('更新成功!')</script>");  
+            }
+            }
+           
+            return View();
+        }
+        //联系方式
+        public ActionResult contact()
+        {
+
+            for (int i = 0; i < 9; i++)
+            {
+                string tra = "update User_message set Data_cont='" + Request.Form[i].ToString() + "', Is_show='" + Request.Form[i + 1].ToString() + "' where Data_name='" + ml[i] + "' and User_id='" + user_id + "' ";
+                int don = dom.check(tra);
+
+                if (don > 0)
+                {
+                    Response.Write("<script>alert('更新成功!')</script>");
+                }
+            }
+            return View();
+        }
+
+        //教育情况
+        public ActionResult education()
+        {
+            int t = 0;
+            for (int i = 0; i <8; i++)
+            {
+                
+                //string tra = "update User_message set Data_cont='" + Request.Form[i+t].ToString() + "', Is_show='" + Request.Form[i + 1+t].ToString() + "' where Data_name='" + me[i] + "' and User_id='" + user_id + "' ";
+                int don= 1;
+                    //don = dom.check(tra);
+
+                if (don > 0)
+                {
+                    Console.Write("更新成功");
+                    Response.Write("<script>alert('XXXX\"xxx\"xxx！');</script>");
+                    Response.Write("<script type='text/javascript'>alert('更新成功')</script>");
+                }
+                t++;
+            }
+            return View();
+        }
+        //工作情况
+        public ActionResult occup()
+        {
+
+            for (int i = 0; i <2; i++)
+            {
+                string tra = "update User_message set Data_cont='" + Request.Form[i].ToString() + "', Is_show='" + Request.Form[i + 1].ToString() + "' where Data_name='" + mg[i] + "' and User_id='" + user_id + "' ";
+                int don = dom.check(tra);
+
+                if (don > 0)
+                {
+                    Response.Write("<script>alert('更新成功!')</script>");
+                }
+            }
+            return View();
+        }
+        //个人信息
+        public ActionResult persons()
+        {
+
+            for (int i = 0; i < 4; i++)
+            {
+                string tra = "update User_message set Data_cont='" + Request.Form[i].ToString() + "', Is_show='" + Request.Form[i + 1].ToString() + "' where Data_name='" + mp[i] + "' and User_id='" + user_id + "' ";
+                int don = dom.check(tra);
+
+                if (don > 0)
+                {
+                    Response.Write("<script>alert('更新成功!')</script>");
+                }
+            }
+            return View();
+        }
+        public ActionResult password()
+        {
+
+            for (int i = 0; i <6; i++)
+            {
+                string tra = "update User_message set Data_cont='" + Request.Form[i].ToString() + "', Is_show='" + Request.Form[i + 1].ToString() + "' where Data_name='" + mm[i] + "' and User_id='" + user_id + "' ";
+                int don=0;
+                   // dom= dom.check(tra);
+
+                if (don > 0)
+                {
+                    Response.Write("<script>alert('更新成功!')</script>");
+                }
+            }
+            return View();
+        }
+
+    }
+}

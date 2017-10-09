@@ -1,0 +1,138 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Setting/SettingSet.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderTtitle" runat="server">
+   积分
+</asp:Content>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="subcontent" runat="server">
+    <script>
+        window.onload = function settingscore() {
+
+            var dom = document.getElementById('I-score0');
+            var td = dom.getElementsByTagName('td');
+            var tdclass = document.getElementsByClassName("I-scoreclass");
+            for (var i = 0; i < td.length; i++) {
+                td[i].index = i;
+                td[i].onclick = function fun() {
+                    for (var j = 0; j < tdclass.length; j++) {
+                        tdclass.item(j).style.display = 'none';
+                    }
+                    tdclass.item(this.index).style.display = 'block';
+                };
+            }
+        }
+
+    </script>
+<div id="I-scores">
+    <div id="I-score0">
+          <table>
+            <tr>
+                 <td><a href="#">我的积分</a></td>
+                 <td><a href="#">充值</a></td>
+                 <td><a href="#">积分记录</a></td>
+                 <td><a href="#">积分规则</a></td>
+            </tr>
+        </table>
+    </div>
+     <div id="I-score1" class="I-scoreclass" style="display:block;">
+        <ul>
+        
+            <li><span>金钱: 56 郑大币</span>&nbsp;<a href="#">立即充值»</a></li>
+            <li><b>积分: 7 </b>( 总积分= 主题数 + 发帖数 + 精华帖数 X 10 )</li>
+        </ul>
+        <div class="I-sca">
+            <table>
+                <tr>
+                <td class="I-sc0">积分记录</td>
+                <td class="I-sc1"><a href="#">查看更多»</a></td>
+                </tr>
+            </table>
+        </div>
+           <div class="I-sta0">
+            <table>
+                <tr>
+                <td>操作</td>
+                <td>积分变更</td>
+                <td>详情</td>
+                <td colspan="10" class="I-stb">变更时间</td>
+                </tr>
+            </table>
+               <div class="I-stb0">
+                    目前没有积分交易记录
+               </div>
+        </div>
+    </div>
+    <div  id="I-score2" class="I-scoreclass" style="display:none;">
+        <div class="I-scor0">
+            金钱: 56 郑大币
+        </div>
+        <div class="I-scor1">
+            <table>
+                <tr>
+                    <td style="padding-left:20px">
+支付方式</td>
+                    <td style="text-align:right">
+<input type="radio"  id="zhifubao"/></td>
+                     <td colspan="2"><img src="../../image/zhifubao.png" /></td>
+                 
+                </tr>
+              </table>
+            </div>
+         <div class="I-scor2">
+           <table>
+                 <tr>
+                     
+                    <td style="padding-bottom:55px;padding-left:20px">
+充值</td>
+                     <td colspan="5" style="padding-bottom:55px;padding-left: 50px;"><input type="text" value="0" id="montytext" style="width: 40px"/> &nbsp;金钱  所需 人民币<asp:Label ID="labelmontytext" runat="server" Text="0"></asp:Label> 元</td>
+                    <td	 colspan="2">人民币现金 1 元 = 1 郑大币金钱<br />
+单次最低充值 10 郑大币金钱<br />
+单次最高充值 10000 郑大币金钱<br />
+最近 30 天最高充值 50000 郑大币金钱</td>
+                </tr>
+                  <tr>
+                    <td colspan="8"style="padding-left:162px">
+                        <asp:Button ID="ButtonRecharge" runat="server" Text="充值" style="font-weight:600"/></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="I-score3" class="I-scoreclass" style="display:none;">
+        <div class="I-scoresub0">
+           <ul>
+               <li><a href="#"><b>积分收益</b></a></li>
+               <li>|</li>
+                <li><a href="#">系统奖励</a></li>
+           </ul>
+        </div>
+        <div class="I-scoresub1">
+            <table>
+                <tr><td>积分:&nbsp;<asp:DropDownList ID="DropDownListscore" runat="server" Height="22px" Width="188px">
+                    <asp:ListItem>不限</asp:ListItem>
+                    <asp:ListItem>金钱</asp:ListItem>
+                    </asp:DropDownList></td><td style="padding-left:100px">时间范围:<asp:TextBox ID="TextBoxtime0" runat="server" Width="100px"></asp:TextBox> 至<asp:TextBox ID="TextBoxtime1" runat="server" Width="100px"></asp:TextBox></td></tr>
+                 <tr><td>收支:&nbsp;<asp:DropDownList ID="DropDownListincome" runat="server" Height="18px" Width="188px">
+                     <asp:ListItem>不限</asp:ListItem>
+                     <asp:ListItem>支出</asp:ListItem>
+                     <asp:ListItem>收入</asp:ListItem>
+                     </asp:DropDownList></td><td style="padding-left:100px">操作:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="DropDownListoperation" runat="server" Height="20px" Width="227px"></asp:DropDownList></td></tr>
+                <tr><td colspan="2" style="padding-left:62px">
+                    <asp:Button ID="Buttoncheckscore" runat="server" Text="查询" style="font-weight:600" Height="25px" Width="48px" /></td></tr>
+            </table>
+        </div>
+        <div class="I-scoresub2"> 
+              <table>
+                <tr>
+                <td>操作</td>
+                <td>积分变更</td>
+                <td>详情</td>
+                <td colspan="10" class="I-stb">变更时间</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+        </div>
+
+</asp:Content>

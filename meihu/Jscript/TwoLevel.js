@@ -1,0 +1,207 @@
+﻿
+//林玲
+
+$(document).ready(function () {
+    $(".csRoof img").click(function () {
+        var cs = $(this).parent().siblings();
+        if (cs.css('display') == 'block') {
+            cs.hide();
+            $(this).attr('src', "/image/collapsed_yes.gif");
+        }
+        else {
+            cs.show();
+            $(this).attr('src', "/image/collapsed_no.gif");
+        }
+    });
+    $(".Only li").mouseover(function () {
+        $(this).css("background-color", "#FFECEC");
+        $(this).css("color", "#BA350F");
+    });
+    $(".Only li").mouseout(function () {
+        $(this).css("background-color", "white");
+        $(this).css("color", "#333");
+    });
+    $(".Six li").mouseover(function () {
+        $(this).css("background-color", "#FFECEC");
+        $(this).css("color", "#BA350F");
+    });
+    $(".Six li").mouseout(function () {
+        $(this).css("background-color", "white");
+        $(this).css("color", "#333");
+    });
+    $(".TwoSix li").mouseover(function () {
+        $(this).css("background-color", "#FFECEC");
+        $(this).css("color", "#BA350F");
+    });
+    $(".TwoSix li").mouseout(function () {
+        $(this).css("background-color", "white");
+        $(this).css("color", "#333");
+    });
+    $(".Together1").click(function () {
+        $(".Only").show();
+    });
+    $(".Together2").click(function () {
+        $(".Six").show();
+    });
+    $(".Together3").click(function () {
+        $(".TwoSix").show();
+    });
+    $(".Together1").mouseout(function () {
+        $(".Only").hide();
+    });
+    $(".Together2").mouseout(function () {
+        $(".Six").hide();
+    });
+    $(".Together3").mouseout(function () {
+        $(".TwoSix").hide();
+    });
+    $(".Only").mouseover(function () {
+        $(".Only").show();
+    });
+    $(".Six").mouseover(function () {
+        $(".Six").show();
+    });
+    $(".TwoSix").mouseover(function () {
+        $(".TwoSix").show();
+    });
+
+    $(".sRight a").mouseover(function () {        
+        if ($(this).css("background-color") != "rgb(255, 204, 204)") {
+            $(this).css("border-color", "#369");
+            $(this).css("color", "#369");
+        }
+    });
+    $(".sRight a").mouseout(function () {
+        $(this).css("border-color", "#FCC");
+        $(this).css("color", "#444");
+    });
+    $(".sBack a").mouseover(function () {
+        $(this).css("border-color", "#369");
+        $(this).css("color", "#369");
+    });
+    $(".sBack a").mouseout(function () {
+        $(this).css("border-color", "#FCC");
+        $(this).css("color", "#444");
+    });
+
+    $(".Publish button").click(function () {          
+        var title = $(".pTitle input").val();
+        var content = $(".pLeft textarea").val();
+        var str = $(".Roof a")[0].text;      
+        if (content.length == 0 || title.length == 0) {
+            alert("抱歉，您尚未输入标题或内容!");
+        }
+        else {
+            $.ajax({
+                url: "/TwoLevel/FastPost",
+                dataType: 'json',
+                data: {
+                    "title": title,
+                    "content": content,
+                    "str": str,
+                },
+                async: false,//请求是否异步，默认异步;
+                type: "POST",
+                success: function (result) {
+                    //alert("success");
+                    alert("非常感谢，您的主题已发布，现在将转入主题页，请稍候......");
+                    //alert($(".hidden").css("display", "block"));
+                    window.location.href = "/postInfor/post?id=" + result["topic_id"];
+                    $(".pTitle input").val("").focus();
+                    $(".pLeft textarea").val("").focus();
+                },
+                error: function (result) {
+                    alert("出现未知错误,请联系管理员!");
+                }
+            });
+        }
+    });
+    $(".Stickied li").mouseover(function () {
+        $(this).css("background-color", "#F2F2F2");
+    });
+    $(".Stickied li").mouseout(function () {
+        $(this).css("background-color", "white");
+    });
+    $(".Normal li").mouseover(function () {
+        $(this).css("background-color", "#F2F2F2");
+    });
+    $(".Normal li").mouseout(function () {
+        $(this).css("background-color", "white");
+    });
+
+    $(".cPublish button").click(function () {
+        var title = $(".title input").val();
+        var content = $(".Mix").val();
+        var str = $(".Roof a")[0].text;
+        if (content.length == 0 || title.length == 0) {
+            alert("抱歉，您尚未输入标题或内容!");
+        }
+        else {
+            $.ajax({
+                url: "/TwoLevel/FastPost",
+                dataType: 'json',
+                data: {
+                    "title": title,
+                    "content": content,
+                    "str": str,
+                },
+                async: false,//请求是否异步，默认异步;
+                type: "POST",
+                success: function (result) {
+                    //alert("success");
+                    //alert($(".hidden"));
+                    alert("非常感谢，您的主题已发布，现在将转入主题页，请稍候......");
+                    window.location.href = "/postInfor/post?id=" + result["topic_id"];
+                    $(".pTitle input").val("").focus();
+                    $(".pLeft textarea").val("").focus();
+                },
+                error: function (result) {
+                    alert("出现未知错误,请联系管理员!");
+                }
+            });
+        }
+    });
+
+    var only = $(".OnlyYou").text();
+    var ao = $(".o");
+    $(".o").removeClass("y");
+    for (var i = 0; i < ao.length; i++)
+    {
+        if (ao[i].text == only) {
+            $(".o").eq(i).addClass("y");
+        }
+    }
+   
+    $("label input").focus(function () {    
+        var rval = $(".Roof a")[0].text;
+        //var rin = $(this).val();
+        $(document).on('keyup', function (e) {
+            if (e.keyCode === 13) {
+                var rin = $("label input").val();
+                //alert(rin.length);
+                //alert("即将跳转页面。");
+                //alert(rval);
+                //alert(rin); 
+                window.location.href = "/TwoLevel/TwoLevel?name=" + rval + "&pagenum=" + rin;
+            }
+        });
+    });
+    $(".sLeft a").click(function () {
+        var oh, ow;
+        $(".Control").css("display", "block");
+        oh = parseInt($(window).height() / 2 - $(".Control").height() / 2);
+        ow = parseInt($(window).width() / 2 - $(".Control").width() / 2);
+        $(".Control").css("top", oh + 'px');
+        $(".Control").css("left", ow + 'px');
+    });
+
+    if ($(".Roof a")[0].text == "毕业生交流")
+    {
+        $(".Roof").addClass("ok");
+    }
+
+    $(".pTitle input").on("input", function (e) {
+        var pl = $(".pTitle input").val();
+        $("p .s").text(80 - pl.length);
+    });
+});

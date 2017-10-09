@@ -1,0 +1,80 @@
+﻿<%--------------------------------张宏乾--%>
+
+
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../../Css/Mypost.css" rel="stylesheet" />
+    <script src="../../Jscript/My_post.js"></script>
+    <div class="zy">
+        <div class="z">
+            <a class=" House" title="首页" href="http://localhost:3741/">郑州大学论坛,郑大眉湖论坛</a>
+        </div>
+    </div>
+    <div class="Introduction">
+        <div class="wp">
+            <div class="mn">
+                <div class="bk gd">
+                    <div class="bk_n">
+                        <h1 class="zt">导读首页</h1>
+                    </div>
+                    <div class="k">
+                        <div id="jz">
+                            <div class="btn"></div>
+                        </div>
+                    </div>
+                </div>
+            <ul class="ti bk cl" id="bt">
+                    <li>
+                        <a  href="My_post?a1">最新热门</a>
+                    </li>
+                    <li>
+                        <a  href="My_post?a2">最新精华</a>
+                    </li>
+                    <li>
+                        <a  href="My_post?a3">查看新帖</a>
+                    </li>
+                    <li>
+                        <a  href="My_post?a4" onmouseover="menu()" onmouseout="dis()">我的帖子</a>
+                    </li>
+                </ul>
+                <div class="bk bkw">
+                    <div class=" bk_h bk_n">
+                        <a class="y" href="My_post?a1">更多»</a>
+                        <h2>最新热门</h2>
+                    </div>
+                    <div class="bk_c">
+                        <div class="xl2 cl" id="q4">
+                          
+                        </div>
+                    </div>
+                </div>
+                 <div class="bk bkw">
+                    <div class=" bk_h bk_n">
+                        <a class="y" href="My_post?a2">更多»</a>
+                        <h2>最新精华</h2>
+                    </div>
+                    <div class="bk_c">
+                        <div class="xl2 cl" id="q5">
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="bk bkw">
+                    <div class=" bk_h bk_n">
+                        <a class="y" href="My_post?a3">更多»</a>
+                        <h2>查看新帖</h2>
+                    </div>
+                    <div class="bk_c">
+                        <div class="xl2 cl" id="q6">
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</asp:Content>

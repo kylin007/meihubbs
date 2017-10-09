@@ -1,0 +1,446 @@
+﻿window.onload = function () {//切换主题与个人资料
+    var oDiv = document.getElementById('tb').getElementsByTagName('li');
+    var oDiv1 = $("#data1").children("div");//用jquery获取一级子节点
+    var oDiv2 = document.getElementById('data4_menu').getElementsByTagName('a');
+    var oDiv3 = $("#data4_con").children("div");//用jquery获取一级子节点
+    var i, j;
+    for (i = 0; i < oDiv.length; i++)
+    {
+        oDiv[i].index = i;/*位置索引*/
+        oDiv[i].onclick = function () {/*鼠标点击触发操作;处理帖子与个人资料;*/
+            for (j = 0; j < oDiv.length; j++)
+            {
+                oDiv[j].className = '';
+                oDiv1[j].style.display='none';
+            }
+            this.className = 'a';
+            oDiv1[this.index].style.display = 'block';
+            document.getElementById('Topic_data').innerText = this.index == 0 ? "帖子" : "个人资料";
+            if(this.index == 0)
+            {
+                Topic_show("Topic_show");
+            }
+        }
+    }
+    for (i = 0; i < oDiv.length; i++)
+    {
+        oDiv2[i].index = i;/*位置索引*/
+        oDiv2[i].onclick = function () {/*鼠标点击触发操作;处理主题与回复;*/
+            for (j = 0; j < oDiv2.length; j++)
+            {
+                oDiv2[j].className = '';
+            }
+            this.className = 'a';
+            if (this.index == 0) {
+                Topic_show("Topic_show");//帖子显示;
+            }
+            else if (this.index == 1) {
+                Topic_show("Reply_show");
+            }
+        }
+    }
+}
+//点击显示弹框
+function Show(n)
+{
+    var oDiv = n == 1 ? document.getElementById('fwin_friend') : document.getElementById('fwin_showmess');
+    oDiv.style.display = 'block';
+}
+//弹框关闭
+function Quit(n)
+{
+    var oDiv;
+    if (n == 1)
+    {
+        oDiv = document.getElementById('fwin_friend');
+    }
+    else if(n == 2)
+    {
+        oDiv = document.getElementById('fwin_showmess');
+    }
+    oDiv.style.display = "none";
+}
+               
+//好友框移动
+$(document).ready(function () {
+    var $div = $("div#fwin_friend");
+    /* 绑定鼠标左键按住事件 */
+    $div.bind("mousedown", function (event) {
+        /* 获取需要拖动节点的坐标 */
+        var offset_x = $(this)[0].offsetLeft;//x坐标
+        var offset_y = $(this)[0].offsetTop;//y坐标
+        /* 获取当前鼠标的坐标 */
+        var mouse_x = event.pageX;
+        var mouse_y = event.pageY;
+        /* 绑定拖动事件 */
+        /* 由于拖动时，可能鼠标会移出元素，所以应该使用全局（document）元素 */
+        $(document).bind("mousemove", function (ev) {
+            /* 计算鼠标移动了的位置 */
+            var _x = ev.pageX - mouse_x;
+            var _y = ev.pageY - mouse_y;
+            /* 设置移动后的元素坐标 */
+            var now_x = (offset_x + _x) + "px";
+            var now_y = (offset_y + _y) + "px";
+            /* 改变目标元素的位置 */
+            $div.css({
+                top: now_y,
+                left: now_x
+            });
+        });
+    });
+    /* 当鼠标左键松开，解除事件绑定 */
+    $(document).bind("mouseup", function () {
+        $(this).unbind("mousemove");
+    });
+})
+//消息框移动http://localhost:3741/Css/friendCss.css
+$(document).ready(function () {
+    var $div = $("div#fwin_showmess");
+    /* 绑定鼠标左键按住事件 */
+    $div.bind("mousedown", function (event) {
+        /* 获取需要拖动节点的坐标 */
+        var offset_x = $(this)[0].offsetLeft;//x坐标
+        var offset_y = $(this)[0].offsetTop;//y坐标
+        /* 获取当前鼠标的坐标 */
+        var mouse_x = event.pageX;
+        var mouse_y = event.pageY;
+        /* 绑定拖动事件 */
+        /* 由于拖动时，可能鼠标会移出元素，所以应该使用全局（document）元素 */
+        $(document).bind("mousemove", function (ev) {
+            /* 计算鼠标移动了的位置 */
+            var _x = ev.pageX - mouse_x;
+            var _y = ev.pageY - mouse_y;
+            /* 设置移动后的元素坐标 */
+            var now_x = (offset_x + _x) + "px";
+            var now_y = (offset_y + _y) + "px";
+            /* 改变目标元素的位置 */
+            $div.css({
+                top: now_y,
+                left: now_x
+            });
+        });  
+    });
+    /* 当鼠标左键松开，解除事件绑定 */
+    $(document).bind("mouseup", function () {
+        $(this).unbind("mousemove");
+    });
+})
+            
+//发送消息按钮
+$(document).ready(function () {
+    $('#pmsubmit_btn').click(function () {
+        process();
+        $("#pmmessage")[0].value = "";
+    });
+});
+function process()
+{
+    //根据登录和点击个人资料操作获取两人的user_name,然后传送到后台，进行修改
+    var Text = $("#pmmessage")[0].value;
+    //document.getElementById();获取的是对象；jquery获取的是数组;
+    //获取html内的内容可以用value，text;
+    var User_id = 1;
+    var fri_id = 2;
+    $.ajax({
+        url: '/Home/Send_message',
+        dataType: 'json',
+        async: false,//请求是否异步，默认异步;
+        data: {
+            "User_id ": User_id ,
+            "fri_id": fri_id ,
+            "text":Text,
+        },
+        type: "POST",
+        success: function (data) {
+            //请求成功处理
+            alert("成功");
+            var flag = 0;
+            var result="";
+            $("#msglist").html('');
+            for (var i = 0; i < data.length; i++)
+            {
+                var text = data[i]["Talk_message"].toString();
+                if(text != "")
+                {
+                    var id = parseInt(data[i]["Talk_user_id"].toString());
+                    if (id == User_id) {
+                        if (flag == 0) {
+                            flag = 1;
+                            result += "<li class='cl'><h4 class='xg1'>" + data[i]["Talk_time"] + "</h4></li>";
+                        }
+                        result += "<li class='cl pmm'> <div class='pmt'>" + id + " </div><div class='pmd'> '" + text + "' </div>";
+                        $("#msglist").html(result);
+                    }
+                    else
+                    {
+                        if (flag == 0) {
+                            flag = 1;
+                           result += "<li class='cl'><h4 class='xg1'>" + data[i]["Talk_time"] + "</h4></li>";
+                        }
+                        result += "<li class='cl pmm'> <div class='pmtt'>" + id + " </div><div class='pmdd'> " + text + "</div>";
+                        $("#msglist").html(result);
+                    }
+                }
+                                
+            }
+        },
+        error: function () {
+            //请求出错处理
+        }
+    });
+}
+//帖子界面
+var data1, data2;
+var item;
+var xx;
+var xy;
+var result = "";
+function Topic_show(items) {
+    item = items;
+    var user_name = document.getElementById("user_name").innerText.toString();
+    var flag = 0 ;//默认为第一页,表示显示的是某一页的内容;
+
+    $("#next")[0].style.display = "none";
+    $("#before")[0].style.display = "none";
+    $.ajax({
+        url: '/Home/'+item,
+        dataType: 'json',
+        async: false,//请求是否异步，默认异步;
+        data: {
+            "User_name ": user_name,
+        },
+        type: "POST",
+        success: function (data) {
+            xx = parseInt(data.length / 2);//测试后要将2修改为20
+            xy = parseInt(data.length % 2);//测试后要将2修改为20
+            result = "";
+            if (item == "Topic_show")
+            {
+                data1 = data;
+            }
+            else {
+                data2 = data;
+            }
+           
+            var reval = { "topic": [{}, {}], "reply": [{}, {}]}
+
+
+            if (xy > 0) {
+                xx++;
+            }
+            if(item == "Topic_show")
+            {
+                if (data1.length <= 2)
+                {//测试后要将2修改为20
+                    $("#data_topic").html('');//清空文本内容
+                    result = "<tr class='th' style='height:32px'><td class='icn'></td><th>主题</th><td class='frm'>版块/群组</td><td class='num'>回复/查看</td><td class='by'><cite>最后发帖</cite></td></tr>";
+                    for (var i = 0; i < data.length; i++)
+                    {//直接显示在界面中;数据少，只有一页,没有按钮存在;data[i][""];
+                        var time = data1[i]["Last_reply_time"].toString();
+                        time = time.replace('T', ' ').substring(0, 16);
+                        result += "<tr><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_common.gif'/></a></td><th><a href='#' target='_blank'>" + data1[i]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data1[i]["版块名称"] + "</a></td><td class='num'><a class='xi2' href='#' target='_blank'>" + data1[i]["Reply_num"] + "</a><em>" + data1[i]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data1[i]["User_name"] + "</a></cite><em><a href='#' target='_blank' style='color:#999;'>" + time + "</a></em></td></tr>";
+                    }
+                    $("#data_topic").html(result);
+                }
+                else
+                {
+                    $("#data_topic").html('');//清空文本内容
+                    result = "<tr class='th' style='height:32px'><td class='icn'></td><th>主题</th><td class='frm'>版块/群组</td><td class='num'>回复/查看</td><td class='by'><cite>最后发帖</cite></td></tr>";
+                    for (var i = 0; i < 2; i++)
+                    {//第一页显示前20个帖子;显示下一页按钮
+                        var time = data1[i]["Last_reply_time"].toString();
+                        time = time.replace('T', ' ').substring(0, 16);
+                        result += "<tr><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_common.gif'/></a></td><th><a href='#' target='_blank'>" + data1[i]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data1[i]["版块名称"] + "</a></td><td class='num'><a class='xi2' href='#' target='_blank'>" + data1[i]["Reply_num"] + "</a><em>" + data1[i]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data1[i]["User_name"] + "</a></cite><em><a href='#' target='_blank' style='color:#999;'>" + time + "</a></em></td></tr>";
+                    }
+                    $("#data_topic").html(result);
+                    $("#next")[0].style.display = "block";
+                }
+            }
+            else
+            {
+                if (data2.length <= 2) {//测试后要将2修改为20
+                    for (var i = 0; i < data2.length; i++) {//直接显示在界面中;数据少，只有一页,没有按钮存在;data[i][""];
+                        var time = data2[i]["Last_reply_time"].toString();
+                        time = time.replace('T', ' ').substring(0, 16);
+                        result += "<tr class='bw0_all'><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_new.gif'/></a></td><th><a href='#' target='_blank'>" + data2[i]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data2[i]["版块名称"] + "</a></td> <td class='num'><a class='xi2' href='#' target='_blank'>" + data2[i]["Reply_num"] + "</a><em>" + data2[i]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data2[i]["User_name"] + "</a></cite><em><a href='#' target='_blank'>" + time + "</a></em></td></tr>";
+                    }
+                    $("#data_topic").html(result);
+                }
+                else {
+                    $("#data_topic").html('');//清空文本内容
+                    result = "<tr class='th' style='height:32px'><td class='icn'></td><th>主题</th><td class='frm'>版块/群组</td><td class='num'>回复/查看</td><td class='by'><cite>最后发帖</cite></td></tr>";
+                    for (var i = 0; i < 2; i++) {//第一页显示前20个帖子;显示下一页按钮
+                        var time = data2[i]["Last_reply_time"].toString();
+                        time = time.replace('T', ' ').substring(0, 16);
+                        result += "<tr class='bw0_all'><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_new.gif'/></a></td><th><a href='#' target='_blank'>" + data2[i]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data2[i]["版块名称"] + "</a></td> <td class='num'><a class='xi2' href='#' target='_blank'>" + data2[i]["Reply_num"] + "</a><em>" + data2[i]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data2[i]["User_name"] + "</a></cite><em><a href='#' target='_blank'>" + time + "</a></em></td></tr>";
+                    }
+                    $("#data_topic").html(result);
+                    $("#next")[0].style.display = "block";
+                }
+            }
+
+            $("#next").unbind('click').click(function () {
+                $("#next")[0].style.display = "none";
+                $("#before")[0].style.display = "none";
+                flag++;
+                if (item == "Topic_show") {
+                    $("#data_topic").html('');//清空文本内容
+                    result = "<tr class='th' style='height:32px'><td class='icn'></td><th>主题</th><td class='frm'>版块/群组</td><td class='num'>回复/查看</td><td class='by'><cite>最后发帖</cite></td></tr>";
+                    if ((flag + 1) != xx) {
+                        for (var i = 0; i < 2; i++) {//测试时为2,实际每页20个
+                            var j = flag * 2 + i;//测试后要将2修改为20
+                            var time = data1[j]["Last_reply_time"].toString();
+                            time = time.replace('T', ' ').substring(0, 16);
+                            result += "<tr><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_common.gif'/></a></td><th><a href='#' target='_blank'>" + data1[j]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data1[j]["版块名称"] + "</a></td><td class='num'><a class='xi2' href='#' target='_blank'>" + data1[j]["Reply_num"] + "</a><em>" + data1[j]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data1[j]["User_name"] + "</a></cite><em><a href='#' target='_blank' style='color:#999;'>" + time + "</a></em></td></tr>";
+                            //循环显示data[j][""],本页为中间页,两个按钮同时存在;
+                        }
+                        $("#data_topic").html(result);
+                        $("#before")[0].style.display = "block";
+                        $("#next")[0].style.display = "block";
+                    }
+                    else if (xy == 0) {
+                        $("#data_topic").html('');//清空文本内容
+                        result = "<tr class='th' style='height:32px'><td class='icn'></td><th>主题</th><td class='frm'>版块/群组</td><td class='num'>回复/查看</td><td class='by'><cite>最后发帖</cite></td></tr>";
+                        for (var i = 0; i < 2; i++) {
+                            var j = flag * 2 + i;//测试后要将2修改为20
+                            var time = data1[j]["Last_reply_time"].toString();
+                            time = time.replace('T', ' ').substring(0, 16);
+                            result += "<tr><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_common.gif'/></a></td><th><a href='#' target='_blank'>" + data1[j]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data1[j]["版块名称"] + "</a></td><td class='num'><a class='xi2' href='#' target='_blank'>" + data1[j]["Reply_num"] + "</a><em>" + data1[j]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data1[j]["User_name"] + "</a></cite><em><a href='#' target='_blank' style='color:#999;'>" + time + "</a></em></td></tr>";
+                            //循环显示data[j][""],本页为最后一页,所以隐藏下一页按钮;
+                        }
+                        $("#data_topic").html(result);
+                        $("#next")[0].style.display = "none";
+                        $("#before")[0].style.display = "block";
+                    }
+                    else {
+                        $("#data_topic").html('');//清空文本内容
+                        result = "<tr class='th' style='height:32px'><td class='icn'></td><th>主题</th><td class='frm'>版块/群组</td><td class='num'>回复/查看</td><td class='by'><cite>最后发帖</cite></td></tr>";
+                        for (var i = 0; i < xy; i++) {
+                            var j = flag * 2 + i;//测试后要将2修改为20
+                            var time = data1[j]["Last_reply_time"].toString();
+                            time = time.replace('T', ' ').substring(0, 16);
+                            result += "<tr><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_common.gif'/></a></td><th><a href='#' target='_blank'>" + data1[j]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data1[j]["版块名称"] + "</a></td><td class='num'><a class='xi2' href='#' target='_blank'>" + data1[j]["Reply_num"] + "</a><em>" + data1[j]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data1[j]["User_name"] + "</a></cite><em><a href='#' target='_blank' style='color:#999;'>" + time + "</a></em></td></tr>";
+                            //循环显示data[j][""],本页为最后一页,所以隐藏下一页按钮;
+                        }
+                        $("#data_topic").html(result);
+                        $("#next")[0].style.display = "none";
+                        $("#before")[0].style.display = "block";
+                    }
+                }
+                else {
+                    $("#data_topic").html('');//清空文本内容
+                    result = "<tr class='th' style='height:32px'><td class='icn'></td><th>主题</th><td class='frm'>版块/群组</td><td class='num'>回复/查看</td><td class='by'><cite>最后发帖</cite></td></tr>";
+                    if ((flag + 1) != xx) {
+                        for (var i = 0; i < 2; i++) {//测试时为2,实际每页20个
+                            var j = flag * 2 + i;//测试后要将2修改为20
+                            var time = data2[j]["Last_reply_time"].toString();
+                            time = time.replace('T', ' ').substring(0, 16);
+                            result += "<tr class='bw0_all'><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_new.gif'/></a></td><th><a href='#' target='_blank'>" + data2[j]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data2[j]["版块名称"] + "</a></td> <td class='num'><a class='xi2' href='#' target='_blank'>" + data2[j]["Reply_num"] + "</a><em>" + data2[j]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data2[j]["User_name"] + "</a></cite><em><a href='#' target='_blank'>" + time + "</a></em></td></tr>";
+                            //循环显示data[j][""],本页为中间页,两个按钮同时存在;
+                        }
+                        $("#data_topic").html(result);
+                        $("#before")[0].style.display = "block";
+                        $("#next")[0].style.display = "block";
+                    }
+                    else if (xy == 0) {
+                        $("#data_topic").html('');//清空文本内容
+                        result = "<tr class='th' style='height:32px'><td class='icn'></td><th>主题</th><td class='frm'>版块/群组</td><td class='num'>回复/查看</td><td class='by'><cite>最后发帖</cite></td></tr>";
+                        for (var i = 0; i < 2; i++) {
+                            var j = flag * 2 + i;//测试后要将2修改为20
+                            var time = data2[j]["Last_reply_time"].toString();
+                            time = time.replace('T', ' ').substring(0, 16);
+                            result += "<tr class='bw0_all'><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_new.gif'/></a></td><th><a href='#' target='_blank'>" + data2[j]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data2[j]["版块名称"] + "</a></td> <td class='num'><a class='xi2' href='#' target='_blank'>" + data2[j]["Reply_num"] + "</a><em>" + data2[j]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data2[j]["User_name"] + "</a></cite><em><a href='#' target='_blank'>" + time + "</a></em></td></tr>"
+                            //循环显示data[j][""],本页为最后一页,所以隐藏下一页按钮;
+                        }
+                        $("#data_topic").html(result);
+                        $("#next")[0].style.display = "none";
+                        $("#before")[0].style.display = "block";
+                    }
+                    else {
+                        $("#data_topic").html('');//清空文本内容
+                        result = "<tr class='th' style='height:32px'><td class='icn'></td><th>主题</th><td class='frm'>版块/群组</td><td class='num'>回复/查看</td><td class='by'><cite>最后发帖</cite></td></tr>";
+                        for (var i = 0; i < xy; i++) {
+                            var j = flag * 2 + i;//测试后要将2修改为20
+                            var time = data2[j]["Last_reply_time"].toString();
+                            time = time.replace('T', ' ').substring(0, 16);
+                            result += "<tr class='bw0_all'><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_new.gif'/></a></td><th><a href='#' target='_blank'>" + data2[j]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data2[j]["版块名称"] + "</a></td> <td class='num'><a class='xi2' href='#' target='_blank'>" + data2[j]["Reply_num"] + "</a><em>" + data2[j]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data2[j]["User_name"] + "</a></cite><em><a href='#' target='_blank'>" + time + "</a></em></td></tr>";
+                            //循环显示data[j][""],本页为最后一页,所以隐藏下一页按钮;
+                        }
+                        $("#data_topic").html(result);
+                        $("#next")[0].style.display = "none";
+                        $("#before")[0].style.display = "block";
+                    }
+                }
+            });
+            $("#before").unbind('click').click(function () {
+                $("#next")[0].style.display = "none";
+                $("#before")[0].style.display = "none";
+                flag--;
+                if (item == "Topic_show") {
+                    $("#data_topic").html('');//清空文本内容
+                    result = "<tr class='th' style='height:32px'><td class='icn'></td><th>主题</th><td class='frm'>版块/群组</td><td class='num'>回复/查看</td><td class='by'><cite>最后发帖</cite></td></tr>";
+                    if (flag == 0) {
+                        $("#before")[0].style.display = "none";
+                        for (var i = 0; i < 2; i++) {//测试时为2,实际每页20个
+                            var j = flag * 2 + i;//测试后要将2修改为20
+                            var time = data1[j]["Last_reply_time"].toString();
+                            time = time.replace('T', ' ').substring(0, 16);
+                            result += "<tr><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_common.gif'/></a></td><th><a href='#' target='_blank'>" + data1[j]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data1[j]["版块名称"] + "</a></td><td class='num'><a class='xi2' href='#' target='_blank'>" + data1[j]["Reply_num"] + "</a><em>" + data1[j]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data1[j]["User_name"] + "</a></cite><em><a href='#' target='_blank' style='color:#999;'>" + time + "</a></em></td></tr>";
+                            //循环显示data[j][""],本页为中间页,两个按钮同时存在;
+                        }
+                        $("#data_topic").html(result);
+                        $("#next")[0].style.display = "block";
+                        $("#before")[0].style.display = "none";
+                    }
+                    else {
+                        for (var i = 0; i < 2; i++) {//测试时为2,实际每页20个
+                            var j = flag * 2 + i;//测试后要将2修改为20
+                            var time = data1[j]["Last_reply_time"].toString();
+                            time = time.replace('T', ' ').substring(0, 16);
+                            result += "<tr><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_common.gif'/></a></td><th><a href='#' target='_blank'>" + data1[j]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data1[j]["版块名称"] + "</a></td><td class='num'><a class='xi2' href='#' target='_blank'>" + data1[j]["Reply_num"] + "</a><em>" + data1[j]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data1[j]["User_name"] + "</a></cite><em><a href='#' target='_blank' style='color:#999;'>" + time + "</a></em></td></tr>";
+                            //循环显示data[j][""],本页为中间页,两个按钮同时存在;
+                        }
+                        $("#data_topic").html(result);
+                        $("#next")[0].style.display = "block";
+                        $("#before")[0].style.display = "block";
+                    }
+                }
+                else {
+                    $("#data_topic").html('');//清空文本内容
+                    result = "<tr class='th' style='height:32px'><td class='icn'></td><th>主题</th><td class='frm'>版块/群组</td><td class='num'>回复/查看</td><td class='by'><cite>最后发帖</cite></td></tr>";
+                    if (flag == 0) {
+                        $("#before")[0].style.display = "none";
+                        for (var i = 0; i < 2; i++) {//测试时为2,实际每页20个
+                            var j = flag * 2 + i;//测试后要将2修改为20
+                            var time = data2[j]["Last_reply_time"].toString();
+                            time = time.replace('T', ' ').substring(0, 16);
+                            result += "<tr class='bw0_all'><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_new.gif'/></a></td><th><a href='#' target='_blank'>" + data2[j]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data2[j]["版块名称"] + "</a></td> <td class='num'><a class='xi2' href='#' target='_blank'>" + data2[j]["Reply_num"] + "</a><em>" + data2[j]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data2[j]["User_name"] + "</a></cite><em><a href='#' target='_blank'>" + time + "</a></em></td></tr>";
+                            //循环显示data[j][""],本页为中间页,两个按钮同时存在;
+                        }
+                        $("#data_topic").html(result);
+                        $("#next")[0].style.display = "block";
+                        $("#before")[0].style.display = "none";
+                    }
+                    else {
+                        for (var i = 0; i < 2; i++) {//测试时为2,实际每页20个
+                            var j = flag * 2 + i;//测试后要将2修改为20
+                            var time = data2[j]["Last_reply_time"].toString();
+                            time = time.replace('T', ' ').substring(0, 16);
+                            result += "<tr class='bw0_all'><td class='icn'><a href='#' title='新窗口打开' target='_blank'><img src='../../image/folder_new.gif'/></a></td><th><a href='#' target='_blank'>" + data2[j]["Title"] + "</a></th><td><a class='xg1' href='#' target='_blank'>" + data2[j]["版块名称"] + "</a></td> <td class='num'><a class='xi2' href='#' target='_blank'>" + data2[j]["Reply_num"] + "</a><em>" + data2[j]["Visit_num"] + "</em></td><td class='by'><cite><a href='#' target='_blank'>" + data2[j]["User_name"] + "</a></cite><em><a href='#' target='_blank'>" + time + "</a></em></td></tr>";
+                            //循环显示data[j][""],本页为中间页,两个按钮同时存在;
+                        }
+                        $("#data_topic").html(result);
+                        $("#next")[0].style.display = "block";
+                        $("#before")[0].style.display = "block";
+                    }
+                }
+            });
+        },
+        error: function (data) {
+            //请求出错处理
+        }
+    });
+}
+
+
+

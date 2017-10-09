@@ -1,0 +1,48 @@
+﻿body {
+    font:12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+}
+.Mytop{
+    height:18px;
+    width:960px;
+    margin-bottom:5px;
+}
+.Mytop .chart{
+    padding-left:22px;
+    background:url(../../image/chart.png) no-repeat 0 50%;
+    color:#999;
+     margin-top: 0px;
+    margin-bottom: 0px;
+}
+.Mytop .z{
+    float:left;
+}
+.Mytop .pipe{
+    margin:0 5px;
+    color:#ccc;
+}
+ .chart em{
+    color:#444;
+}
+ .Mytop em{
+     font-style: normal;
+ }
+  .Mytop a{
+    color: #333;
+    text-decoration: none;
+ }
+ .Mytop .a{
+     color:#000;
+ }
+ .Mytop .y{
+    float:right;
+}
+ a:hover{text-decoration:underline;}
+ .My_top{
+     width:960px;
+     height:317px;
+ }
+ .My_top.bm{
+     border:1px solid #CDCDCD;background:#FFF;
+
+ }
+.My_top .bm_c{padding:10px;}

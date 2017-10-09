@@ -1,0 +1,145 @@
+﻿body {
+    font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    color: #444;
+}
+.f1 {
+    width:959px;
+    height:auto;
+    background:#FFF;
+   margin:0 auto;
+   border:1px solid #CDCDCD;
+   border-top:none;
+}
+ .f1 .bm {
+    background:url(../../image/csRoof.png) repeat-x 0 0;
+    padding:0 10px;
+    line-height:31px;
+    height:31px;
+    border: 1px solid #FCC;
+    border-left:none;
+    border-right:none;
+}
+  .f1 .bm .o {
+        width:30px;
+        float:right;
+    }
+.f1 .bm .h2 {
+    margin:0;
+    font-size:1em;
+    line-height:31px;
+}
+.bm .h2 a {
+        text-decoration:none;
+        color:#BA350F;
+    }
+.table1 {
+    width:100%;
+    height:auto;
+    border-color: grey;
+    border-collapse: collapse; 
+}
+    .table1 tbody {
+        width:938px;
+        height:auto;
+    }
+.Otr{
+    width:938px;
+    height:56px;
+    border-bottom:1px dashed #CDCDCD;
+}
+ .table1 .Otr .Otd {
+      width:31px;
+    padding-right:10px;
+   
+}
+.table1 .Otr h2 {
+    font-size:1em;
+}
+.table1 .Otr a {
+    color:#333;
+    text-decoration:none;
+}
+.Otr .Op {
+    width:519px;
+    height:18px;
+    float: left;
+    margin-top: -5px;
+}
+.Otd_m {
+    width:519px;
+    height:56px;
+}
+.Otd_i {
+    width:148px;
+    text-align:right;
+}
+.gi {
+    color:#999;
+}
+.Otd_b {
+    width:220px;
+    padding:10px 0;
+}
+   .Otd_b div {
+        width:210px;
+        margin-left:10px;
+        padding-left:8px;
+    }
+    .Otd_b cite {
+        display: block;
+        font-style: normal;
+    }
+    #diy3 {
+    width:auto;
+    margin:0 auto;
+    height:94px;
+    margin-top:10px;
+    border-bottom:1px solid #CDCDCD;
+}
+    #diy3 .Otitle {
+        padding:0 10px;
+        height:32px;
+        font-size:14px;
+        font-weight:700;
+        line-height:32px;
+        background:url(../../image/title.png)repeat-x 0 100%;
+    }
+    #diy3 .Otitletext {
+        float:left;
+    }
+    #diy3 .Otitle a {
+        color:#333;
+        text-decoration:none;
+    }
+    #diy3 .Oleft {
+        width:49.9%;
+        float:left;
+        background:#FFF;
+    }
+    #diy3 .Oright {
+        width:49.9%;
+        float:left;
+        background:#FFF;
+    }
+.module {
+    margin:0px;
+    float:left;   
+}
+#diy3 ul{
+    margin:0px;
+    padding:0px;
+}
+#diy3 ul li{
+    margin:2px 0;
+    list-style:none;
+    padding-left:10px;
+    margin-left:10px;
+    background:url(../../image/dot.gif)no-repeat 0 50%;
+}
+#diy3 ul li a {
+    color:#333;
+    text-decoration:none;
+}
+.portal {
+    margin:0px;    
+}

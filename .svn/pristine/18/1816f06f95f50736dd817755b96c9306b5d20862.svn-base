@@ -1,0 +1,127 @@
+﻿using meihu.App_Code;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+
+namespace meihu.Models
+{
+    public class I_indexModel
+    {
+        public string First_forum { get; set; }//
+        public string Second_forum { get; set; }//
+        public string img { get; set; }//
+        public string Title { get; set; }//
+        public string Title1 { get; set; }//
+        public string ID { get; set; }//
+        public string Topic_id { get; set; }//
+        public string Is_good { get; set; }//
+        public string Title2 { get; set; }//
+        public string is_img { get; set; }//
+        public DateTime Create_on_time { get; set; }//
+
+        DataBase db = new DataBase();
+
+        SqlConnection con = new SqlConnection();
+
+        public List<string> Secondlist = new List<string>();
+        public List<string> Firstlist = new List<string>();
+
+        public List<childModel> listmodel = new List<childModel>();
+
+
+        public I_indexModel()
+        {
+            //db = new DataBase();
+        }
+
+        //查询最新主题
+        public DataTable selectTopics()
+        {
+            //int count = 0;
+            string str = string.Format("select * from Create_topic order by Create_on_time desc");
+            DataTable dom = db.getdata(str);
+            return dom;
+        }
+
+        //查询最新回复
+        public DataTable selectReply()
+        {
+            string str = string.Format("select * from Topic_message order by Last_reply_time desc");
+            DataTable dom = db.getdata(str);
+            return dom;
+        }
+
+        //查询第一板块
+        public DataTable selectFirst_forum()
+        {
+            string str = string.Format("select * from First_forum");
+            DataTable dom = db.getdata(str);
+            return dom;
+        }
+
+        //查询第二版块
+        public DataTable selectSecond_form(string First_forum)
+        {
+            string str = string.Format("select * from Second_forum where First_forum_id = '" + First_forum + "'");
+            DataTable dom = db.getdata(str);
+            return dom;
+        }
+
+        //查询第二个板块的内容
+        public DataTable selectThird_form(string Second_forum)
+        {
+            string str;
+            if (Second_forum == Convert.ToString(66))
+            {
+                str = string.Format("select Create_topic.Title, Topic_message.Last_reply_time, Topic_message.Reply_num, Create_topic.ID, User_registration.ID, User_registration.User_name from Create_topic,Topic_message, User_registration where Create_topic.ID = Topic_message.Topic_id and Create_topic.Forum_id = '" + Second_forum + "' and User_registration.ID = Create_topic.User_id order by Topic_message.Last_reply_time desc");
+            }
+            else
+            {
+                str = string.Format("select Create_topic.Title, Topic_message.Last_reply_time, Topic_message.Reply_num, Create_topic.ID from Create_topic,Topic_message where Create_topic.ID = Topic_message.Topic_id and Create_topic.Forum_id = '" + Second_forum + "' order by Topic_message.Last_reply_time desc");
+            }
+
+            DataTable dom = db.getdata(str);
+            return dom;
+        }
+
+        //查询回帖时间
+        public DataTable selectFourth_form(string Second_forum)
+        {
+            string str = string.Format("select Reply_message.Reply_time from Create_topic, Reply_message where Create_topic.ID = Reply_message.Topic_id and Create_topic.Forum_id = '" + Second_forum + "'");
+            DataTable dom = db.getdata(str);
+            return dom;
+        }
+
+        //查询发帖时间
+        public DataTable selectFith_form(string Second_forum)
+        {
+            string str = string.Format("select Create_on_time from Create_topic where Forum_id = '" + Second_forum + "'");
+            DataTable dom = db.getdata(str);
+            return dom;
+        }
+        
+
+        public DataTable selectUserCount()
+        {
+
+            //int count = 0;
+            string str = "select * from User_city";
+            DataTable dom = db.getdata(str);
+            return dom;
+        }
+
+    }
+
+
+    public class childModel
+    {
+        public string childname { get; set; }
+
+        public List<string> list = new List<string>();
+    }
+
+
+}

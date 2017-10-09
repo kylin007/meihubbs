@@ -1,0 +1,60 @@
+﻿using meihu.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using meihu.App_Code;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace meihu.Controllers
+{
+    public class HomeController : Controller
+    {
+        //
+        // GET: /Home/
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult PersonData()
+        {
+            //string str = "123";
+            //ViewData["Title"] = " Using ViewData";
+            string sql = "select * from [BBS_zzn].[dbo].[User_message]";
+            SqlConnection conn = new SqlConnection("Data Source=10.1.56.31;Initial Catalog=BBS_zzn;User ID=sa;Password=123456");
+            DataTable dt = new DataTable();//.getdata(str);
+            SqlDataAdapter adap = new SqlDataAdapter(sql,conn);
+            conn.Open();
+            adap.Fill(dt);
+            Dictionary<string, string> stackholder = new Dictionary<string, string>();
+            for(int i=0 ;i< dt.Rows.Count;i++ )
+            {
+                string key = dt.Rows[i]["Data_name"].ToString();
+                string value = "";
+                if (dt.Rows[i]["Is_show"].ToString() == "保密")
+                {
+                    value = "保密";
+                }
+                else
+                {
+                    value = dt.Rows[i]["Data_cont"].ToString();
+                }
+                stackholder.Add(key, value);
+            }
+            ViewData["stackholder"] = stackholder;
+            return View();
+        }
+        public ActionResult Test()
+        {
+            return View();
+        }
+        public ActionResult User_Register()
+        {
+            return View();
+        }
+    }
+}

@@ -1,0 +1,305 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Message/Message.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="CTtitle" runat="server">
+    消息
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="subcontent1" runat="server">
+     <script>
+
+         window.setInterval("igores()", 50);
+         window.setInterval("igoresas3()", 50);
+         window.setInterval("right1imgdel()", 50);
+         window.setInterval("dels()", 50);
+         window.setInterval("delsas3()", 50);
+         function right1imgdel() //图标的显示与隐藏
+         {
+             var doninput = $(".Rtop0right1imgdel");
+             var dom = $(".Rtop0right1img");
+             var don = $(".messagedel");
+             for (var i = 0; i < doninput.length; i++) {
+                 doninput[i].index = i;
+                 doninput[i].onmousemove = function () {
+                     don.eq(this.index).css({ "display": "block" });
+                     dom.eq(this.index).css({ "top": "30px" });
+                     dom.eq(this.index).css({
+                      backgroundPosition: "0% 90%"
+                     });
+                 }
+                 doninput[i].onmouseout = function () {
+
+                     don.eq(this.index).css({ "display": "none" });
+                     dom.eq(this.index).css({ "top": "2px" });
+                     dom.eq(this.index).css({ backgroundPosition: "0% 20%" });
+                 }
+             }
+         }
+         //删除部分对话信息
+         function dels() 
+         {            
+             var doninputs = $('.CheckBoxclass');
+             var dondel = $(".deligore");
+             for (var i = 0; i < dondel.length; i++) {
+                 dondel[i].index = i;
+                 dondel[i].onclick = function () {
+                     if (doninputs[this.index].checked == true) {
+                         //$("div.Rtop0").eq(this.index).remove();
+                         var name = $(".getfriendnames").eq(this.index).html();
+                         $.ajax({
+                             url: '/Message/deltalk',
+                             data: {
+                                 "name": name,
+                             },
+                             type: "POST",
+                             success: function (data) {
+                                 layer.msg('删除成功！F5 刷新一下吧');
+                             },
+                             error: function () {
+                                 layer.alert("删除失败！");
+                             }
+                         });
+                     }
+                     else {
+                         layer.msg('貌似没有选中一项！');
+                     }
+                 }
+             }
+         }
+         //删除部分对话信息
+         function delsas3() {
+             var doninputs = $('.CheckBoxclass2');
+             var dondel = $(".deligore2");
+             for (var i = 0; i < dondel.length; i++) {
+                 dondel[i].index = i;
+                 dondel[i].onclick = function () {
+                     if (doninputs[this.index].checked == true) {
+                         //$("div.Rtop0").eq(this.index).remove();
+                         var name = $(".getfriendnames").eq(this.index).html();
+                         $.ajax({
+                             url: '/Message/deltalk',
+                             data: {
+                                 "name": name,
+                             },
+                             type: "POST",
+                             success: function (data) {
+                                 layer.msg('删除成功！F5 刷新一下吧');
+                             },
+                             error: function () {
+                                 layer.alert("删除失败！");
+                             }
+                         });
+                     }
+                     else {
+                         layer.msg('貌似没有选中一项！');
+                     }
+                 }
+             }
+         }
+         //删除所有对话信息
+         function deletecontent() {
+             var doninput = $(".CheckBoxclass");
+             var count = doninput.length
+             for (var i = 0; i < count; i++) {
+
+                 if (doninput[i].checked == true) {
+                     //$("div.Rtop0").eq(this.index).remove();
+                     var name = $(".getfriendnames").eq(i).html();
+                     $.ajax({
+                         url: '/Message/deltalk',
+                         data: {
+                             "name": name,
+                         },
+                         type: "POST",
+                         success: function (data) {
+                             layer.msg('删除成功！F5 刷新一下吧');
+                         },
+                         error: function () {
+                             layer.alert("删除失败！");
+                         }
+                     });
+                 }
+                 else { layer.msg('貌似没有选中一项！'); }
+             }
+         }
+         // 忽视部分对话信息
+         function igores() {
+             var doninputs = $('.CheckBoxclass');
+             var donigore = $(".igores");
+             for (var i = 0; i < donigore.length; i++) {
+                 donigore[i].index = i;
+                 donigore[i].onclick = function () {
+                     if (doninputs[this.index].checked == true) {
+                         $("div.Rtop0").eq(this.index).remove();
+                         layer.msg('消息已经被忽视');
+                     }
+                     else { layer.msg('貌似没有选中一项！'); }
+                 }
+             }
+         }
+         function igoresas3() {
+             var doninputs = $('.CheckBoxclass2');
+             var donigore = $(".igores2");
+             for (var i = 0; i < donigore.length; i++) {
+                 donigore[i].index = i;
+                 donigore[i].onclick = function () {
+                     if (doninputs[this.index].checked == true) {
+                         $("div.Rtop0s").eq(this.index).remove();
+                         layer.msg('消息已经被忽视');
+                     }
+                     else { layer.msg('貌似没有选中一项！'); }
+                 }
+             }
+         }
+
+       
+         var falg = 0;
+         function fun3() {
+             $("#MainContent_subcontent1_CheckBoxtotals")[0].onclick = function () {
+                 if (falg == 0) {
+                     var don = document.getElementsByClassName("CheckBoxclass");
+                     for (var i = 0; i < don.length; i++) {
+                         don[i].checked = true;
+                         falg = 1;
+                     }
+                 }
+                 else if (falg == 1) {
+                     var don = document.getElementsByClassName("CheckBoxclass");
+                     for (var i = 0; i < don.length; i++) {
+                         don[i].checked = false;
+                         falg = 0;
+                     }
+                 }
+             };
+
+         };
+         window.setInterval("fun3()", 40);
+         $(document).ready(function settingscore() {
+            
+         })
+         window.onload = function settingscore() {
+             $("#S-mesleft1ID tr").eq(0).removeClass("current");
+             $("#S-mesleft1ID tr").eq(0).removeClass("current1").addClass("current");
+            var dom = document.getElementById('Smessclass');
+            var td = dom.getElementsByTagName('td');
+            var tdclass = document.getElementsByClassName("RM-messclass");
+            for (var i = 0; i < td.length; i++) {
+                td[i].index = i;
+                td[i].onclick = function fun() {
+                    $("#Smessclass td").slice(0, 4).removeClass("tdcurrent")
+                    $("#Smessclass td").eq(this.index).addClass("tdcurrent");
+                    for (var j = 0; j < tdclass.length; j++) {
+                        tdclass.item(j).style.display = 'none';
+                    }
+                    $('#friend_id').css({ "display": "none" });
+                    tdclass.item(this.index).style.display = 'block';
+                };
+            }
+         }
+    </script>
+    <form runat="server">
+      <div id="R-mess">
+     <div class="Mtop" id="Smessclass">
+        <table>
+            <tr>
+                 <td class="tdcurrent"><a href="#">私人消息</a></td>
+                 <td><a href="#">公共消息</a></td>
+                 <td><a href="/Message/Indexlistform">发送消息</a></td>
+                  <td style="padding-left:480px;" ><a href="#">短消息设置</a></td>
+            </tr>
+        </table>
+    </div>
+         <div id="R-mess0" class="RM-messclass" style="display:block;">
+             <%
+                 List<meihu.Models.Goodfriend> content=(List<meihu.Models.Goodfriend>)ViewBag.talkcontent;
+                int countints = 0;
+                countints = content.Count;
+                if (countints > 3)
+                    countints = 3;
+                     for (var i = 0; i <countints; i++)
+                     {%>
+              <div class="Rtop0">
+                <table>
+                 <tr><td style="width:70px;">
+                     <img src="../../image/imgs/<%=content[i].url %>"style="width:54px;height:54px;"/></td>
+                     <td style="width:10px; padding-bottom:35px;">
+                         <input type="checkbox"  class="CheckBoxclass" />
+                     </td>
+                  <td style="width:625px;">您&nbsp; 对 &nbsp;<b><a><Label class="getfriendnames"><%=content[i].name %></Label>&nbsp;说：</a></b><br /><%=content[i].talk %>&nbsp;&nbsp;<Label ID="Label3"><%=content[i].time %></Label><br /><b><a  class="Receivemessage" href="#">回复</a></b></td>
+               <td style="width:35px;" >共&nbsp;<Label  style="padding-bottom:20px;"><%=content[i].count %></Label>&nbsp;条</td><td  style="width:50px;" class="Rtop0right1imgdel" ><div class="Rtop0right1img"  style="cursor:pointer"></div><div class="messagedel"><ul class="messagedel2" ><li class="deligore" style="border-bottom:0.5px dotted #CDCDCD" >删除</li><li class="igores" >忽略</li></ul></div></td>
+
+                </tr>
+             </table>            
+             </div>
+                 <%}                
+                  %>
+             <div class="topbutton">
+                  <table>
+                      <tr><td>
+                          <asp:CheckBox ID="CheckBoxtotals" runat="server" /></td><td>全选</td>
+                         <td> 
+                             <input type="button" id="Buttondel" value="删除" onclick="deletecontent()"/>
+                            </td><td>
+                                     <input type="button"  id="Buttonread""  style="width:64px; text-align:center" value="标记已读" onclick="Buttonreads()"/>
+                            </td></tr>
+                  </table>
+             </div>
+         </div>
+          <div id="R-mess1" class="RM-messclass" style="display:none;">
+              <div class="R-messsub">当前没有相应的短消息</div>
+         </div>
+          <div id="friend_id" style="display:none;">
+            <%
+                List<meihu.Models.Goodfriend> contents=(List<meihu.Models.Goodfriend>)ViewBag.talkcontent2;
+                int countint = 0;
+                countint = contents.Count;
+                if (countint > 3)
+                    countint =3;
+                for (var i = 0; i < countint; i++)
+                {%>
+               <div class="Rtop0ss" style="display:none;">
+                   <%
+                    for (var j = 0;j<contents[i].list.Count; j++)
+                    {%>
+              <div class="Rtop0s" style="display:block">
+                <table>
+                 <tr><td style="width:70px;">
+                     <img src="../../image/imgs/<%=contents[i].list[j].urls %>" style="width:54px;height:54px;"/></td>
+                 <td style="width:10px; padding-bottom:18px;">
+                         <input type="checkbox" class="CheckBoxclass2" />
+                     </td>
+                  <td style="width:660px;"><Label  class="getfriendnames"><%=contents[i].list[j].names %></Label>&nbsp;&nbsp;<Label ><%=contents[i].list[j].times%></Label><br /><%=contents[i].list[j].talks %><br /></td>
+               <td  style="width:50px;" class="Rtop0right1imgdel" ><div class="Rtop0right1img"  style="cursor:pointer"></div><div class="messagedel"><ul class="messagedel2" ><li class="deligore2" style="border-bottom:0.5px dotted #CDCDCD" >删除</li><li class="igores2" >忽略</li></ul></div></td>
+
+                </tr>
+             </table>            
+             </div>
+                 <%}
+              %>
+              </div>
+                 <%}
+                  %>
+                  <div class="M-mg0sub1">
+                 <div>
+                     <div class="subleft">
+                         <img id="imagesmessageimg" src="../../image/08_avatar_middle.jpg"  style="width:54px;height:54px;padding-left:7px;padding-top:15px;"/>
+                     </div>
+                       <div class="subrightsb">
+                          <div class="subright1b">
+                          <table>
+                              <tr style="height:20px"><td><div class="sub0"></div></td><td><div class="sub1"></div></td><td style="width:20px;"><div class="sub2"></div></td><td style="width:20px;"><div class="sub3"></div></td><td><div class="sub4"></div></td><td><div class="sub5"></div></td><td><div class="sub6"></div></td></tr>
+                            </table></div>
+                         <div class="subright0b">
+                             <textarea id="TextAreatext" style="width: 536px; height: 60px"></textarea>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+           <div class="M-mg0sub2">
+               <input  type="button" id="Buttonqrecive"  value="发送" onclick="friendsend2()"/>
+           </div>
+              
+          </div>
+
+        </div>
+        </form>
+</asp:Content>

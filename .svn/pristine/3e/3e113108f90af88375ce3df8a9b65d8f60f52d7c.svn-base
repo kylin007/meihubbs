@@ -1,0 +1,158 @@
+﻿body {
+    font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    color: #444;
+}
+#from{
+    width:960px;
+    height:29px;
+}
+#from div{
+    float:left;
+    margin-top: -23px;
+    margin-left: 22px;
+}
+#from a{
+    text-decoration:none;
+    width:16px;
+    height:29px;
+    overflow:hidden;
+    display:block;
+    position:relative;
+    background:url(../image/search.png) no-repeat -8px -119px;
+}
+#return a{
+    background-image:url(../image/arw_l.gif);
+    background-position:10px 50%;
+    background-repeat:no-repeat;
+    padding-left:25px;
+    text-decoration:none;
+}
+#return{
+    width:89px;
+    height:28px;
+    line-height:26px;
+    float: right;
+    margin-top: -29px;
+   background-color: #FFF;
+   border: 1px solid #FCC;
+}
+#self{
+    margin-top: 10px;
+    border-bottom: 1px solid #CDCDCD;
+}
+#cushion{
+    width:960px;
+    height:38px;
+    border-top: 1px solid #CDCDCD;
+    border-bottom:4px solid #FCC;
+}
+.pinkbg{
+    border-right: 1px solid #C2D5E3;
+    border-left: 1px solid #C2D5E3;
+    background-color: #FFECEC;
+    width: 160px;
+    overflow: hidden;
+    border-right: 1px solid #C2D5E3;
+    float:left;
+}
+#cushion .pinkbg{
+    height:37px;
+    text-align: center;
+    line-height: 3;
+}
+.selfCon{
+    width:960px;
+    height:auto;
+    border-bottom:4px solid #FCC;
+}
+.cRight{
+    width:797px;
+    height:38px;
+    line-height:4;
+}
+.cRight div{
+    float:right;
+    margin-right:10px;
+}
+.whitebg{
+    width:797px;
+    float:left;
+    background-color:white;
+    border-right: 1px solid #C2D5E3;
+}
+.darker{
+    color:#999 !important;
+}
+.reder{
+    color:#BA350F;
+}
+.wbgtitle{
+    margin-left:10px;
+    font: 700 16px 'Microsoft Yahei','Hei',Tahoma,'SimHei',sans-serif;
+}
+.dashbttom{
+    height:38px;
+    line-height:4;
+    border-bottom: 1px dashed #CDCDCD;
+}
+#Text1{
+    width:30px;
+}
+.dashbttom a{
+    font-weight: 700;
+    padding-left:15px;
+    line-height:3;
+    color:#333;
+}
+.whitebg .dashbttom{
+    width:760px;
+    margin: auto;
+}
+.whitebg .dashbttom div{
+    float:right;
+}
+.showmenu {
+    padding-right: 16px;
+    background: url(../../static/image/common/arrwd.gif) no-repeat 100% 50%;
+}
+.userSin img{
+    margin-left: 25px;
+    margin-top: 10px;
+}
+.sortOf div{
+    float:left;
+    width:45px;
+    height:36px;
+}
+.sortOf{
+    text-align: center;
+    margin-left: 15px;
+}
+.mood{
+    width: 140px;
+    height: 106px;
+    margin: 45px auto;
+    padding: 5px .4em;
+    background: #F7FAFF;
+    border: 2px dashed #D1D8D8;
+}
+.mood span{
+    margin-top: 5px;
+    margin-left: -20px;
+}
+.mood img{
+    float: left;
+    margin-top: 30px;
+}
+.mood div{
+    width: 64px;
+    height: 74px;
+    float: left;
+    margin-top: -10px;
+    margin-left: 10px;
+}
+.mood div span{
+    margin-left: 2px;
+    margin-top: -10px;
+    display: block;
+}

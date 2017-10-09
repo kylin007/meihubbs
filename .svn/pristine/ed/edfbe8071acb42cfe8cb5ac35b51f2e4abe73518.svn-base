@@ -1,0 +1,68 @@
+﻿ <%@ Page Title="" Language="C#" MasterPageFile="~/Views/shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+
+<%@ Register src="../../New.ascx" tagname="New" tagprefix="uc1" %>
+<%@ Register Src="~/New.ascx" TagPrefix="uc2" TagName="New" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">   
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <script src="../../Jscript/jquery-2.2.0.min.js"></script>
+    <script src="../../Jscript/index.js"></script>
+    <script src="../../Jscript/OneLevel.js"></script>
+    <link href="../../Css/OneLevel.css" rel="stylesheet" />
+       
+    <link href="../../Css/I_index.css" rel="stylesheet" />    
+       <uc2:New ID="New1" runat="server" />
+&nbsp;
+    <div class="f1">
+       <div class="bm">
+           <span class="o"><img src="../../image/zoom.gif"/></span>
+
+           <%
+               List<meihu.Models.OneLevel> modellist = TempData["list"] as List<meihu.Models.OneLevel>;
+               foreach(var item in modellist )
+               { %>                           
+                     <h2 class="h2"><a href="#"><%=item.First_forum%></a></h2>
+             <%}
+              %>
+     
+       </div>
+        <div class="category">  
+            <table class="table1"><tbody>                 
+                <tr class="Otr">                                             
+                    <td class="Otd"><a href="#"><img src="../../image/bubble.gif"/></a></td>
+                    <td class="Otd_m"><h2><a href="#">郑大生活</a></h2><p>子版块:  <a href="#">
+                        <u>美术系</u></a>  <a href="#"><u>郑州介绍</u></a></p></td>
+                    <td class="Otd_i"><span class="xi">3644</span><span class="gi">&nbsp/&nbsp<span>5万</span></span></td>
+                    <td class="Otd_b"><div><a href="#">这个论坛还有人吗？</a><cite>2016-4-20 11:24 <a href="#">zifufengli</a>
+                     </cite></div></td>                  
+                </tr>
+                <tr class="Otr">
+                  <td>qwertty</td>
+                </tr>
+                <tr class="Otr"></tr>
+                   </tbody></table>
+        </div>
+    </div>
+    <div id="diy3">
+        <div class="Otitle"><span class="Otitletext"><a href="#">郑州大学介绍</a></span></div>
+        <div class="Oleft">
+            <div class="module">
+                <ul>
+                    <li><a href="#">郑州大学校训、校风、学风、郑大精神</a></li>
+                    <li><a href="#">郑州大学名人录</a></li>
+                    <li><a href="#">郑州大学杰出校友榜</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Oright">
+            <div class="portal">
+                <ul>
+                    <li><a href="#">美丽的郑州大学照片</a></li>
+                    <li><a href="#">郑州大学新区的绝版老照片</a></li>
+                    <li><a href="#">郑州大学新区怀旧照片（02年03年）</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</asp:Content>

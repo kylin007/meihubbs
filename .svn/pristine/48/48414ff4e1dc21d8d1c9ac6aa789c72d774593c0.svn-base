@@ -1,0 +1,403 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+
+<%@ Register src="../../New.ascx" tagname="New" tagprefix="uc1" %>
+<%@ Register Src="~/New.ascx" TagPrefix="uc2" TagName="New" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    首页
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">s
+    人数：<%%>
+
+    <uc2:New ID="New1" runat="server" />
+&nbsp;
+    <link href="../../Css/I_index.css" rel="stylesheet" />
+    <div class="block">
+        <div class="version">
+            <div class="version-name">
+                 <h2><a href="../Classify/OneLevel.aspx">ZZU专版</a></h2>
+                 <span class="x"><img class="one_img" src= "image/collapsed_no.gif" onclick="slide('one')"/></span>
+            </div>
+            <div class="version-message" id="one" style="height:149px;">
+                <ul class="version1" style="border-bottom:1px dashed #CDCDCD;">
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">郑大生活</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">郑州大学图片</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">郑大名人&校友资讯&专业介绍</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="version1">
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">大一新生</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">研究生交流</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">毕业生交流</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="version">
+            <div class="version-name">
+                <h2 style="margin-left:10px;"><a href="#">灌水休闲</a></h2>
+                 <span class="x"><img class="two_img" src= "image/collapsed_no.gif" onclick="slide('two')"/></span>
+            </div>
+            <div class="version-message" id="two">
+                <ul class="version1">
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">灌水聊天</a><span style="font-weight:normal;color:#BA350F;">(*)</span></li>
+                            <li>主题:**,帖数:**</li>
+                            <li>私密板块</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">影音动漫</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">娱乐休闲</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="version">
+            <div class="version-name">
+                <h2><a href="#">学习专区</a></h2>
+                 <span class="x"><img class="three_img" src= "image/collapsed_no.gif" onclick="slide('three')"/></span>
+            </div>
+            <div class="version-message" id="three">
+                <ul class="version1">
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">考研交流/考研资料</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li>私密板块</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">学习考试/公务员考试</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">英语相关 English Corner</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="version">
+            <div class="version-name">
+                <h2><a href="#">图片专区</a></h2>
+                 <span class="x"><img class="four_img" src= "image/collapsed_no.gif" onclick="slide('four')"/></span>
+            </div>
+            <div class="version-message" id="four">
+                <ul class="version1">
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject" style="color:#FF0000;"><a href="#">个人show</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">贴图版</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">美女图片</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="version">
+            <div class="version-name">
+                 <h2><a href="#">实用信息</a></h2>
+                 <span class="x"><img class="five_img" src= "image/collapsed_no.gif" onclick="slide('five')"/></span>
+            </div>
+            <div class="version-message" id="five">
+                <ul class="version1">
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">自由交易区[二手市场】</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li>从未</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">招聘信息/兼职信息</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">租房/床位信息</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="version">
+            <div class="version-name">
+                 <h2><a href="#">知性情感</a></h2>
+                 <span class="x"><img class="six_img" src= "image/collapsed_no.gif" onclick="slide('six')"/></span>
+            </div>
+            <div class="version-message" id="six">
+                 <ul class="version1">
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">征友交友</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">情感驿站</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">美丽女生</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="version">
+            <div class="version-name">
+                 <h2><a href="#">电脑游戏</a></h2>
+                 <span class="x"><img class="seven_img" src= "image/collapsed_no.gif" onclick="slide('seven')"/></span>
+            </div>
+            <div class="version-message" id="seven">
+                <ul class="version1">
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">电脑网络</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">游戏一族</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">资源共享&软件下载</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="version">
+            <div class="version-name">
+                 <h2><a href="#">兴趣专区</a></h2>
+                 <span class="x"><img class="eight_img" src= "image/collapsed_no.gif" onclick="slide('eight')"/></span>
+            </div>
+            <div class="version-message" id="eight">
+                <ul class="version1">
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">体育天地</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">舞蹈专栏</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">军事科技</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="version">
+            <div class="version-name">
+                 <h2><a href="#">人文社科</a></h2>
+                 <span class="x"><img class="nine_img" src= "image/collapsed_no.gif" onclick="slide('nine')"/></span>
+            </div>
+            <div class="version-message" id="nine">
+                 <ul class="version1">
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#" style="color:rgb(255, 0, 0);">原创空间</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">文学草坪</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">谈古论今(历史版)</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="version">
+            <div class="version-name">
+                 <h2><a href="#">站点管理</a></h2>
+                 <span class="x"><img class="ten_img" src= "image/collapsed_no.gif" onclick="slide('ten')"/></span>
+            </div>
+            <div class="version-message" id="ten">
+                <ul class="version1">
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#">站点管理</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../../image/bubble.gif" /></a>
+                        <ul class="version2">
+                            <li class="subject"><a href="#"  style="color:rgb(255, 0, 0);">论坛帮助和问题反馈</a></li>
+                            <li>主题:**,帖数:**</li>
+                            <li><a href="#">最后发表:**</a></li>
+                        </ul>
+                    </li>   
+                </ul>
+            </div>
+        </div>
+        <div class="version">
+            <div class="version-name">
+                 <h2><a href="#">新人发帖区</a></h2>
+                 <span class="x"><img class="eleven_img" src= "image/collapsed_no.gif" onclick="slide('eleven')"/></span>
+            </div>
+            <div class="version-message" id="eleven" style="border-bottom:1px solid #CDCDCD;">
+                <ul class="new-man">
+                   <li style="width:41px;height:49px;margin-top:20px;margin-left:10px;">
+                       <a href="#"><img src="../../image/bubble.gif" /></a>
+                   </li>
+                
+                    <li style="width:510px;height:49px;margin-left:-10px;">
+                          <h2><a href="#">新人发帖区</a></h2>
+                    </li>
+                    <li style="width:50px;margin-left:125px;padding-top:10px;">
+                        <span style="color:#000;">*</span>
+                        <span style="color: #999 !important;">&nbsp;/&nbsp;*</span>
+                    </li>
+                    <li style="width:160px;">
+                        <a href="#">任务</a><br/>
+                        <span style="margin-top:-8px;display:block;">**日期**时间**<a href="#">**用户名**</a></span>
+                    </li>
+                </ul>
+              
+            </div>
+        </div>
+    </div>
+</asp:Content>

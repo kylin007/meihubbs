@@ -1,0 +1,95 @@
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<link href="Css/I_index.css" rel="stylesheet" />
+
+<div class="new">
+
+
+    <div class="health-time">
+        <h2>『健康时刻』 &nbsp;<script src="Jscript/I_index.js"></script>
+        </h2>
+        <span class="x">
+            <img class="new-message_img" src="../../image/collapsed_no.gif" onclick="slide1('new-message')"></span>
+        <span class="y"><a href="#">下载桌面快捷访问</a></span>
+        <div id="new-message">
+            <ul class="new-title">
+                <li><strong>『 最新图片 』</strong></li>
+                <li><strong>『 最新主题 』</strong></li>
+                <li><strong>『 最新回复 』</strong></li>
+                <li><strong>『 精华帖 』</strong></li>
+            </ul> 
+            <ul class="new-message-content">
+                <li>
+                    <%List<meihu.Models.I_indexModel> modellist4 = TempData["list4"] as List<meihu.Models.I_indexModel>; %>
+                    <div class="img">
+                        <ul>
+                            <li><a href="http://localhost:3741/postInfor/post?id=<%=modellist4[0].ID %>" target='_blank'>
+                                <img src="<%=modellist4[0].img %>"></a></li>
+                            <li><a href="http://localhost:3741/postInfor/post?id=<%=modellist4[1].ID %>" target='_blank'>
+                                <img src="<%=modellist4[1].img %>"></a></li>
+                        </ul>
+                    </div>
+                    <div class="explain">
+                        <div class="text">
+                            <ul>
+                                <li><a href="http://localhost:3741/postInfor/post?id=<%=modellist4[0].ID %>" target='_blank'><span><%=modellist4[0].Title1 %></span></a></li>
+                                <li><a href="http://localhost:3741/postInfor/post?id=<%=modellist4[1].ID %>" target='_blank'><span><%=modellist4[1].Title1 %></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="num">
+                            <ul>
+                                <li class="in"><a href="http://localhost:3741/postInfor/post?id=<%=modellist4[0].ID %>" target='_blank'><span>1</span></a></li>
+                                <li><a href="http://localhost:3741/postInfor/post?id=<%=modellist4[1].ID %>" target='_blank'><span>2</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <br />
+                    <ul class="new-topics">
+                        <%
+                            List<meihu.Models.I_indexModel> modellist1 = TempData["list1"] as List<meihu.Models.I_indexModel>;
+                            foreach (var item in modellist1)
+                            {%>
+                        <li>
+                            <img src="../../image/list_7ree.gif" />
+                            <a href="http://localhost:3741/postInfor/post?id=<%=item.ID %>" target='_blank'><%=item.Title %></a>
+                        </li>
+                        <% }
+                        %>
+                    </ul>
+                </li>
+                <li>
+                    <br />
+                    <ul class="new-topics">
+                        <%
+                            List<meihu.Models.I_indexModel> modellist2 = TempData["list2"] as List<meihu.Models.I_indexModel>;
+                            foreach (var item in modellist2)
+                            {%>
+                        <li>
+                            <img src="../../image/list_7ree.gif" />
+                            <a href="http://localhost:3741/postInfor/post?id=<%=item.ID %>" target='_blank'><%=item.Title1 %></a>
+                        </li>
+                        <%} 
+                        %>
+                    </ul>
+                </li>
+                <li>
+                    <br />
+                    <ul class="new-topics">
+                        <%
+                            List<meihu.Models.I_indexModel> modellist3 = TempData["list3"] as List<meihu.Models.I_indexModel>;
+                            foreach (var item in modellist3)
+                            {%>
+                        <li>
+                            <img src="../../image/list_7ree.gif" />
+                            <a href="http://localhost:3741/postInfor/post?id=<%=item.ID %>" target='_blank'><%=item.Title2 %></a>
+                        </li>
+                        <% }
+                        %>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

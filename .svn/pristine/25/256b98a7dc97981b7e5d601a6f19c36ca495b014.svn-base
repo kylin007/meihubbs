@@ -1,0 +1,951 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../../Css/Mypost.css" rel="stylesheet" />
+    <script src="../../Jscript/My_post.js"></script>
+    <div class="zy">
+        <div class="z">
+            <a class=" House" title="首页">郑州大学论坛,郑大眉湖论坛</a>
+        </div>
+    </div>
+    <div class="Introduction">
+        <div class="wp">
+            <div class="mn">
+                <div class="bk gd">
+                    <div class="bk_n">
+                        <h1 class="zt">导读首页</h1>
+                    </div>
+                    <div class="k">
+                        <div id="jz">
+                            <div class="btn"></div>
+                        </div>
+                    </div>
+                </div>
+            <ul class="ti bk cl" id="bt">
+                    <li>
+                        <a  href="My_post?a1">最新热门</a>
+                    </li>
+                    <li>
+                        <a  href="My_post?a2">最新精华</a>
+                    </li>
+                    <li>
+                        <a  href="My_post?a3">查看新帖</a>
+                    </li>
+                    <li>
+                        <a  href="My_post?a4" onmouseover="menu()" onmouseout="dis()">我的帖子</a>
+                    </li>
+                </ul>
+                <div class="bk bkw">
+                    <div class=" bk_h bk_n">
+                        <a class="y" href="My_post?a1">更多»</a>
+                        <h2>最新热门</h2>
+                    </div>
+                    <div class="bk_c">
+                        <div class="xl2 cl">
+                           <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                              <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em><span class="xi1">70人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em><span class="xi1">7人参与</span></em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bk bkw">
+                    <div class=" bk_h bk_n">
+                        <a class="y" href="My_post?a2">更多»</a>
+                        <h2>最新精华</h2>
+                    </div>
+                    <div class="bk_c">
+                        <div class="xl2 cl">
+                           <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                              <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                  <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                      <font color="red">原创空间</font>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                      <font color="red">原创空间</font>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                   <font color="red">原创空间</font>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+                <div class="bk bkw">
+                    <div class=" bk_h bk_n">
+                        <a class="y" href="My_post?a3">更多»</a>
+                        <h2>查看新帖</h2>
+                    </div>
+                    <div class="bk_c">
+                        <div class="xl2 cl">
+                           <li>
+                               <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                              <li>
+                                  <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                  <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                      <font color="red">原创空间</font>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                      <font color="red">原创空间</font>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i>
+                                    <em>2016-7-20 16:36</em>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                            <li>
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>每日签到奖励积分专贴</a>
+                                </i>               
+                                <span class=" xg1">
+                                   <font color="red">原创空间</font>
+                                </span>
+                            </li>
+                            <li class="xl2_r">
+                                <em>2016-7-20 16:36</em>
+                                <i>
+                                    ·
+                                    <a>一年一贴，咳咳咳</a>
+                                </i>               
+                                <span class=" xg1">
+                                    <a>灌水聊天</a>
+                                </span>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       <%-- <div class="p_pop" style="position: absolute; z-index: 301;"id="menu1" onmouseout="dis2()">
+        <ul>
+            <li><a>投票</a></li>
+            <li><a>商品</a></li>
+            <li><a>悬赏</a></li>
+            <li><a>活动</a></li>
+        </ul>
+    </div>--%>
+</asp:Content>

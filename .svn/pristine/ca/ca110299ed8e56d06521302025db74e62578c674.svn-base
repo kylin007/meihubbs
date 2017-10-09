@@ -1,0 +1,694 @@
+﻿body {
+}
+input[type="button"] {
+       font-size:13px;
+       font-weight:600;
+       Height:23px;
+        Width:48px;
+       margin-left: 2px;
+       text-align:center; 
+       margin-top: 3px;
+}
+a{
+    text-decoration:none;
+    color:black;
+}
+  a:hover{
+    text-decoration:underline;
+  }
+#M-message {
+    width:959px;
+    font-size:12px;
+   border:0.5px solid orange;
+}
+#M-message  #S-tops{
+    width:959px;
+    height:30px;
+}
+#S-tops table {
+    width:180px;
+    float:left;
+     height:30px;
+     position:absolute;
+}
+#S-tops table .S-topimg1 {
+        width: 16px;
+        height: 14px;
+        position:relative;
+       background: url(../image/S_index.png) no-repeat;
+      background-position:-7px -2px;
+    }
+#S-tops table .S-topimg2 {
+          width: 5px;
+        height: 16px;
+        position:relative;
+      background: url(../image/S_index.png) no-repeat;
+      background-position:-32px 0px;
+}
+#S-tops table .S-topimg3 {
+         width:5px;
+        height: 16px;
+        position:relative;
+       background: url(../image/S_index.png) no-repeat;
+      background-position:-32px 0px;
+}
+ #M-message  #S-mescenter {
+   width:959px;
+   height:340px;
+   border-top:0.5px solid orange;
+}
+ #S-mescenter #S-mesleft {
+    width:137px;
+    float:left;
+    height:340px;
+    border-right:0.5px solid orange;
+}
+#S-mesleft .S-mesleft0 {
+    width:125px;
+    height:30px;
+    padding-left:10px;
+    padding-top:10px;
+      font-size:14px;
+      font-style:normal;
+      font-weight:600;
+     border-bottom:0.5px dashed #CDCDCD;
+}
+#S-mesleft  .S-mesleft1 {
+    width:137px;
+    height:70px;
+    font-size:13px;
+}
+#S-mesleft  .S-mesleft1  table{
+    width:137px;
+    height:70px;
+}
+ #S-mesleft .S-mesleft1 table td {
+      padding-left:10px;
+      border-bottom:0.5px dashed #CDCDCD;
+    }
+#S-mescenter #S-mesright {
+    width:820px;
+   float:right;
+   height:340px;
+}
+
+#R-reform {
+    width:820px;
+    height:340px;
+    font-size:12px;
+
+}
+#R-reform  .Rtop{
+    width:800px;
+   margin-top:8px;
+   height:40px;
+   margin:0 auto;
+  border-bottom:0.5px solid orange;
+}
+#R-reform  .Rtop  table{
+    width:800px;
+   height:40px;
+    float:left; 
+}
+ #R-reform .Rtop table  td{
+     background-color:#FFECEC;
+     padding:0px 13px;
+    }
+ #R-mess {
+    width:820px;
+    height:340px;
+    margin:0 auto;
+    font-size:12px;
+
+}
+#R-mess .Mtop{
+    width:800px;
+   margin-top:8px;
+   height:40px;
+   margin:0 auto;
+  border-bottom:0.5px solid orange;
+}
+#R-mess  .Mtop  table{
+    width:800px;
+   height:40px;
+    float:left; 
+}
+ #R-mess .Mtop table  td{
+     background-color:#FFECEC;
+     padding:0px 13px;
+  }
+#R-reform #reform0 {
+    width:800px;
+    height:290px;
+    margin:0 auto;
+}
+#reform0  #subreform{
+    width:800px;
+    height:290px;
+}
+#subreform  .subreform_sub{
+    margin-top:8px;
+    width:800px;
+    height:25px;
+   border-bottom:0.5px dashed #CDCDCD;
+}
+#subreform #sub0{
+    width:800px;
+    height:260px;
+    }
+#subreform #sub0 .text-sub{
+   margin:0 auto;
+    width:600px;
+    height:20px;
+     margin-top:50px;
+    margin-left:250px;
+    }
+#subreform #sub1{
+    width:800px;
+    height:250px;
+    margin-top:10px;
+    }
+#sub1 table {
+    width:400px;
+    height:70px;
+}
+#R-reform #reform1 {
+    width:800px;
+    height:300px;
+    margin:0 auto;
+}
+#reform1 .rereformsub {
+    width:400px;
+    height:40px;
+    margin-left:20px;
+    margin-top:20px;
+}
+#R-mess #R-mess0 {
+    width:800px;
+    height:260px;
+    margin:0 auto;
+}
+#R-mess0 .Rtop0 {
+     width:800px;
+    height:80px;
+
+}
+  #R-mess0 .Rtop0 table {
+      width:800px;
+      height:80px;
+      position:absolute;
+    border-bottom:0.5px dashed #CDCDCD;
+ }
+    #R-mess0 .Rtop0 table .Rtop0right1img {
+        background: url(../image/S_deligore.png) no-repeat;
+        width:35px;
+        height:15px;
+        position: relative;
+        background-position: -1px -6px;
+        top:2px;
+        left:0px;
+    }
+ #R-mess0 .topbutton{
+     width:800px;
+    height:20px;
+    margin-top:10px;
+}
+#R-mess0 .topbutton  table{
+     width:300px;
+     height:20px;
+     padding-left:75px;
+}
+ #R-mess   #friend_id {
+     width:800px;
+    height:260px;
+    margin:0 auto;
+}
+ #friend_id .Rtop0s {
+     width:800px;
+    height:80px;
+
+}
+  #friend_id .Rtop0s table {
+      width:800px;
+      height:80px;
+      position:absolute;
+    border-bottom:0.5px dashed #CDCDCD;
+ }
+    #friend_id .Rtop0s table .Rtop0right1img {
+        background: url(../image/S_deligore.png) no-repeat;
+        width:35px;
+        height:15px;
+        position: relative;
+        background-position: -1px -6px;
+        top:2px;
+        left:0px;
+    }
+ /**/
+ #friend_id .M-mg0sub1 {
+     width: 800px;
+     height:90px;
+    border-bottom:0.5px dashed #CDCDCD;
+}
+  #friend_id .M-mg0sub1 .subleft{
+      width: 80px;
+      height:85px;
+      float:left;
+    }
+  #friend_id .M-mg0sub1 .subrightsb{
+      width: 400px;
+      height:85px;
+      float:right;
+     margin-right:315px;
+ 
+  
+  }
+.subrightsb .subright1b {
+     width: 540px;
+     height:20px;
+     background-color:#ece5e6;
+     border:0.5px solid gray;
+}
+
+.subright1b table {
+    width:175px;
+    height:20px;
+   position:absolute;
+   cursor:pointer;
+}
+.subrightsb .sub0 {
+    width:10px;
+    height:15px;
+    background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-5px -5px;
+}
+.subrightsb .sub1{
+    width:10px;
+    height:15px;
+    background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-30px -5px;
+}
+.subrightsb .sub2{
+    width:20px;
+    height:15px;
+        background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-50px -5px;
+}
+.subrightsb .sub3{
+    width:20px;
+    height:15px;
+      background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-76px -5px;
+}
+.subrightsb .sub4{
+    width:10px;
+    height:15px;
+     background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-103px -5px;
+}
+.subrightsb .sub5{
+    width:15px;
+    height:15px;
+    background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-127px -5px;
+}
+.subrightsb .sub6{
+    width:20px;
+    height:15px;
+     background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-153px -5px;
+}
+.subrightsb .subright0 {
+    width:540px;
+    height:65px;
+   border-top:0.5px solid gray;
+}
+#friend_id .M-mg0sub2 {
+    width:600px;
+    height:30px;
+   margin-left:152px;
+   margin-top:5px;
+}
+ /**/
+#R-mess #R-mess1{
+    width:800px;
+    height:260px;
+    margin:0 auto;
+}
+#R-mess1 .R-messsub {
+    padding-left:20px;
+    padding-top:20px;
+}
+
+#MS-mg {
+    width:820px;
+    height:340px;
+    font-size:12px;
+
+}
+#MS-mg .M-message2{
+    width:800px;
+   margin-top:8px;
+   height:40px;
+   margin:0 auto;
+  border-bottom:0.5px solid orange;
+}
+#MS-mg  .M-message2  table{
+    width:800px;
+   height:40px;
+    float:left; 
+}
+ #MS-mg .M-message2 table  td{
+     background-color:#FFECEC;
+     padding:0px 13px;
+  }
+  #MS-mg #M-mg0 {
+      width: 800px;
+      height: 300px;
+     margin: 0 auto;
+ }
+  #M-mg0 .M-mg0sub0
+{
+      width: 650px;
+      height:80px;
+     border-bottom:0.5px dashed #CDCDCD;
+}
+ #M-mg0 .M-mg0sub0 table
+{
+      width: 650px;
+      height: 60px;
+     float:left;
+    margin-top:15px;
+    margin-bottom:5px;
+}
+ .M-mg0sub0  #selectfriendg{
+    position:relative;
+    width:300px;
+    height:150px;
+    top:45px;
+    left:320px;
+}
+#selectfriendg .selectfriends1{
+    width:300px;
+    height:17px;
+    background-color:rgb(251, 211, 211);
+}
+#selectfriendg .selectfriends2{
+     width:300px;
+    height:100px;
+    background-color:rgb(248, 230, 230);
+}
+#selectfriendg .selectfriends3{
+      width:300px;
+    height:23px;
+    background-color:rgb(251, 211, 211);
+    text-align:right;
+}
+
+
+#M-mg0 .M-mg0sub1 {
+     width: 800px;
+     height:180px;
+    border-bottom:0.5px dashed #CDCDCD;
+}
+  #M-mg0 .M-mg0sub1 .subleft{
+      width: 150px;
+      height:180px;
+      float:left;
+    }
+  #M-mg0 .M-mg0sub1 .subright{
+      width: 400px;
+      height:180px;
+      float:right;
+     margin-right:245px;
+     border:0.5px solid gray;
+  
+  }
+.subright .subright1 {
+     width: 400px;
+     height:20px;
+     background-color:#ece5e6;
+}
+
+.subright1 table {
+    width:175px;
+    height:20px;
+   position:absolute;
+   cursor:pointer;
+}
+.subright .sub0 {
+    width:10px;
+    height:15px;
+    background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-5px -5px;
+}
+.subright .sub1{
+    width:10px;
+    height:15px;
+    background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-30px -5px;
+}
+.subright .sub2{
+    width:20px;
+    height:15px;
+        background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-50px -5px;
+}
+.subright .sub3{
+    width:20px;
+    height:15px;
+      background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-76px -5px;
+}
+.subright .sub4{
+    width:10px;
+    height:15px;
+     background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-103px -5px;
+}
+.subright .sub5{
+    width:15px;
+    height:15px;
+    background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-127px -5px;
+}
+.subright .sub6{
+    width:20px;
+    height:15px;
+     background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-153px -5px;
+}
+.subright .subright0 {
+    width:400px;
+    height:157px;
+   border-top:0.5px solid gray;
+}
+#M-mg0 .M-mg0sub2 {
+    width:600px;
+    height:20px;
+   margin-left:152px;
+   margin-top:5px;
+}
+ #MS-mg #M-mg1 {
+      width: 800px;
+      height: 300px;
+     margin: 0 auto;
+ }
+ #M-mg1 .M-mg0sub4
+{
+      width: 650px;
+      height:20px;
+      margin-top:15px;
+      margin-bottom:10px;
+}
+  #M-mg1 .M-mg0sub4 table
+{
+      width: 650px;
+      height:20px;
+}
+  #M-mg1 .M-mg0sub01
+{
+      width: 650px;
+      height:60px;
+      border-bottom:0.5px dashed #CDCDCD;
+   
+}
+
+ #M-mg1 .M-mg0sub01 table
+{
+      width: 650px;
+      height: 60px;
+     float:left;
+   
+}
+ .M-mg0sub01  #selectfriends{
+    position:relative;
+    width:300px;
+    height:150px;
+    top:32px;
+    left:320px;
+}
+#selectfriends .selectfriends1{
+    width:300px;
+    height:17px;
+    background-color:rgb(251, 211, 211);
+}
+#selectfriends .selectfriends2{
+     width:300px;
+    height:100px;
+    background-color:rgb(248, 230, 230);
+}
+#selectfriends .selectfriends3{
+      width:300px;
+    height:23px;
+    background-color:rgb(251, 211, 211);
+    text-align:right;
+}
+#M-mg1 .M-mg0sub1 {
+     width: 800px;
+     height:150px;
+}
+  #M-mg1 .M-mg0sub1 .subleft{
+      width: 150px;
+      height:150px;
+      float:left;
+  }
+  #M-mg1 .M-mg0sub1 .subrights{
+      width: 400px;
+      height:150px;
+      float:right;
+     margin-right:245px;
+     border:0.5px solid gray;
+  
+  }
+
+.subrights .subright1 {
+     width: 400px;
+     height:20px;
+     background-color:#ece5e6;
+}
+
+.subright1 table {
+    width:175px;
+    height:20px;
+   position:absolute;
+      cursor:pointer;
+}
+.subrights .sub0 {
+    width:10px;
+    height:15px;
+      background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-5px -5px;
+}
+.subrights .sub1{
+    width:10px;
+    height:15px;
+      background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-30px -5px;
+}
+.subrights .sub2{
+    width:20px;
+    height:15px;
+    background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-50px -5px;
+}
+.subrights .sub3{
+    width:20px;
+    height:15px;
+   background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-76px -5px;
+}
+.subrights .sub4{
+    width:10px;
+    height:15px;
+    background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-103px -5px;
+}
+.subrights .sub5{
+    width:15px;
+    height:15px;
+      background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-127px -5px;
+}
+.subrights .sub6{
+    width:20px;
+    height:15px;
+     background: url('../image/S_Messdonghua.PNG') no-repeat;
+    background-position:-153px -5px;
+}
+.subrights .subright0 {
+    width:400px;
+    height:127px;
+   border-top:0.5px solid gray;
+}
+#M-mg1 .M-mg0sub2 {
+    width:600px;
+    height:20px;
+   margin-left:152px;
+   margin-top:12px;
+}
+ .current{
+   background-color:rgb(255, 215, 215);
+}
+ .current1{
+   background-color:rgb(255, 236, 236);
+}
+ .tdcurrent {
+   border-left:0.5px solid orange;
+   border-right:0.5px solid orange;
+}
+
+   .friendclass {
+        width:300px;
+        height:100px;
+        margin:0 auto;
+        overflow:hidden;
+      position:absolute;
+    }
+.friendclass ul{
+ 
+     height:100px;
+     width:300px;
+     text-align:left;
+     padding:0px;
+     margin-top:5px;
+    }
+  .friendclass ul li {
+        padding-left:8px;
+        padding-bottom:4px;
+        height:20px;
+        list-style-type:none;
+      cursor:pointer;
+    }
+.messagedel {
+    position:relative;
+    top:16px;
+    right:45px;
+     width:60px;
+    height:45px;
+    background-color:white;
+    display:none;
+}
+.messagedel2 {
+  padding-left:5px;
+  padding-right:5px;
+  position:relative;
+  list-style-type:none;
+  height:45px;
+}
+ .messagedel2 li:hover {
+     cursor:pointer;
+     background-color:rgb(251, 211, 211);
+  }
+ /*
+     判断好友消息的补充
+ */
+#reform1 #rereformsub2{
+      width:700px;
+     margin:0 auto;
+}
+#reform1 #rereformsub2 table{
+    padding-top:10px;
+     width:600px;
+     height:60px;
+     margin-left:100px;
+}

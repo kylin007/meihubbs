@@ -1,0 +1,71 @@
+﻿body {
+}
+
+.new{
+    width:960px;
+    height:281px;
+   
+}
+
+.health-time{
+    width:960px;
+    height:33px;
+    border-top:1px solid #FCC  ;
+    border-bottom:1px solid #FCC;
+    border-left:1px solid #CDCDCD;
+    border-right:1px solid #CDCDCD;
+    background:#FFECEC url(titlebg.png) repeat-x 0 0;
+    line-height:12px;
+}
+
+h2{
+    margin-left:10px;
+    font-size:1em;
+    float:left;
+}
+
+.health-time span{
+    float:right;
+    margin-right:15px;
+    line-height:32px;
+    float:right;
+}
+
+.y a{
+    text-decoration:none;
+    color:#369;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+.new-message{
+    width:940px;
+    height:227px;
+    padding:10px;
+    float:left;
+    background-color:#FFF;
+    border:1px solid #CDCDCD;
+    border-top:none;
+    margin-top:2px;
+    margin-left:-1px;
+}
+
+.new-message li{
+    float:left;
+    list-style:none;
+    width:25%;
+    text-align:center;
+}
+
+.block{
+    width:960px;
+    height:1227px;
+    background-color:red;
+}
+
+
+
+
+

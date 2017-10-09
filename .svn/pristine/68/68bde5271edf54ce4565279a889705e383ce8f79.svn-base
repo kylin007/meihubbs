@@ -1,0 +1,545 @@
+﻿using meihu.Models;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using meihu.App_Code;
+using System.Data;
+using System.Data.SqlClient;
+using Newtonsoft.Json;
+using Newtonsoft.Json;
+
+using Newtonsoft.Json;
+using System.Globalization;
+
+
+namespace meihu.Controllers
+{
+    public class HomeController : Controller
+    {
+        //
+        // GET: /Home/
+
+        DataBase db = new DataBase();
+
+       
+
+        public ActionResult Index()
+        {                           
+       //HomeModel hm = new HomeModel();
+       //     int count = hm.selectUserCount();
+            
+       //    ViewData["count"] = count;
+          
+            return View();
+        }
+
+        public ActionResult PersonData()
+        {
+            ////先获取到user_id
+            string sql = "select * from User_message where user_id = 1";
+            DataTable dt = db.getdata(sql);
+            Dictionary<string, string> stackholder = new Dictionary<string, string>();//定义泛型字典对象
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string key = dt.Rows[i]["Data_name"].ToString();
+                string value = "";
+                if (key != null)
+                {
+                    if (key == "个人签名" || (key == "真实姓名") || (key == "性别") || (key == "生日") || (key == "出生地") || (key == "居住地") || (key == "毕业学校") || (key == "学历") || (key == "公司") || (key == "职业") || (key == "职位") || (key == "交友目的") || (key == "个人主页") || (key == "兴趣爱好") || (key == "在线时间")
+                        || (key == "注册时间") || (key == "最后访问") || (key == "注册IP") || (key == "上次访问IP") || (key == "上次活动时间") || (key == "上次发表时间") || (key == "所在时区") || (key == "已用空间") || (key == "积分") || (key == "金钱") || (key == "好友数") || (key == "回帖数") || (key == "主题数"))
+                    {
+                        value = dt.Rows[i]["Data_cont"].ToString();
+                    }
+                    if (value != "")
+                    {
+                        stackholder.Add(key, value);
+                    }
+                }
+            }
+            ViewData["stackholder"] = stackholder;
+            return View();
+        }
+        public void insert_friends()
+        {
+            SqlConnection conn = new SqlConnection("Data Source=10.1.56.59;Initial Catalog=BBS_zzn;User ID=sa;Password=123456");
+            conn.Open();
+            var user_id = 1;                                                //自己id
+            string text = Request.Form["note"].ToString();                  //好友附言
+            int group = (Convert.ToInt32(Request.Form["gid"].ToString()) + 1);//好友分组id
+            string fri_name = Request.Form["fname"].ToString();             //好友名称
+            int fri_id = Find_ID(fri_name);
+            string sql1 = string.Format("insert into User_friend values('{0}','{1}','{2}','{3}')", user_id, fri_id, text, group);
+            SqlCommand cmd = new SqlCommand(sql1, conn);
+            int n = cmd.ExecuteNonQuery();
+            conn.Close();
+            Response.Write("<script>window.location.href='"+"/Home/PersonData"+"';</script>");
+            return;
+        }
+        public ContentResult Send_message()
+        {
+            SqlConnection conn = new SqlConnection("Data Source=10.1.56.59;Initial Catalog=BBS_zzn;User ID=sa;Password=123456");
+            conn.Open();
+            string user_name = Request.Form[0].ToString();//自己名字
+            string fri_name = Request.Form[1].ToString();//交流对象的名字
+            string text = Request.Form[2].ToString();//交流的内容
+            DateTime Time = DateTime.Now;            //时间
+            string time = DateTime.Now.ToString("yyyy-MM-dd");
+            //将名字转换为id
+            int user_id = Find_ID(user_name);
+            int fri_id = Find_ID(fri_name);
+            string all_id = user_id + "," + fri_id;
+            string all_id1 = fri_id + "," + user_id;
+            string str = " ";
+            str = string.Format("select * from Talk_group where  Talk_id_all ='" + all_id + "'or Talk_id_all = '" + all_id1 + "'");
+            DataTable dt = db.getdata(str);
+            if (dt.Rows.Count == 0)
+            {//如果不存在，创建两人聊天组
+                string topic = "";
+                str = string.Format("insert into Talk_group values('{0}','{1}')", topic, all_id);
+                SqlCommand cmd = new SqlCommand(str, conn);
+                cmd.ExecuteNonQuery();
+            }
+            //查找当前组id
+            str = string.Format("select * from Talk_group where  Talk_id_all ='" + all_id + "'or Talk_id_all ='" + all_id1 + "'");
+            DataTable dt1 = db.getdata(str);
+            int group_id = Convert.ToInt32(dt1.Rows[0]["ID"]);
+            //插入聊天语句
+            str = string.Format("insert into Talk_message values('{0}','{1}','{2}','{3}')", user_id, group_id, text, time);
+            SqlCommand cmd1 = new SqlCommand(str, conn);
+            int n = cmd1.ExecuteNonQuery();
+            //获取聊天组中的信息,并存在dt表中
+            str = string.Format("select * from Talk_message where Talk_group_id = " + group_id + "and Talk_Time = '" + time + "'");
+            DataTable dt2 = db.getdata(str);
+            var result = JsonConvert.SerializeObject(dt2);
+            conn.Close();
+            return Content(result);
+        }
+        public ContentResult Topic_show()//获取个人资料帖子部分所需内容
+        {
+            DataTable dt = new DataTable();
+            DataTable dt1 = new DataTable();
+            string user_name = Request.Form[0].ToString();
+            int user_id = Find_ID(user_name);//将用户名转换为ID
+            string str = "";
+            str = string.Format("select * from (Create_topic inner join Topic_message on Create_topic.ID = Topic_message.Topic_id)inner join User_registration on Topic_message.Last_reply_id = User_registration.ID where User_id = " + user_id);
+            dt = db.getdata(str);
+            dt.Columns.Add("版块名称");//给DataTable表增加列
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string ss = dt.Rows[i]["Is_son"].ToString();
+                var id = Convert.ToInt32(dt.Rows[i]["ID"].ToString());
+                if (ss == "0")
+                {
+                    string str1 = string.Format("select * from ((Create_topic inner join Topic_message on Create_topic.ID = Topic_message.Topic_id)inner join Second_forum on Create_topic.Forum_id = Second_forum.ID)inner join User_registration on Topic_message.Last_reply_id = User_registration.ID where Create_topic.ID = " + id);
+                    dt1 = db.getdata(str1);
+                    dt.Rows[i]["版块名称"] = dt1.Rows[0]["Second_forum"].ToString();
+                }
+                else
+                {
+                    string str1 = string.Format("select * from ((Create_topic inner join Topic_message on Create_topic.ID = Topic_message.Topic_id)inner join Son_forum on Create_topic.Forum_id = Son_forum.ID)inner join User_registration on Topic_message.Last_reply_id = User_registration.ID where Create_topic.ID = " + id);
+                    dt1 = db.getdata(str1);
+                    dt.Rows[i]["版块名称"] = dt1.Rows[0]["Son_forum"].ToString();
+                }
+            }
+
+            var result = JsonConvert.SerializeObject(dt);//强制转换为json数据;
+            return Content(result);
+        }
+        public ContentResult Reply_show()
+        {
+            DataTable dt = new DataTable();
+            DataTable dt1 = new DataTable();
+            string user_name = Request.Form[0].ToString();
+            int user_id = Find_ID(user_name);//将用户名转换为ID
+            string str = "";
+            str = string.Format("select * from ((Reply_message inner join Create_topic on Reply_message.Topic_id = Create_topic.ID) inner join Topic_message on Create_topic.ID  = Topic_message.Topic_id)inner join User_registration on Topic_message.Last_reply_id = User_registration.ID where Reply_user_id = " + user_id);
+            dt = db.getdata(str);
+            dt.Columns.Add("版块名称");//给DataTable表增加列
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string ss = dt.Rows[i]["Is_son"].ToString();
+                var id = Convert.ToInt32(dt.Rows[i]["Topic_id"].ToString());
+                if (ss == "0")
+                {
+                    string str1 = string.Format("select * from((((Reply_message inner join Create_topic on Reply_message.Topic_id = Create_topic.ID) inner join Topic_message on Create_topic.ID = Topic_message.Topic_id)inner join User_registration on Topic_message.Last_reply_id = User_registration.ID )inner join Second_forum on Create_topic.Forum_id = Second_forum.ID) where Create_topic.ID =" + id);
+                    dt1 = db.getdata(str1);
+                    dt.Rows[i]["版块名称"] = dt1.Rows[0]["Second_forum"].ToString();
+                }
+                else
+                {
+                    string str1 = string.Format("select * from((((Reply_message inner join Create_topic on Reply_message.Topic_id = Create_topic.ID) inner join Topic_message on Create_topic.ID = Topic_message.Topic_id)inner join User_registration on Topic_message.Last_reply_id = User_registration.ID )inner join Son_forum on Create_topic.Forum_id = Son_forum.ID) where Create_topic.ID =" + id);
+                    dt1 = db.getdata(str1);
+                    dt.Rows[i]["版块名称"] = dt1.Rows[0]["Son_forum"].ToString();
+                }
+            }
+            var result = JsonConvert.SerializeObject(dt);//强制转换为json数据;
+            return Content(result);
+        }
+        public int Find_ID(string name)
+        {
+            string str = string.Format("select * from User_registration where User_name = '" + name + " '");
+            DataTable dt = new DataBase().getdata(str);
+            int id = Convert.ToInt32(dt.Rows[0]["ID"]);
+            return id;
+
+        }
+        public ActionResult Test()
+        {
+            return View();
+        }
+        public ActionResult User_Register()
+        {
+            return View();
+        }
+        public void Register()
+        {
+
+        }
+
+        public ContentResult  Register_on(string text)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection("Data Source=10.1.56.59;Initial Catalog=BBS_zzn;User ID=sa;Password=123456");
+            conn.Open();
+            text = "'" + text + "'";
+            string sql = "select * from User_registration where User_name =" + text;
+            //SqlCommand com = new SqlCommand(sql, conn);
+            //string x = com.ExecuteScalar().ToString();
+            SqlDataAdapter dapt = new SqlDataAdapter(sql, conn);
+            dapt.Fill(dt);
+            conn.Close();
+            int x = dt.Rows.Count;
+            if(x>0)
+            {
+                return Content("false");
+            }
+            return Content("true");
+        }
+        public ContentResult Register_in(string text)
+        {
+            //string name = Request.Form[0].ToString();
+            //Session["User_name"] = name;
+            //Session["User_id"] = user_id;
+            //return Content("true");
+
+            string name = Request.Form[0].ToString();
+            string pwd = Request.Form[1].ToString();
+            string Email = Request.Form[2].ToString();
+            string Grade = Request.Form[3].ToString();
+            string Major = Request.Form[4].ToString();
+            string Question = "安全提问(未设置请忽略)";
+            string Answer = null;
+            SqlConnection conn = new SqlConnection("Data Source=10.1.56.59;Initial Catalog=BBS_zzn;User ID=sa;Password=123456");
+            conn.Open();
+            string sql = string.Format("INSERT INTO User_registration VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", name, pwd, Email, Question, Answer, Grade, Major);
+            SqlCommand com = new SqlCommand(sql, conn);
+            if(com.ExecuteNonQuery()==1)
+            {
+                sql = string.Format("select ID from User_registration where User_name=" + "'" + name + "'");
+                com = new SqlCommand(sql, conn);
+                string user_id = com.ExecuteScalar().ToString();
+                //Session["User_name"] = name;
+                Session["User_id"] = user_id;
+                return Content("true");
+            }
+            else
+            {
+                return Content("false");
+            }
+        }
+
+        public ContentResult Login_in(string text)
+        {
+            //return Content("true");
+
+            string name_val = Request.Form[0].ToString(); //用户名&邮箱
+            string name_text = Request.Form[1].ToString();//内容
+            string pwd_text = Request.Form[2].ToString();//密码
+            string question_text = Request.Form[3].ToString();//问题
+            string answer_text = Request.Form[4].ToString();//答案
+
+            SqlConnection conn = new SqlConnection("Data Source=10.1.56.59;Initial Catalog=BBS_zzn;User ID=sa;Password=123456");
+            conn.Open();
+            string sql = string.Format("select ID from User_registration where "+name_val+" = "+"'"+name_text+"'" + "and " + " User_pwd =" + "'" + pwd_text + "'" + "and " + " Question =" + "'" + question_text + "'" + "and " + " Answer =" + "'" + answer_text + "'");
+            
+            try
+            {
+                SqlCommand com = new SqlCommand(sql, conn);
+                //int x = com.ExecuteNonQuery();
+                if (com.ExecuteScalar() != null)
+                {
+                    string user_id = com.ExecuteScalar().ToString();
+                    Session["User_id"] = user_id;
+                    return Content("true");
+                }
+                else
+                {
+                    return Content("false");
+                }
+            }
+            catch
+            {
+                return Content("false");
+            }
+        }
+
+
+
+        
+        #region 张宏乾
+        public ActionResult Mypost()
+        {
+
+            // HomeModel hm = new HomeModel();
+            // int count = hm.selectUserCount();     
+            //ViewData["count"] = count;
+            return View();
+        }
+
+        public ActionResult My_post()
+        {
+            var para = Request;
+            return View();
+        }
+        public ContentResult getlist(int id)
+        {
+            string sql = ""; string Topic_id = ""; string title = ""; string Is_son = ""; string Partake = ""; int Reply_num = 0; string Forum_id = ""; string Forum_name = ""; int Visit_num = 0; string Last_reply_id = ""; string Last_reply_time = ""; string User_id = ""; string Create_on_time = ""; string Is_top = ""; string Is_img = ""; string Is_good = ""; string User_name = ""; string Last_reply_name = ""; string Top = ""; string Good = ""; string Img = ""; string time1 = ""; string time2 = ""; string Hot = ""; string Evaluation_num = ""; string Evaluation = ""; string Reply_page = ""; int Partake1 = 0;
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection("Data Source=10.1.56.59;Initial Catalog=BBS_zzn;Persist Security Info=True;User ID=sa;Password=123456");
+            conn.Open();
+            if (id == 0 || id == 4)
+            {
+                sql = "select * from Topic_message as a inner join Create_topic as b on a.Topic_id=b.id where Visit_num>1000 order by Create_on_time desc";
+            }
+            if (id == 1||id==5)
+            {
+                sql = "select * from Topic_message as a inner join Create_topic as b on a.Topic_id=b.id where Is_good=1 order by Create_on_time desc";
+            }
+            if (id == 2||id==6)
+            {
+                sql = "select * from Topic_message as a inner join Create_topic as b on a.Topic_id=b.id order by Create_on_time desc";
+            }
+            if (id == 3)
+            {
+                sql = "select * from Topic_message as a inner join Create_topic as b on a.Topic_id=b.id where Visit_num>1000 order by Create_on_time desc";
+            }
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, conn);
+            cmd.Fill(dt);
+
+
+            List<Latest_hot> models = new List<Latest_hot>();
+
+
+
+            TempData["listmodel"] = models;
+
+            for (var i = 0; i < dt.Rows.Count; i++)
+            {
+                conn.Close();
+                conn.Open();
+
+
+                //title = dt.Rows[i]["title"].ToString();                         //帖子标题
+                User_id = dt.Rows[i]["User_id"].ToString();                     //用户ID
+                // Create_on_time = dt.Rows[i]["Create_on_time"].ToString();       //发帖时间
+                DateTime time = Convert.ToDateTime(dt.Rows[i]["Create_on_time"].ToString());       //获取发帖时间
+                if (id == 2) { 
+                time1 = time.ToString("yyyy-M-d HH:mm", DateTimeFormatInfo.InvariantInfo);          //转换格式
+                }
+                else if(id==6)
+                {
+                    time1 = time.ToString("yyyy-M-d HH:mm", DateTimeFormatInfo.InvariantInfo);          //转换格式
+                    time1 = "<em>" + time1 + "</em>";
+                }
+                else
+                {
+                    time1 = "";
+                }
+                Topic_id = dt.Rows[i]["Topic_id"].ToString();                   //帖子ID
+                Evaluation_num = dt.Rows[i]["Evaluation_num"].ToString();
+                Reply_num = Convert.ToInt32(dt.Rows[i]["Reply_num"].ToString());                 //回复数
+                Visit_num = Convert.ToInt32(dt.Rows[i]["Visit_num"].ToString());                 //查看数
+                Last_reply_id = dt.Rows[i]["Last_reply_id"].ToString();         //最后回复的用户id
+                DateTime time3 = Convert.ToDateTime(dt.Rows[i]["Create_on_time"].ToString());       //获取最后回复时间
+                time2 = time3.ToString("yyyy-M-d HH:mm", DateTimeFormatInfo.InvariantInfo);         //转换格式
+                // Last_reply_time = dt.Rows[i]["Last_reply_time"].ToString();     //最后回复的时间
+                Is_son = dt.Rows[i]["Is_son"].ToString();                       //是否是三级板块
+                Forum_id = dt.Rows[i]["Forum_id"].ToString();                   //板块id
+                Is_top = dt.Rows[i]["Is_top"].ToString();                       //是否置顶
+                Is_good = dt.Rows[i]["Is_good"].ToString();                     //是否精华
+                Is_img = dt.Rows[i]["Is_img"].ToString();                       //是否有图片
+                sql = "select User_name from User_registration where ID=" + User_id;
+                SqlCommand cmd2 = new SqlCommand(sql, conn);
+                SqlDataReader reader1 = cmd2.ExecuteReader();
+                while (reader1.Read())
+                {
+                    User_name = String.Format("{0}", reader1[0]);                //用户名称
+                }
+                conn.Close();
+                conn.Open();
+                sql = "select User_name from User_registration where ID=" + Last_reply_id;
+                SqlCommand cmd3 = new SqlCommand(sql, conn);
+                SqlDataReader reader2 = cmd3.ExecuteReader();
+                while (reader2.Read())
+                {
+                    Last_reply_name = string.Format("{0}", reader2[0]);             //回复人名称
+                }
+                conn.Close();
+                conn.Open();
+                if (Is_son == "1")
+                {
+                    sql = "select Son_forum from Son_forum where ID=" + Forum_id;
+                }
+                else
+                {
+                    sql = "select Second_forum from Second_forum where ID=" + Forum_id;
+                }
+                SqlCommand cmd1 = new SqlCommand(sql, conn);
+                SqlDataReader reader = cmd1.ExecuteReader();
+                while (reader.Read())
+                {
+                    Forum_name = String.Format("{0}", reader[0]);                  //板块名称
+                }
+                conn.Close();
+                if (Is_top == "1")
+                {
+                    Top = "<a title=\"本版置顶主题 - 新窗口打开\"><img src=\"../../image/pin_1.gif\" /></a>";                 //置顶图标
+                }
+                else
+                {
+                    Top = "<a title=\"新窗口打开\"><img src=\"../../image/folder_common.gif\" /></a>";         //普通图标
+                }
+                if (Is_good == "1")
+                {
+                    Good = "<img src=\"../../image/digest_1.gif\"align=\"absmiddle\" title=\"1级精华\" />";
+                }
+                else
+                {
+                    Good = "";
+                }
+                if (Convert.ToInt32(Visit_num) > 1000)
+                {
+                    Hot = "<img src=\"../../image/hot_1.gif\" align=\"absmiddle\" title=\"1 级热门\" />";
+                }
+                else
+                {
+                    Hot = "";
+                }
+                if (Is_img == "1")
+                {
+                    Img = "<img src=\"../../image/image_s.gif\"align=\"absmiddle\" title=\"图片附件\" />";
+                }
+                else
+                {
+                    Img = "";
+                }
+                if (Convert.ToInt32(Evaluation_num) > 0)
+                {
+                    Evaluation = "<img src=\"../../image/agree.gif\"align=\"absmiddle\" title=\"帖子被加分\" />";
+                }
+                else
+                {
+                    Evaluation = "";
+                }
+                sql = "select distinct Reply_user_id from Reply_message where Topic_id=" + Topic_id + "and Reply_user_id!=" + User_id;
+                conn.Open();
+                SqlDataAdapter cmd4 = new SqlDataAdapter(sql, conn);
+                DataTable dt1 = new DataTable();
+                cmd4.Fill(dt1);
+                if (id == 0)
+                {
+                    Partake1 = dt1.Rows.Count;
+                    Partake1 = Partake1 + 1;
+                    Partake = "&nbsp;" + Partake1 + "人参与";
+                }
+                else if(id==4)
+                {
+                    Partake1 = dt1.Rows.Count;
+                    Partake1 = Partake1 + 1;
+                    Partake = "<em><span class=\"xi1\">" + Partake1 + "人参与" + "</span></em>";
+                }
+                else
+                {
+                    Partake = "";
+                }
+                conn.Close();
+                //Reply_page = "";
+                int w = 0;
+                if (Reply_num > 9 && Reply_num < 60)
+                {
+                    Reply_page = "&nbsp;...";
+                    for (int q = 2; q <= Reply_num / 10 + 1; q++)
+                    {
+                        Reply_page = Reply_page + "<a>" + q + "</a>";
+                    }
+                }
+                else if (Reply_num > 59)
+                {
+                    Reply_page = "&nbsp;...";
+                    for (int q = 2; q <= Reply_num / 10 + 1; q++)
+                    {
+                        if (q == 7)
+                        {
+                            Reply_page = Reply_page + "..";
+                            w = 1;
+                        }
+                        if (w < 1)
+                        {
+                            Reply_page = Reply_page + "<a>" + q + "</a>";
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    w = Reply_num / 10 + 1;
+                    Reply_page = Reply_page + "<a>" + w + "</a>";
+                }
+                else
+                {
+                    Reply_page = "";
+                }
+                Latest_hot ls = new Latest_hot()
+                {
+                    title = dt.Rows[i]["title"].ToString(),                          // 帖子标题
+                    Create_on_time = time1,                                          //发帖时间
+                    Reply_num = Reply_num,                  //回复数
+                    Visit_num = Visit_num,                  //查看数   
+                    Last_reply_time = time2,                                         //最后回复时间
+                    User_name = User_name,                                           //发帖人名称
+                    Last_reply_name = Last_reply_name,                               //最后回复人名称
+                    Forum_name = Forum_name,                                         //板块名称
+                    Partake = Partake,                                                 //参与人数
+                    Reply_page = Reply_page,                                           //回复页数
+                    Top = Top,                                                       //图标
+                    Good = Good,                                                     //精华图标
+                    Img = Img,                                                       //图片附件
+                    Hot = Hot,                                                         //热门
+                    Evaluation = Evaluation,                                           //评分
+                };
+                models.Add(ls);
+
+            }
+            //sql = "select distinct Reply_user_id ,count(*)as partake from Reply_message where Topic_id=" + Topic_id;
+            //var result = JsonConvert.SerializeObject(dt);
+
+
+            //TempData["listmodel"] = "";
+
+
+            var result = JsonConvert.SerializeObject(models);
+            return Content(result);
+        }
+
+
+        public ActionResult Introduction()
+        {
+            return View();
+        }
+        #endregion
+ 
+    }
+}

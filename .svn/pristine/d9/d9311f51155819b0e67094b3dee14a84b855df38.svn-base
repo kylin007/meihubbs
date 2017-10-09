@@ -1,0 +1,190 @@
+﻿using meihu.Models;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace meihu.Controllers
+{
+    public class postInforController : Controller
+    {
+        //
+        // GET: /postInfor/
+        public ActionResult post()
+        {
+            string id;//帖子id
+            //string toid = "1040";
+            string toid;
+            toid = Request.Params["id"];
+            //toid = "1040";
+            
+
+            List<Post> list = new List<Post>();
+            List<Post> listReply = new List<Post>();
+            Post sitem = new Post();
+
+
+            DataTable dtOneid = sitem.OneClassify(toid);
+            DataTable dt = sitem.twoClassify(toid);
+            DataTable dttitle = sitem.postTitle(toid);
+            DataTable divnum = sitem.selectSingleMessage(toid);
+
+            string usid = dttitle.Rows[0]["User_id"].ToString();
+
+            DataTable uenme = sitem.username(usid);
+
+            DataTable them = sitem.susermeage("主题数", usid);
+            DataTable friend = sitem.susermeage("好友数", usid);
+            DataTable score = sitem.susermeage("积分", usid);
+            DataTable major = sitem.susermeage("专业", usid);
+            DataTable grade = sitem.susermeage("年级", usid);
+            DataTable money = sitem.susermeage("金钱", usid);
+            DataTable portrait = sitem.susermeage("头像", usid);
+            DataTable usignmessage = sitem.signmesge(usid);
+            DataTable reply = sitem.reply(toid);
+            DataTable evaluate = sitem.evamesg(toid);
+
+            Post po = new Post();
+
+            string evaid;
+            if(evaluate.Rows.Count == 0)
+            {
+                evaid = "暂无用户评分";
+                po.evaname = "暂无用户评分";
+            }
+            else{
+                evaid = evaluate.Rows[0]["Evaluation_user_id"].ToString();
+                DataTable evaus = sitem.username(evaid);
+                po.evaname = evaus.Rows[0]["User_name"].ToString();
+                po.evacont = evaluate.Rows[0]["Evaluation_content"].ToString();
+            }
+
+            po.Second_forum = dt.Rows[0]["Second_forum"].ToString();
+            po.One_forum = dtOneid.Rows[0]["First_forum"].ToString();
+            po.title = dttitle.Rows[0]["title"].ToString();
+
+            po.time = dttitle.Rows[0]["Create_on_time"].ToString();
+            po.content = dttitle.Rows[0]["Topic_content"].ToString();
+            po.vinum = divnum.Rows[0]["Visit_num"].ToString();
+            po.ronum = divnum.Rows[0]["Reply_num"].ToString();
+            po.collect = divnum.Rows[0]["Collection_num"].ToString();
+            po.evaluation = divnum.Rows[0]["Evaluation_num"].ToString();
+
+            po.ude = uenme.Rows[0]["User_name"].ToString();
+            po.theme = them.Rows[0]["Data_cont"].ToString();
+            po.firendNum = friend.Rows[0]["Data_cont"].ToString();
+            po.scoreNum = score.Rows[0]["Data_cont"].ToString();
+            po.majorName = major.Rows[0]["Data_cont"].ToString();
+            po.gradeName = grade.Rows[0]["Data_cont"].ToString();
+            po.moneyNum = money.Rows[0]["Data_cont"].ToString();
+            po.portrait = portrait.Rows[0]["Data_cont"].ToString();
+            po.expression = usignmessage.Rows[0]["Expression"].ToString();
+            po.signtime = usignmessage.Rows[0]["Sign_time"].ToString();
+            po.day = usignmessage.Rows[0]["All_day"].ToString();
+            
+            list.Add(po);
+
+            try
+            {
+                for (var i = 0; i < reply.Rows.Count; i++)
+                {
+                    Post rep = new Post();
+                    string idreply = reply.Rows[i]["Reply_user_id"].ToString();
+
+                    rep.time = reply.Rows[i]["Reply_time"].ToString();
+                    rep.flor = reply.Rows[i]["Reply_floor"].ToString();
+                    rep.evaluation = reply.Rows[i]["Evaluation_num"].ToString();
+                    rep.content = reply.Rows[i]["Reply_content"].ToString();
+
+                    DataTable uenmere = sitem.username(idreply);
+                    rep.ude = uenmere.Rows[0]["User_name"].ToString();
+
+                    DataTable themrep = sitem.susermeage("主题数", idreply);
+                    DataTable friendrep = sitem.susermeage("好友数", idreply);
+                    DataTable scorerep = sitem.susermeage("积分", idreply);
+                    DataTable majorrep = sitem.susermeage("专业", idreply);
+                    DataTable graderep = sitem.susermeage("年级", idreply);
+                    DataTable moneyrep = sitem.susermeage("金钱", idreply);
+                    DataTable portraitrep = sitem.susermeage("头像", idreply);
+                    DataTable usignmessagerep = sitem.signmesge(idreply);
+
+
+                    rep.theme = themrep.Rows[0]["Data_cont"].ToString();
+                    rep.firendNum = friendrep.Rows[0]["Data_cont"].ToString();
+                    rep.scoreNum = scorerep.Rows[0]["Data_cont"].ToString();
+                    rep.majorName = majorrep.Rows[0]["Data_cont"].ToString();
+                    rep.gradeName = graderep.Rows[0]["Data_cont"].ToString();
+                    rep.moneyNum = moneyrep.Rows[0]["Data_cont"].ToString();
+                    rep.portrait = portraitrep.Rows[0]["Data_cont"].ToString();
+                    if (usignmessagerep.Rows.Count == 0)
+                    {
+                        rep.expression = "该用户从未签到";
+                    }
+                    else
+                    {
+                        rep.expression = usignmessagerep.Rows[0]["Expression"].ToString();
+                        rep.signtime = usignmessagerep.Rows[0]["Sign_time"].ToString();
+                        rep.day = usignmessagerep.Rows[0]["All_day"].ToString();
+                    }
+
+
+                    list.Add(rep);
+                }
+            }
+            catch
+            {
+                Console.Write("请完善数据库回帖人信息");
+            }
+
+            TempData["list"] = list;
+
+            return View();
+        }
+        public ContentResult process()
+        {
+
+            List<Post> list = new List<Post>();
+            Post sitem = new Post();
+            Post rep = new Post();
+
+            //string usidse = "1059";
+            string usidse;
+            usidse = "1059";
+            //usidse = Session["User_id"];
+
+            DataTable uenmere = sitem.username(usidse);
+            DataTable themrep = sitem.susermeage("主题数", usidse);
+            DataTable friendrep = sitem.susermeage("好友数", usidse);
+            DataTable scorerep = sitem.susermeage("积分", usidse);
+            DataTable majorrep = sitem.susermeage("专业", usidse);
+            DataTable graderep = sitem.susermeage("年级", usidse);
+            DataTable moneyrep = sitem.susermeage("金钱", usidse);
+            DataTable portraitrep = sitem.susermeage("头像", usidse);
+            DataTable usignmessagerep = sitem.signmesge(usidse);
+            rep.ude = uenmere.Rows[0]["User_name"].ToString();
+            rep.theme = themrep.Rows[0]["Data_cont"].ToString();
+            rep.firendNum = friendrep.Rows[0]["Data_cont"].ToString();
+            rep.scoreNum = scorerep.Rows[0]["Data_cont"].ToString();
+            rep.majorName = majorrep.Rows[0]["Data_cont"].ToString();
+            rep.gradeName = graderep.Rows[0]["Data_cont"].ToString();
+            rep.moneyNum = moneyrep.Rows[0]["Data_cont"].ToString();
+            rep.portrait = portraitrep.Rows[0]["Data_cont"].ToString();
+            if (usignmessagerep.Rows.Count == 0)
+            {
+                rep.expression = "该用户从未签到";
+            }
+            else
+            {
+                rep.expression = usignmessagerep.Rows[0]["Expression"].ToString();
+                rep.signtime = usignmessagerep.Rows[0]["Sign_time"].ToString();
+                rep.day = usignmessagerep.Rows[0]["All_day"].ToString();
+            }
+            string s = rep.ude + "" + rep.theme;
+            TempData["list"] = list;
+            return Content(s);
+        }
+
+    }
+}

@@ -1,0 +1,441 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    个人资料
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../../Css/PersonData.css" rel="stylesheet" />
+    <script  src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <%--    <% List<string> ls = ViewData["aaa"] as List<string>;
+       获取值进行拼接
+       
+        %>--%>
+    <%-- 点击加好友的弹出框 --%>
+   <div id="fwin_friend" class="fwinmask" initialized="true" style="position:fixed; z-index:201; left:585.5px; top:262.5px; display:none;">
+        <style type="text/css">object{visibility:hidden;}</style>
+        <table class="fwin" cellpadding="0"  cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="t_l"></td>
+                    <td class="t_c" style="cursor:move" onmousedown="dragMenu($('fwin_a_friend_li_294469'), event, 1)" ></td>
+                    <td class="t_r"></td>
+                </tr>
+                <tr>
+                    <td class="m_l" style="cursor:move;" onmousedown="dragMenu($('fwin_friend'), event, 1)" ></td>
+                    <td id ="fwin_content" class="m_c" fwin="friend" style="">
+                        <h3 id ="fctrl_friend" class="flb" style="cursor:move;">
+                            <em id="return_friend" fwin="friend">加为好友</em>
+                            <span > <a class="flbc" href="javascript: ;" onclick="Quit_make_friends()" title="关闭">关闭</a></span>
+                        </h3>
+                        <form id="addform">
+                            <input name="referer" value="" type="hidden" />
+                            <input name="addsubmit" value="true" type="hidden" />
+                            <input name="handlekey"  value="friend" type="hidden" />
+                            <input name="formhash" value="001b7c4c" type="hidden" />
+                            <div class="c">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th class="avt" valign="top" width="60">
+                                                <a href="#"><img src="../../image/noavatar_small.gif" /></a>
+                                            </th>
+                                            <td valign="top">
+                                                添加<strong>Kylin</strong>为好友，附言:<br /><input class="px" name="note" value="" size="35" onkeydown="ctrlEnter(event, 'addsubmit_btn', 1);" type="text"/>
+                                                <p class="mtn xg1">(附言为可选，Kylin 会看到这条附言，最多50个字符)</p>
+                                                <p class="mtm">
+                                                    分组：
+                                                    <select class="ps" name="gid">
+                                                        <option value="0">其他</option>
+                                                        <option value="1" selected="selected">通过本站认识</option>
+                                                        <option value="2">通过活动认识</option>
+                                                        <option value="3">通过朋友认识</option>
+                                                        <option value="4">亲人</option>
+                                                        <option value="5">同事</option>
+                                                        <option value="6">同学</option>
+                                                        <option value="7">不认识</option>
+                                                    </select>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="o pns">
+                                <button id="addsubmit_btn" class="pn pnc" type="submit" name="addsubmit_btn" value="true" onclick="Quit_make_friends()"><strong>确定</strong></button>
+                            </p>
+                        </form>
+                    </td>
+                    <td class="m_r" style="cursor:move;" onmousedown="dragMenu($('fwin_friend'), event, 1)" ondblclick="hideWindow('a_friend')"></td>
+                </tr>
+                <tr>
+                    <td class="b_l"></td>
+                    <td class="b_c" style="cursor:move;" onmousedown="dragMenu($('fwin_friend'), event, 1)" ondblclick="hideWindow('a_friend')"></td>
+                    <td class="b_r"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div> 
+    <%-- 点击发消息的弹出框 --%>
+   <div id="fwin_showmess" class="fwinmask" initialized="true" style="position: fixed; z-index: 201; left: 583.5px; top: 105px; display:none;" >
+    <style type="text/css">object {visibility:hidden;}</style>
+        <table class="fwin_show" cellpadding="0" cellspacong="0">
+            <tbody>
+                <tr>
+                    <td class="t_l"></td>
+                    <td class="t_c" style="cursor:move" ></td>
+                    <td class="t_r"></td>
+                </tr>
+                <tr>
+                    <td class="m_l" style="cursor:move"></td>
+                    <td id="fwin_content_show" class="m_c" style="">
+                    <div class="pm">
+                        <h3 id="fctrl_show" class="flb" style="cursor:move">
+                            <em>正在与armondo聊天中……[在线]</em>
+                            <span><a class="flbc" href="#" title="关闭" onclick="Quit_chatting()">关闭</a></span>
+                        </h3>
+                        <div class="pm_tac bbda cl">
+                            <a class="y" href="#" target="_blank">查看与armondo的聊天记录</a>
+                            <a href="#" target="_blank">访问armondo的空间</a>
+                        </div>
+                        <div class="c">
+                            <ul id="msglist" class="pmb"></ul>
+                            <script type="text/javascript">var refresh = true; var refreshHandle = -1;</script>
+                            <div class="pmfm">
+                                <div class="tedt">
+                                    <div class="bar">
+                                        <script src="#" type="text/javascript"></script>
+                                        <div class="fpd">
+                                            <a class="fbld" title="文字加粗" onclick="seditor_insertunit('pm', '[b]', '[/b]');doane(event);">B</a>
+                                            <a id="pmforecolor" class="fclr" href="javascript:;" title="设置文字颜色" onclick="showColorBox(this.id, 2, 'pm');doane(event);">Color</a>
+                                            <a id="pmimg" class="fmg" href="javascript:;" title="图片" onclick="seditor_menu('pm', 'img');doane(event);">Image</a>
+                                            <a id="pmurl" class="flnk" href="javascript:;" title="添加链接" onclick="seditor_menu('pm', 'url');doane(event);">Link</a>
+                                            <a id="pmquote" class="fqt" href="javascript:;" title="引用" onclick="seditor_menu('pm', 'quote');doane(event);">Quote</a>
+                                            <a id="pmcode" class="fcd" href="javascript:;" title="代码" onclick="seditor_menu('pm', 'code');doane(event);">Code</a>
+                                            <a id="pmsml" class="fsml" href="javascript:;" onclick="showMenu({'ctrlid':this.id,'evt':'click','layer':2});return false;">Smilies</a>
+                                            <script type="text/javascript" reload="1">smilies_show('pmsmiliesdiv', 8, 'pm');</script>
+                                        </div>
+                                    </div><%-- bar --%>
+                                    <div class="area">
+                                        <textarea id="pmmessage" class="pt" rows="3" cols="80" name="message" onkeydown="ctrlEnter(event, 'pmsubmit_btn');" autofocus=""></textarea>
+                                        <input id="messageappend" name="messageappend" value="" type="hidden"/>
+                                        <script type="text/javascript">$('pmmessage').focus();</script>
+                                    </div><%--area --%>
+                                </div>
+                                <div class="mtn pns cl">
+                                    <button id="pmsubmit_btn" class="pn pnc" type="submit"><strong>发送</strong></button>
+                                <a href="javascript:;" title="刷新" onclick="refreshMsg();">
+                                    <img class="vm" src="../../image/pm-ico5.png" />
+                                    刷新
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </td>
+                    <td class="m_r" style="cursor:move" ></td>
+                </tr>
+                <tr>
+                    <td class="b_l"></td>
+                    <td class="b_c" style="cursor:move"></td>
+                    <td class="b_r"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <%-- 个人资料 --%>
+
+
+    <div id="Mid" class="mid">
+    <div id="Mid_menu" class="mid_menu">
+        <div class="con">
+            <a href="./" class="nvhm" title="首页" style="">郑州大学论坛，郑大眉湖论坛</a>
+            <em>?</em>
+            <a href="space-uid-294442.html">Demo</a>
+            <em>?</em>
+            个人资料
+        </div>
+        <style id="diy_style" type="text/css"></style>
+    </div>
+    <div class="wp">
+        <div id="diy1" class="area"></div>
+    </div>
+    <div id="Mid_top" class="mid_top">
+        <div class="top_right">
+            <ul>
+                <li class="addf">
+                    <a id="MakeFriend" class="makefriend" href="#" onclick="make_friends()">加为好友</a>
+                </li>
+                <li class="pm2">
+                    <a id="SendMess" class="sendMess" href="#" onclick="send_message()">发送消息</a>
+                </li>
+            </ul>
+        </div>
+        <div class="top_center">
+            <div class="headphoto">
+                <a href="#"><img src="../../image/noavatar_small.gif" /></a>
+            </div>
+            <h2 class="mt">Demo</h2>
+            <p>
+                <a href="http://meihuboyue.com/?294442" class="">
+                    http://meihuboyue.com/?294442
+                </a>
+            </p>
+        </div>
+        <ul class="tb" id="tb">
+            <li ><a href="#">主题</a></li>
+            <li class="a"><a href="#">个人资料</a></li>
+        </ul>
+    </div>
+    <div id="Data">
+        <div class="data">
+            <div id="diycontenttop" class="area"></div>
+            <div id="data1" class="data1">
+                <div class="data4" style="display:none;">
+                    <div class="data4_con" id="data4_con">
+                        <p class="data4_menu" id="data4_menu">
+                            <a href="#" class="a" onclick="change()">主题</a>
+                            <span class="pipe">|</span>
+                            <a href="#" onclick="change()">回复</a>
+                        </p>
+                        <div class="data5" style="display:block">
+                            <table cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr class="th" style="height:32px">
+                                        <td class="icn"></td>
+                                        <th>主题</th>
+                                        <td class="frm">版块/群组</td>
+                                        <td class="num">回复/查看</td>
+                                        <td class="by">
+                                            <cite>最后发帖</cite>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icn"><a href="#" title="新窗口打开" target="_blank">
+                                            <img src="../../image/folder_common.gif" /></a></td>
+                                        <th><a href="#" target="_blank">勋章如何获得？</a></th>
+                                        <td><a class="xg1" href="#" target="_blank">灌水聊天</a></td>
+                                        <td class="num"><a class="xi2" href="#" target="_blank">1</a><em>8</em></td>
+                                        <td class="by"><cite><a href="#" target="_blank">yzg</a></cite><em><a href="#" target="_blank">2016-7-14 22:31</a></em></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icn"><a href="#" title="新窗口打开" target="_blank">
+                                            <img src="../../image/folder_common.gif" /></a></td>
+                                        <th><a href="#" target="_blank">新人报到</a></th>
+                                        <td><a class="xg1" href="#" target="_blank">新人发帖区</a></td>
+                                        <td class="num"><a class="xi2" href="#" target="_blank">0</a><em>6</em></td>
+                                        <td class="by"><cite><a href="#" target="_blank">yzg</a></cite><em><a href="#" target="_blank"> 2016-7-6 19:02</a></em></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="data5" style="display:none">
+                            <table cellspacing =" 0" cellpadding="0"> 
+                                <tbody>
+                                    <tr class="th">
+                                        <td class="icn"></td>
+                                        <th>帖子</th>
+                                        <td class="frm">版块/群组</td>
+                                        <td class="num">回复/查看</td>
+                                        <td class="by">
+                                            <cite>最后发帖</cite>
+                                        </td>
+                                    </tr>
+                                    <tr class="bw0_all">
+                                        <td class="icn"><a href="#" title="新窗口打开" target="_blank"><img src="../../image/folder_new.gif" /></a></td>
+                                        <th><a href="#" target="_blank">每日签到奖励积分专贴</a>
+                                            <span class="tps">...
+                                                <a href="#" target="_blank">1</a>
+                                                <a href="#" target="_blank">2</a>
+                                                <a href="#" target="_blank">3</a>
+                                                <a href="#" target="_blank">4</a>
+                                                <a href="#" target="_blank">5</a>
+                                                <a href="#" target="_blank">6</a>
+                                                ..
+                                                <a href="#" target="_blank">677</a>
+                                            </span>
+                                        </th>
+                                        <td><a class="xg1" href="#" target="_blank">灌水聊天</a></td>
+                                        <td class="num"><a class="xi2" href="#" target="_blank">6768</a><em>41501</em></td>
+                                        <td class="by"><cite><a href="#" target="_blank">毛头小子</a></cite><em><a href="#" target="_blank">2016-7-15 10:28</a></em></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" class="xg1">
+                                            &nbsp;<img src="../../image/icon_quote_m_s.gif" style="vertical-align:middle;"/>
+                                            <a href="#"target="_blank">我今天最想说:「1.1 2.2」.</a>
+                                            <img src="../../image/icon_quote_m_e.gif" style="vertical-align:middle;"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" class="xg1">
+                                            &nbsp;<img src="../../image/icon_quote_m_s.gif" style="vertical-align:middle;"/>
+                                            <a href="#"target="_blank">我今天最想说:「24298989，没」.</a>
+                                            <img src="../../image/icon_quote_m_e.gif" style="vertical-align:middle;"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" class="xg1">
+                                            &nbsp;<img src="../../image/icon_quote_m_s.gif" style="vertical-align:middle;"/>
+                                            <a href="#"target="_blank">我今天最想说:「-.--.-」.</a>
+                                            <img src="../../image/icon_quote_m_e.gif" style="vertical-align:middle;"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" class="xg1"
+                       >
+                                            &nbsp;<img src="../../image/icon_quote_m_s.gif" style="vertical-align:middle;"/>
+                                            <a href="#"target="_blank">我今天最想说:「2454556爱的」.</a>
+                                            <img src="../../image/icon_quote_m_e.gif" style="vertical-align:middle;"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="data2" style="display:block">
+                    <div class="data3">
+                        <div class="Text_top1">
+                            <h2 class="line1">Demo<span>(UID:294442)</span></h2>
+                            <ul class="line2">
+                                <li><em>邮箱状态 </em>未验证</li>
+                                <li><em>视频认证 </em>未认证</li>
+                                <li><em></em></li>
+                            </ul>
+                            <ul style="width:918px;  margin:0px; padding:0px;">
+                                <li><em class="xg1">个性签名</em><table><tbody><tr><td>不要给我发消息，有问题发帖，帖子我一般都看，短消息反而容易忽略，谢谢.</td></tr></tbody></table></li></ul>
+                            <ul class="line3">
+                                <li>
+                                    <em class="topic">统计信息</em>
+                                    <a href="#" target="_blank">好友数 0</a>
+                                    <span class="pipe">|</span>
+                                    <a href="#" target="_blank">回帖数 0</a>
+                                    <span class="pipe">|</span>
+                                    <a href="#" target="_blank">主题数 0</a>
+                                </li>   
+                            </ul>
+                            <ul class="line4">
+                                <%foreach(var stakerholder in ViewData["stackholder"] as Dictionary<string,string>)
+                                {
+                                    if(stakerholder.Key != "个人主页")
+                                    {
+                                        %>
+                                        <li><em><%= stakerholder.Key%></em><%= stakerholder.Value%></li>
+                                    <% }
+                                    %>
+                                   <% 
+                                     else
+                                    {%> 
+                                        <li><em><%= stakerholder.Key%></em><a href="<%= stakerholder.Value%>" target="_blank"><%= stakerholder.Value%></a></li>
+                                   <% }%> 
+
+                               <% }
+                                    %>
+                              <%--  <li><em>真实姓名</em>123</li>
+                                <li><em>性别</em>保密</li>
+                                <li><em>生日</em>-</li>
+                                <li><em>出生地</em>河南省信阳市固始县赵岗乡</li>
+                                <li><em>居住地</em>江苏省苏州市吴中区盛泽镇</li>
+                                <li><em>毕业学校</em>郑州师范学院</li>
+                                <li><em>学历</em>本科</li>
+                                <li><em>公司</em>无</li>
+                                <li><em>职业</em>学生</li>
+                                <li><em>职位</em>平民</li>
+                                <li><em>交友目的</em>娱乐</li>
+                                <li><em>个人主页</em><a href="http://" target="_blank">http://</a></li>
+                                <li><em>兴趣爱好</em>无</li>--%>
+                            </ul>
+                        </div>
+                        <div class="Text_top2">
+                            <h2 class="top2_line1">活跃概况</h2>
+                            <ul class="top2_line2">
+                                <li>
+                                    <em class="user_group">用户组</em>
+                                    <span class="xi2"  >
+                                        <a href="#" target="_blank">初入江湖</a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul class="top2_line3">
+                                <li><em>在线时间</em>13小时</li>
+                                <li><em>注册时间</em>2016-7-6 17:01</li>
+                                <li><em>最后访问</em>2016-7-13 13:33</li>
+                                <li><em>注册IP</em>120.194.2.66 - - 河南</li>
+                                <li><em>上次访问 IP</em>120.194.2.66 - - 河南</li>
+                                <li><em>上次活动时间</em>2016-7-13 11:33</li>
+                                <li><em>上次发表时间</em>2016-7-8 08:20</li>
+                                <li><em>所在时区</em>使用系统默认</li>
+                            </ul>
+                        </div>
+                        <div class="Text_top3">
+                            <h2 class="top3_topic">统计信息</h2>
+                            <ul class="top3_line1">
+                                <li><em>已用空间</em>0 B </li>
+                                <li><em>积分</em>5</li>
+                                <li><em>金钱</em>127</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                window.onload = function () {
+                    //var oDiv3 = document.getElementById('data1').childNodes('div');
+                    //var  len;
+                    //len = oDiv3.length;
+                    //alert(len);
+                    var oDiv = document.getElementById('tb').getElementsByTagName('li');
+                   //var oDiv1 = document.getElementById('data1').getElementsByTagName('data2');
+                    var oDiv1 = $("#data1").children("div");//用jquery获取一级子节点
+                    var oDiv2 = document.getElementById('data4_menu').getElementsByTagName('a');
+                    //var oDiv1 = document.getElementById('data1').getElementsByTagName('data2');
+                    var oDiv3 = $("#data4_con").children("div");//用jquery获取一级子节点
+                    var i, j;
+                    for (i = 0; i < oDiv.length; i++) {
+                      
+                        oDiv[i].index = i;/*位置索引*/
+                        oDiv[i].onclick = function () {/*鼠标点击触发操作*/
+                            for (j = 0; j < oDiv.length; j++)
+                            {
+                                    oDiv[j].className='';
+                                    oDiv1[j].style.display='none';
+                            }
+                            this.className ='a';
+                            oDiv1[this.index].style.display = 'block';
+                        }
+                    }
+                    for (i = 0; i < oDiv.length; i++) {
+
+                        oDiv2[i].index = i;/*位置索引*/
+                        oDiv2[i].onclick = function () {/*鼠标点击触发操作*/
+                            for (j = 0; j < oDiv2.length; j++) {
+                                oDiv2[j].className = '';
+                                oDiv3[j].style.display = 'none';
+                            }
+                            this.className = 'a';
+                            oDiv3[this.index].style.display = 'block';
+                        }
+                    }
+                }
+                function make_friends()
+                {
+                    var oDiv = document.getElementById('fwin_friend');
+                    oDiv.style.display = 'block';
+                }
+                function Quit_make_friends()
+                {
+                    var oDiv = document.getElementById('fwin_friend');
+                    oDiv.style.display = 'none';
+                }
+                function send_message() {
+                    var oDiv = document.getElementById('fwin_showmess');
+                    oDiv.style.display = 'block';
+                }
+                function Quit_chatting() {
+                    var oDiv = document.getElementById('fwin_showmess');
+                    oDiv.style.display = 'none';
+                }
+            </script>
+        </div>
+    </div>
+</div>
+</asp:Content>

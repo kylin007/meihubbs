@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Message.master.cs" Inherits="meihu.Views.Message.Message"  MasterPageFile="~/Views/shared/Site.Master" %>
+<script runat="server">
+  
+</script>
+
+<asp:Content ID="hd" ContentPlaceHolderID="TitleContent"  runat="server">
+     <asp:ContentPlaceHolder ID="CTtitle" runat="server">
+      </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../../Css/SettingSheet3.css" rel="stylesheet" />
+     <script src="../../Jscript/SettingScript.js"></script>
+    <div id="M-message">
+        <div id="S-tops">
+        <table>
+            <tr><td><a href="/I_index/Index"><div class="S-topimg1"></div></a></td><td><div class="S-topimg2"></div></td><td><a href="#">通知</a></td><td><div class="S-topimg3"></div></td><td>提醒</td></tr>
+        </table>
+    </div>
+        <div id="S-mescenter">
+        <div id="S-mesleft">
+             <div class="S-mesleft0">通知</div>
+            <div class="S-mesleft1" id="S-mesleft1ID">
+                <table>
+                     <tr><td ><a href="/Message/Indexmessage" id="getcontent">消息</a></td></tr>
+                     <tr><td ><a href="/Message/Indexreform" id="getfriendsid">提醒</a></td></tr>
+                 
+                </table>
+            </div>
+            
+        </div>
+        <div id="S-mesright">
+               <asp:ContentPlaceHolder ID="subcontent1" runat="server">
+        
+               </asp:ContentPlaceHolder>
+        </div>
+    </div>
+          </div>
+     
+
+</asp:Content>
+

@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Data;
+
+namespace meihu.App_Code
+{
+    public class DataBase
+    {
+        public SqlConnection con;
+        
+        public DataBase()
+        { 
+          con = new SqlConnection("Data Source=10.1.56.59;Initial Catalog=BBS_zzn;User ID=sa;Password=123456");
+        }
+        public SqlConnection getCon()
+        {
+            return con;
+        }
+        public void Open()
+        {            
+           con.Open();
+            
+        }
+
+        public void Close()
+        {
+            con.Close();
+        }
+        //提取数据
+        public DataTable getdata(string str)
+        {
+             Open();  
+            DataTable dt = new DataTable();
+            SqlDataAdapter dom = new SqlDataAdapter(str.Trim(), getCon());
+            dom.Fill(dt);            
+            Close();
+            return dt;
+        }
+        //插入数据
+        public int check(string str)
+        {
+            Open();
+            SqlCommand dom = new SqlCommand(str, getCon());
+            int d = dom.ExecuteNonQuery();
+            Close();
+            if (d > 0)
+                return d;
+            else
+                return 0;
+
+        }
+
+        internal DataTable getdata(object str2)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

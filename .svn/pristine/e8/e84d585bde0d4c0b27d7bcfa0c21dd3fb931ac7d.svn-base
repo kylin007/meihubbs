@@ -1,0 +1,496 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Setting/SettingSet.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderTtitle" runat="server">
+  个人资料
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="subcontent" runat="server">
+    <script>
+       window.onload=function settingcontact() {
+
+            var doma = document.getElementById('S-contactclass');
+            var td = doma.getElementsByTagName('td');
+            var tdclass = document.getElementsByClassName("S-contactclass");
+            for (var i = 0; i < td.length; i++) {
+                td[i].index = i;
+                td[i].onclick = function fun() {
+                    for (var j = 0; j < tdclass.length; j++) {
+                        tdclass.item(j).style.display = 'none';
+                    }
+                    tdclass.item(this.index).style.display = 'block';
+                };
+            }
+       }
+      
+    </script>
+    <div id="S-contact">
+    <div class="Jtop" id="S-contactclass">
+        <table>
+            <tr>
+                <td><a href="#">基本资料</a></td>
+                 <td><a href="#">联系方式</a></td>
+                 <td><a href="#">教育情况</a></td>
+                 <td><a href="#">工作情况</a></td>
+                 <td><a href="#">个人信息</a></td>
+            </tr>
+        </table>
+    </div>
+
+  <div id="S-contact0" class="S-contactclass" style="display:block;"> 
+    <div id="Jcen" >
+           <table>
+            <tr >
+                <td class="jcen1">用户名</td>
+                 <td colspan="2" >
+                     <asp:Label ID="Labename" runat="server" Text="夜雨下的你"></asp:Label></td>
+               
+                
+            </tr>
+                <tr>
+                <td class="jcen1">证件类型</td>
+                 <td>
+                     <asp:DropDownList ID="DropDownListidentity" runat="server">
+                         <asp:ListItem>身份证</asp:ListItem>
+                         <asp:ListItem>护照</asp:ListItem>
+                         <asp:ListItem>驾驶证</asp:ListItem>
+                     </asp:DropDownList></td>
+                 <td class="jcen0">
+                     <asp:DropDownList ID="DropDownListidentity1" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">证件号</td>
+                 <td>
+                     <asp:TextBox ID="TextBoxnumber" runat="server" Width="324px"></asp:TextBox></td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListnumber" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">邮寄地址</td>
+                 <td>
+                     <asp:TextBox ID="TextBoxaddress" runat="server" Width="324px"></asp:TextBox></td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListaddress" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">邮编</td>
+                 <td>
+                     <asp:TextBox ID="TextBoxpost" runat="server" Width="323px"></asp:TextBox></td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListpost" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">个人主页</td>
+                 <td>
+                     <asp:TextBox ID="TextBoxindex" runat="server" Width="323px"></asp:TextBox></td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListindex" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">自我介绍</td>
+                 <td>
+                     <asp:TextBox ID="TextBoxintroduce" runat="server" Height="60px" Width="324px"></asp:TextBox></td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListintroduce" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">兴趣爱好</td>
+                 <td>
+                    <asp:TextBox ID="TextBoxhoppy" runat="server" Height="60px" Width="324px"></asp:TextBox> </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListhoppy" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">个人签名</td>
+                 <td colspan="2">
+                     <asp:TextBox ID="TextBoxautograph" runat="server" Height="60px" Width="324px"></asp:TextBox></td>              
+            </tr>
+                <tr>
+                <td class="jcen1">时区</td>
+                 <td colspan="2"> <asp:DropDownList ID="DropDownListtime" runat="server" Width="450px">
+                     </asp:DropDownList></td>
+                   
+            </tr>
+        </table>
+      </div>
+        <div class="J-foot">
+            <table>
+              <tr>
+               <td>当前时间 : </td>  
+            </tr>
+                     <tr>
+                <td>如果发现当前显示的时间与您本地时间相差几个小时，那么您需要更改自己的时区设置
+</td>  
+            </tr>
+                     <tr>
+                <td rowspan="4" >
+                    <asp:Button ID="Button1" runat="server" Text="保存" style=" background-color:rgb(153, 0, 0);color:white"/></td>  
+            </tr>
+            </table>
+        </div>
+            </div>
+     
+        <div class="S-contactclass" style="display:none;" id="S-contact1">
+            <table>
+            <tr >
+                <td class="jcen1">用户名</td>
+                 <td colspan="2" >
+                     <asp:Label ID="Labelname2" runat="server" Text="夜雨下的你"></asp:Label></td>     
+            </tr>
+                <tr>
+                <td class="jcen1">真实姓名</td>
+                 <td>
+                   <asp:TextBox ID="TextBoxname3" runat="server" Width="324px"></asp:TextBox></td>
+                 <td class="jcen0">
+                     <asp:DropDownList ID="DropDownListbname3" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">性别</td>
+                 <td>
+                     <asp:DropDownList ID="DropDownListsex" runat="server">
+                         <asp:ListItem>男</asp:ListItem>
+                         <asp:ListItem>女</asp:ListItem>
+                     </asp:DropDownList>
+                 </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListsex0" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">生日</td>
+                 <td>
+                     <asp:DropDownList ID="DropDownListyear" runat="server">        
+                     </asp:DropDownList>
+                       <asp:DropDownList ID="DropDownListMonth" runat="server">        
+                     </asp:DropDownList>
+                       <asp:DropDownList ID="DropDownListday" runat="server">        
+                     </asp:DropDownList>
+                   </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListbirthday" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">出生地</td>
+                 <td>
+                      <asp:DropDownList ID="DropDownListbir" runat="server">        
+                     </asp:DropDownList>
+                       <asp:DropDownList ID="DropDownListbir2" runat="server">        
+                     </asp:DropDownList>
+                       <asp:DropDownList ID="DropDownListbir3" runat="server"> 
+                                  
+                     </asp:DropDownList>
+                        <asp:DropDownList ID="DropDownListbir4" runat="server"> 
+                                  
+                     </asp:DropDownList>
+                    </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListbir5" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">居住地</td>
+                 <td>
+                      <asp:DropDownList ID="DropDownListlive1" runat="server">        
+                     </asp:DropDownList>
+                       <asp:DropDownList ID="DropDownListlive2" runat="server">        
+                     </asp:DropDownList>
+                       <asp:DropDownList ID="DropDownListlive3" runat="server"> 
+                                  
+                     </asp:DropDownList>
+                        <asp:DropDownList ID="DropDownListlive4" runat="server"> 
+                                  
+                     </asp:DropDownList></td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListlive5" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">情感状态</td>
+                 <td>
+                     <asp:TextBox ID="TextBoxemotion" runat="server"  Width="324px"></asp:TextBox></td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListemotion" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">交友目的</td>
+                 <td>
+                    <asp:TextBox ID="TextBoxgoal" runat="server" Width="324px"></asp:TextBox> </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListgoal" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">血型</td>
+                 <td >
+
+                     <asp:DropDownList ID="DropDownListBlooda" runat="server">
+                         <asp:ListItem>A</asp:ListItem>
+                         <asp:ListItem>B</asp:ListItem>
+                         <asp:ListItem>AB</asp:ListItem>
+                         <asp:ListItem>O</asp:ListItem>
+                     </asp:DropDownList></td>     
+                     <td class="jcen0"><asp:DropDownList ID="DropDownListBlood" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>         
+            </tr>
+                <tr>
+                <td class="jcen1">年级</td>
+                     <td> <span style="color:red">*</span><asp:TextBox ID="TextBox1" runat="server" Width="324px"></asp:TextBox> </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListgrade" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td> 
+                   
+            </tr>
+                   <tr>
+                <td class="jcen1">专业</td>
+                     <td> 
+                       <span style="color:red">*</span><asp:Label ID="Labelprofession" runat="server" Text="未知"></asp:Label></td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListprofession" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td> 
+                   
+            </tr>
+                <tr>  <td colspan="3"  class="Jceny">
+                    <asp:Button ID="Buttonbasic" runat="server" Text="保存" Style="background-color:rgb(174, 9, 9); color:white;
+       font-weight:600;" Height="26px" Width="49px"/></td></tr>
+              
+        </table>
+        </div>
+        <div id="S-contact2" style="display:none;" class="S-contactclass">
+            <table>
+               <tr >
+                <td class="jcen1">用户名</td>
+                 <td colspan="2" >
+                     <asp:Label ID="Labelname3" runat="server" Text="夜雨下的你"></asp:Label></td>     
+            </tr>
+                <tr>
+                <td class="jcen1">固定电话</td>
+                 <td>
+                   <asp:TextBox ID="TextBoxphone" runat="server" Width="324px"></asp:TextBox></td>
+                 <td class="jcen0">
+                     <asp:DropDownList ID="DropDownListphone" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">手机</td>
+                 <td>
+                  <asp:TextBox ID="TextBoxtelephone" runat="server" Width="324px"></asp:TextBox>
+                  
+                 </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListtelephone" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">QQ</td>
+                 <td>
+                    <asp:TextBox ID="TextBoxQQ" runat="server" Width="324px"></asp:TextBox>
+                  
+                   </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListQQ" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                 <tr>
+                <td class="jcen1">阿里旺旺</td>
+                 <td>
+                    <asp:TextBox ID="TextBoxaliwangwang" runat="server" Width="324px"></asp:TextBox>
+                  
+                   </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListaliwangwang" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                 <tr>
+                <td class="jcen1">Email</td>
+                 <td>
+                     <asp:Label ID="LabelEmail" runat="server" Text="267275@qq.com"></asp:Label><a href="#">(修改)</a>
+                   </td>
+                 
+                 
+            </tr>
+                <tr> <td colspan="3"  class="Jceny">
+                    <asp:Button ID="Buttoncontact" runat="server" Text="保存" Style="background-color:rgb(174, 9, 9); color:white;
+       font-weight:600;" Height="26px" Width="49px"/></td></tr>
+            </table>
+        </div>
+        <div id="S-contact3" style="display:none;"  class="S-contactclass">
+
+              <table>
+               <tr >
+                <td class="jcen1">用户名</td>
+                 <td colspan="2" >
+                     <asp:Label ID="Labelname4" runat="server" Text="夜雨下的你"></asp:Label></td>     
+            </tr>
+                <tr>
+                <td class="jcen1">毕业学校</td>
+                 <td>
+                   <asp:TextBox ID="TextBoxuniversity" runat="server" Width="324px"></asp:TextBox></td>
+                 <td class="jcen0">
+                     <asp:DropDownList ID="DropDownLisuniverty" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">学历</td>
+                 <td>
+                  <asp:TextBox ID="TextBoxEducation" runat="server" Width="324px"></asp:TextBox>
+                  
+                 </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListEducation" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                   <tr>
+                        <td colspan="3"  class="Jceny">
+                    <asp:Button ID="ButtonEducation" runat="server" Text="保存" Style="background-color:rgb(174, 9, 9); color:white;
+       font-weight:600;" Height="26px" Width="49px"/></td></tr>
+                  </table>
+        </div>
+        <div  id="S-contact4" style="display:none;" class="S-contactclass">
+             
+ <table>
+               <tr >
+                <td class="jcen1">用户名</td>
+                 <td colspan="2" >
+                     <asp:Label ID="Labelname5" runat="server" Text="夜雨下的你"></asp:Label></td>     
+            </tr>
+                <tr>
+                <td class="jcen1">公司</td>
+                 <td>
+                   <asp:TextBox ID="TextBoxcompany" runat="server" Width="324px"></asp:TextBox></td>
+                 <td class="jcen0">
+                     <asp:DropDownList ID="DropDownListcompany" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                <tr>
+                <td class="jcen1">职业</td>
+                 <td>
+                  <asp:TextBox ID="TextBoxOccupation" runat="server" Width="324px"></asp:TextBox>
+                  
+                 </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListOccupation" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+       <tr>
+                <td class="jcen1">职位</td>
+                 <td>
+                  <asp:TextBox ID="TextBoxposition" runat="server" Width="324px"></asp:TextBox>
+                  
+                 </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListposition" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+       <tr>
+                <td class="jcen1">年收入</td>
+                 <td>
+                  <asp:TextBox ID="TextBoxannual_income" runat="server" Width="324px"></asp:TextBox>
+                  
+                 </td>
+                 <td class="jcen0"><asp:DropDownList ID="DropDownListannual_income" runat="server">
+                         <asp:ListItem>公开</asp:ListItem>
+                         <asp:ListItem>好友可见</asp:ListItem>
+                         <asp:ListItem>保密</asp:ListItem>
+                     </asp:DropDownList></td>
+                 
+            </tr>
+                   <tr>
+                        <td colspan="3"  class="Jceny">
+                    <asp:Button ID="Buttonconditions" runat="server" Text="保存" Style="background-color:rgb(174, 9, 9); color:white;
+       font-weight:600;" Height="26px" Width="49px"/></td></tr>
+                  </table>
+        </div>
+     </div>
+
+     
+</asp:Content>

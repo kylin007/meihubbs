@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SettingSet.master.cs" Inherits="meihu.Views.Setting.SettingSet" MasterPageFile="~/Views/shared/Site.Master" %>
+
+<asp:Content ID="hd" ContentPlaceHolderID="TitleContent"  runat="server">
+     <asp:ContentPlaceHolder ID="ContentPlaceHolderTtitle" runat="server">
+         </asp:ContentPlaceHolder>
+</asp:Content>
+
+  <asp:Content ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../../Css/SettingSheet1.css" rel="stylesheet" />
+    <link href="../../Css/SettingSheet2.css" rel="stylesheet" />
+      <script src="../../Jscript/jquery-2.2.0.min.js"></script>
+      <script type="text/javascript" src="../../Jscript/SettingScript.js"></script>
+          <div id="S-content">
+    <div id="S-top">
+        <table>
+            <tr><td><a href="../../I_index/Index"><div class="S-topimg1"></div></a></td><td><div class="S-topimg2"></div></td><td><a href="#">设置</a></td><td><div class="S-topimg3"></div></td><td>个人资料</td></tr>
+        </table>
+    </div>
+    <div id="S-center">
+        <div id="S-left">
+             <div class="S-left0">设置</div>
+            <div class="S-left1">
+                <table cellpadding="0" cellspaceing="0" >
+                    <tr><td><a href="/Setting/updateimage">修改图像</a></td></tr>
+                     <tr><td> <a href="/Setting/Index">个人资料</a></td></tr>
+                     <tr><td ><a href="/Setting/integral">积分</a></td></tr>
+                     <tr><td><a href="#">用户组</a></td></tr>
+                     <tr><td><a href="/Setting/screen">隐私筛选</a></td></tr>
+                     <tr><td><a href="/Setting/PassWord">密码安全</a></td></tr>
+                     <tr><td><a href="/Setting/Extension">访问推广</a></td></tr>
+                     <tr><td><a href="/Setting/QQbinding">QQ绑定</a></td></tr>
+                     <tr><td><a href="/Setting/QQxiu">QQ秀</a></td></tr>
+                </table>
+            </div>
+         
+        </div>
+        <div id="S-right">
+             <asp:ContentPlaceHolder ID="subcontent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    </div>
+  </asp:Content>

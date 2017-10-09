@@ -1,0 +1,567 @@
+﻿body {
+}
+input[type="button"] {
+      background-color:rgb(174, 9, 9);
+       color:white;
+       font-size:13px;
+       font-weight:600;
+       Height:23px;
+        Width:48px;
+       margin-left: 2px;
+       text-align:center; 
+       margin-top: 3px;
+}
+#S-contact {
+    width:818px;
+    height:auto;
+    margin:0 auto;
+    font-size:12px;
+
+}
+#S-contact  .Jtop{
+    width:818px;
+   margin-top:8px;
+   height:32px;
+  border-bottom:0.5px solid orange;
+}
+#S-contact  .Jtop  table{
+    width:400px;
+   height:32px;
+    float:left;
+    margin-left:15px; 
+}
+ #S-contact .Jtop table  td{
+     background-color:#FFECEC;
+     padding:0px 13px;
+    }
+ #S-contact #S-contact0 {
+      width:818px;
+    }
+ #S-contact0  #Jcen{
+    width:818px;
+    height:550px;
+}
+#S-contact  #Jcen table{
+    width:818px;
+    margin:0 auto;
+    height:550px;
+}
+#S-contact  #Jcen table  .jcen0{
+    text-align:right;
+    padding-right:5px;
+}
+#S-contact  #Jcen table  .jcen1{
+    padding-left:15px;
+}
+    #S-contact .J-foot{
+       width: 818px;
+      height: 100px;
+   }
+   #S-contact0  .J-foot table{
+    width:500px;
+   height: 100px;
+   margin-left:100px;
+}
+#S-contact #S-contact1 {
+    width:818px;
+}
+#S-contact1 table {
+     width:818px;
+     height:500px;
+}
+    #S-contact1 table .jcen1 {
+        text-align:left;
+        padding-left:10px;
+    }
+      #S-contact1 table .jcen0{
+          text-align:right;
+          padding-right:10px;
+    }
+    #S-contact1 table .Jceny {
+        padding-left:100px;
+    }
+    #S-contact #S-contact2 {
+    width:818px;
+}
+#S-contact2 table {
+     width:818px;
+     height:305px;
+}
+    #S-contact2 table .jcen1 {
+        text-align:left;
+        padding-left:10px;
+    }
+      #S-contact2 table .jcen0{
+          text-align:right;
+          padding-right:10px;
+    }
+    #S-contact2 table .Jceny {
+        padding-left:100px;
+    }
+   #S-contact #S-contact3 {
+    width:818px;
+}
+#S-contact3 table {
+     width:818px;
+     height:170px;
+}
+    #S-contact3 table .jcen1 {
+        text-align:left;
+        padding-left:10px;
+    }
+      #S-contact3 table .jcen0{
+          text-align:right;
+          padding-right:10px;
+    }
+    #S-contact3 table .Jceny {
+        padding-left:100px;
+    }
+     #S-contact #S-contact4 {
+    width:818px;
+}
+#S-contact4 table {
+     width:818px;
+     height:260px;
+}
+    #S-contact4 table .jcen1 {
+        text-align:left;
+        padding-left:10px;
+    }
+      #S-contact4 table .jcen0{
+          text-align:right;
+          padding-right:10px;
+    }
+    #S-contact4 table .Jceny {
+        padding-left: 100px;
+    }
+#I-scores {
+    width:818px;
+    height:335px;
+    margin:0 auto;
+    font-size:12px;
+}
+#I-scores  #I-score0{
+    width:818px;
+   margin-top:8px;
+   height:32px;
+  border-bottom:0.5px dashed #CDCDCD;
+}
+#I-scores  #I-score0  table{
+    width:400px;
+   height:32px;
+    float:left;
+    margin-left:15px; 
+}
+ #I-scores #I-score0 table  td{
+     background-color:#FFECEC;
+     padding:0px 13px;
+ }
+ #I-scores #I-score1 {
+       width:818px;
+       height:220px;
+    }
+#I-score1 ul {
+    padding:0px;
+    margin-left:10px;
+    height:40px;
+    list-style-type:none;
+    
+}
+#I-score1 ul  li{
+   padding-top:2px;
+
+}
+#I-score1 ul  li span{
+  color:orangered;
+
+}
+#I-score1 .I-sca
+{
+   width:818px;
+   height:36px;
+   border-top:0.5px solid orange;
+   border-bottom:0.5px solid orange;
+}
+#I-score1 .I-sca table
+{
+   width:818px;
+   height:36px;
+}
+#I-score1 .I-sca table .I-sc0
+{
+  text-align:left;
+  padding-top:3px;
+  padding-left:10px;
+  font-size:15px;
+  font-weight:bold;
+}
+#I-score1 .I-sca table .I-sc1
+{
+  text-align:right;
+  padding-top:3px;
+  padding-right:10px;
+}
+#I-score1 .I-sta0 
+{
+   width:818px;
+   height:35px;
+ background-color:rgb(215, 215, 207)
+;
+}
+#I-score1 .I-sta0  table
+{
+   width:818px;
+   height:35px;
+}
+#I-score1 .I-sta0  table td
+{
+  text-align:center;
+  width:75px;
+}
+    #I-score1 .I-sta0 table .I-stb {
+      text-align:right;
+      padding-right:40px;
+    
+    }
+#I-score1 .I-stb0 {
+   height:30px;
+   padding-top:30px;
+   text-align:center;
+   border-bottom:0.5px dashed #CDCDCD;
+}
+#I-scores #I-score2 {
+    width:818px;
+    height:220px;
+}
+
+#I-score2 .I-scor0 {
+   height:24px;
+   padding-top:10px;
+   padding-left:10px;
+   border-bottom:0.5px solid orange;
+}
+#I-score2 .I-scor1 {
+     width:818px;
+    height:50px;
+    margin-top:10px;
+}
+#I-score2 .I-scor1  table{
+    width:325px;
+    height:50px;
+} 
+#I-score2 .I-scor1  table td{
+    width:100px;
+} 
+#I-score2 .I-scor2 {
+     width:818px;
+    height:100px;
+}
+#I-score2 .I-scor2  table{
+    width:750px;
+    height:100px;
+} 
+#I-score2 .I-scor2  table td{
+    width:92px;
+} 
+#I-scores #I-score3 {
+    width:818px;
+    height:200px;
+}
+#I-score3 .I-scoresub0 {
+    width:818px;
+    height:34px;
+}
+    #I-score3 .I-scoresub0 ul {
+        list-style-type:none;
+        height:34px;
+        padding:0px;
+    }
+    #I-score3 .I-scoresub0 ul  li{
+        padding-left:15px;
+        float:left;
+   }
+#I-score3  #I-scoresubProfit{
+     width:818px;
+    height:200px;
+}
+#I-scoresubProfit .I-scoresub1 {
+    width:818px;
+    padding-top:15px;
+    height:120px;
+    background-color:#FFECEC;
+}
+#I-scoresubProfit .I-scoresub1 table {
+    width:800px;
+    height:120px;
+}
+#I-scoresubProfit .I-scoresub1 table  td{
+    padding:0px 30px;
+}
+
+#I-scoresubProfit .I-scoresub2
+{
+   width:818px;
+   height:35px;
+ background-color:rgb(205,205,205);
+}
+#I-scoresubProfit .I-scoresub2  table
+{
+   width:818px;
+   height:35px;
+}
+#I-scoresubProfit  .I-scoresub2 table td
+{
+  text-align:center;
+  width:75px;
+}
+#I-scoresubProfit .I-scoresub2 table .I-stb {
+        text-align: right;
+        padding-right: 40px;
+ }
+#I-score3 #I-scoresubreward {
+    width:818px;
+    height:200px;
+}
+#I-scoresubreward table
+{
+   width:818px;
+   height:150px;
+  border-top:0.5px solid gray;
+  border-bottom:0.5px solid gray;
+}
+#I-scoresubreward   table td
+{
+  text-align:center;
+  width:75px;
+}
+  #I-scoresubreward table tr:nth-child(odd){
+   background-color:rgb(205, 205, 205);
+   border-top:0.5px solid gray;
+    }
+#I-scoresubreward  table .I-stb {
+        text-align: right;
+        padding-right: 40px;
+ }
+#S-image {
+    width:818px;
+    height:630px;
+    margin-top:0px;
+}
+   #S-image .S-image0 {
+        width:800px;
+        height:50px;
+        margin:0 auto;
+        margin-top:6px;
+    }
+        #S-image .S-image0 table {
+         width:800px;
+        height:50px;
+        font-size:10px;
+        } 
+     #S-image .S-image1 {
+        width:800px;
+        height:200px;  
+        margin:0 auto;    
+    }
+      #S-image .S-image2 {
+          margin-top:20px;
+        width:800px;
+        margin:0 auto;   
+    }
+        #S-image .S-image2 p {
+              font-size:10px;
+        }
+    #S-image .S-image3 {
+        width: 400px;
+        height: 250px;
+        margin-left:20px;
+        margin-top:20px;
+      background-image: url(../image/userbackgroundimage.png);
+    }
+     #S-image .S-image3 table{
+          width:170px;
+          height: 100px;
+          margin:0 auto;
+         padding-top:80px;
+     }
+#S-password   {
+    width:818px;
+    height:520px;
+}
+ #S-password .S-pas0 {
+     width:800px;
+     margin:0 auto;
+    height:30px;
+    padding-top:10px;
+    border-bottom:0.5px solid orange;
+    }
+  #S-password .S-pas1{
+      width:800px;
+       margin:0 auto;
+       height:480px;
+    }
+    #S-password .S-pas1 table {
+        width: 800px;
+        margin: 0 auto;
+        height: 480px;
+    }
+     #S-password .S-pas1 table  .S-pas1text{
+         padding-bottom:20px;
+    }
+#QQxiu {
+    width:804px;
+    height:346px;
+    margin:0 auto;
+    font-size:12px;
+}
+#QQxiu  .QQleft{
+    width:400px;
+    height:346px;
+   float:left;
+}
+#QQxiu .QQleft .Qleft{
+    margin-top:100px;
+    margin-left:150px;
+}
+#QQxiu  .QQright{
+    width:400px;
+    height:346px;
+    float:right;
+}
+    #QQxiu .QQright .Qright{
+         margin-top:50px;
+    margin-left:8px;
+    }
+#EX-tention {
+    width:800px;
+    margin:0 auto;
+    height:332px;
+}
+#EX-tention .EX-top0 {
+     width:800px;
+     height:36px;
+     margin-top:12px;
+     padding-bottom:12px;
+     border-bottom:0.5px solid orange;
+}
+#EX-tention .EX-top0  p{
+     width:800px;
+     margin:0px;
+     font-size:12px;
+}
+    #EX-tention .EX-center {
+         width:800px;
+     height:300px;
+
+    }
+ #EX-tention .EX-center  table{
+        width:600px;
+     height:200px;
+}
+ #SS-screen{
+     width:818px;
+     height:auto;
+}
+#SS-screen #S-screen {
+     width:818px;
+     height:30px;
+     padding-top:10px;
+   border-bottom:0.5px solid orange;
+}
+ #S-screen table {
+      width:300px;
+     text-align:center;
+      height:30px;
+      padding-left:10px;
+    }
+  #S-screen table td{
+     background-color:darksalmon;
+    }
+#SS-screen #S-screen0 {
+    width: 800px;
+    height: 300px;
+    margin:0 auto;
+}
+#S-screen0  .screen0{
+    width: 800px;
+    margin: 0 auto;
+    height: 20px;
+     margin-top:6px;
+   padding-bottom:6px;
+   border-bottom:0.5px solid orange;
+ 
+}
+#S-screen0  .screen1 {
+    width: 800px;
+    height: 150px;
+    margin: 0 auto;
+    margin-top:20px;
+}
+ #S-screen0 .screen1 table{
+     width:400px;
+     height:150px;
+}
+ #SS-screen #S-screen1{
+    width: 800px;
+    height: 450px;
+    margin:0 auto;
+}
+ #S-screen1 .S-sc0{
+    width: 800px;
+    height: 40px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+  #S-screen1 .S-sc1{
+    width: 800px;
+    height: 400px;
+}
+   #S-screen1 .S-sc1 table{
+   width: 150px;
+    height: 400px;
+    margin-left:130px;
+}
+#SS-screen #S-screen2 {
+    width:800px;
+    height:620px;
+    margin:0 auto;
+}
+#S-screen2 .foo0 {
+     width:800px;
+    height:40px;
+    margin-top:20px;
+}
+#S-screen2 .foo1 {
+    width:800px;
+    height:235px;
+}
+#S-screen2 .foo1  table{
+    width:110px;
+    margin-left:120px;
+    height:235px;
+} 
+#S-screen2 .foo2 {
+    width:800px;
+    height:30px;
+  border-bottom:0.5px dashed #CDCDCD;
+}
+#S-screen2 .foo2   span{
+  padding-left:120px;
+  padding-bottom:5px;
+}
+#S-screen2 .foo3 {
+     width:800px;
+    height:120px;
+    padding-top:20px;
+    padding-bottom:10px;
+  border-bottom:0.5px dashed #CDCDCD;
+}
+#S-screen2 .foo4{
+     width:800px;
+    height:120px;
+    padding-top:20px;
+    padding-bottom:10px;
+}
+
+
+

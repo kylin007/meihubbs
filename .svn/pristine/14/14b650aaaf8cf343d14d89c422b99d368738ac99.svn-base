@@ -1,0 +1,10 @@
+﻿var oFast = document.getElementById('fast');
+var oFH = document.getElementById('fastH');
+oFast.onmouseover = function () {
+    oFH.style.display = 'block';
+    oFast.style.backgroundPosition = "0% 85%";
+}
+oFast.onmouseout = function () {
+    oFH.style.display = 'none';
+    oFast.style.backgroundPosition = "0% 0%";
+}

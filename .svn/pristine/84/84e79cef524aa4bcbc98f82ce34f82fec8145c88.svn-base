@@ -1,0 +1,56 @@
+﻿using meihu.App_Code;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+
+namespace meihu.Models
+{
+    
+    public class OneLevel
+    {
+        public string Second_forum { get; set; }
+       
+        public string Is_son { get; set; }
+        public string Title { get; set; }
+        public string Create_on_time { get; set; }
+        public string User_name { get; set; }
+
+        public List<string> secondlist = new List<string>();//zibankuaimingcheng
+
+        DataBase db = new DataBase();
+        SqlConnection con = new SqlConnection();
+        public DataTable selectForm() 
+        {
+            string m = "select Second_forum from Second_forum where First_forum_id = (select ID from First_forum where First_forum='ZZU版')";           
+            DataTable form = db.getdata(m);            
+            return form;
+        }
+        public DataTable selectSon(string onename) 
+        { 
+         string n = "select Son_forum from Son_forum where Second_forum_id=(select ID from Second_forum where Second_forum='"+onename+"')";
+         DataTable form1 = db.getdata(n);
+         return form1;
+        }
+        public DataTable is_son(string one)
+        {
+            string r = "select Is_son from Second_forum where Second_forum='" + one + "'";
+            DataTable form2 = db.getdata(r);
+            return form2;
+        }
+        public DataTable selectTime(string one)
+        {
+            string s = "select * from Create_topic where Forum_id=(select ID from Second_forum where Second_forum='"+one+"') order by Create_on_time desc";
+            DataTable form3 = db.getdata(s);
+            return form3;
+        }
+        public DataTable selectname(string one)
+        {
+            string s = "select User_name from User_registration where ID='"+one+"'";
+            DataTable form3 = db.getdata(s);
+            return form3;
+        }
+    }        
+}                                                                                                                                                                                                                                         

@@ -1,0 +1,738 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../../CSS/Mypost.css" rel="stylesheet" />
+    <script src="../../Jscript/jquery-2.2.0.min.js"></script>
+    <script src="../../Jscript/My_post.js"></script>
+    <script src="../../Jscript/Jspager.js"></script>
+   
+    <%@ Import Namespace="meihu.Models" %>
+
+
+
+<%--<style>
+*{ margin:0; padding:0; list-style:none;}
+a{ text-decoration:none;}
+a:hover{ text-decoration:none;}
+.tcdPageCode{padding: 15px 20px;text-align: left;color: #ccc;}
+.tcdPageCode a{display: inline-block;color: #428bca;display: inline-block;height: 25px;	line-height: 25px;	padding: 0 10px;border: 1px solid #ddd;	margin: 0 2px;border-radius: 4px;vertical-align: middle;}
+.tcdPageCode a:hover{text-decoration: none;border: 1px solid #428bca;}
+.tcdPageCode span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #428bca;	border: 1px solid #428bca;border-radius: 4px;vertical-align: middle;}
+.tcdPageCode span.disabled{	display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;	color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}
+</style>--%>
+
+
+    <div style="height: 33px;"></div>
+    <div class="My_top">
+        <div id="ct">
+            <div class="mn">
+                <div class="bk gd">
+                    <div class="bk_n">
+                        <span class="y" style="display: none" id="subscribe">
+                            <a class="dy">订阅</a>
+                        </span>
+                        <h1 class="zt" id="title">我的帖子</h1>
+                    </div>
+                    <div class="k" id="kg" style="display: none">
+                        <div id="jz">
+                            <div class="btn"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bj bk">
+
+
+
+
+
+
+
+
+                  <%--  <div class="pg cl " id="Nav" style="display: none">--%>
+
+                  <%--   <div class="tcdPageCode">--%>
+  
+
+                    <%--    <a class="Rjt"></a>
+                        <a>1</a>
+                        <strong>2</strong>
+                        <a>3</a>
+                        <a>4</a>
+                        <a>5</a>
+                        <a>6</a>
+                        <a>7</a>
+                        <a>8</a>
+                        <a>9</a>
+                        <a>10</a>
+                        <a>... 12</a>
+                        <label>
+                            <input type="text" class="an" value="2" />
+                            <span>/ 12 页</span>
+                        </label>--%>
+                        <%--<a class="Ljt">下一页</a>--%>
+                  <%--  </div>--%>
+
+               <%--     </div>--%>
+
+
+<%--<script>
+
+
+
+
+                        $(".tcdPageCode").createPage({
+                            pageCount: 5,
+                            current: 1,
+                            backFn: function (p) {
+                                console.log(p);
+                            }
+                        });
+</script>--%>
+
+
+
+
+
+
+
+                    <a>
+                        <img src="../../image/pn_post.png" alt="发新帖" /></a>
+                </div>
+                <ul class="ti bk cl" id="bt">
+                    <li>
+                        <a>最新热门</a>
+                    </li>
+                    <li>
+                        <a>最新精华</a>
+                    </li>
+                    <li>
+                        <a>查看新帖</a>
+                    </li>
+                    <li >
+                        <a onmouseover="menu()" onmouseout="dis()">我的帖子</a>
+                    </li>
+                </ul>
+                <div id="content">
+                    <div class="bk" style="display: none">
+                        <div class="th">
+                            <table cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <th colspan="2">标题 &nbsp;&nbsp;&nbsp;
+                                       <%-- <a style="display:none">主题</a>
+                                            <span class="pipe" style="display:none">|</span>
+                                            <a style="display:none">回复</a>
+                                            <span class="pipe" style="display:none">|</span>
+                                            <a style="display:none">点评</a>
+                                            <span class="pipe" style="display:none">|</span>
+                                            <a style="display:none">筛选</a>--%>
+                                        </th>
+                                        <td class="by">版块/群组</td>
+                                        <td class="by">作者</td>
+                                        <td class="num">回复/查看</td>
+                                        <td class="by">最后发表</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="nr" >
+                            <table cellspacing="0" cellpadding="0" id="contentval">
+                               <%-- <tbody>
+                                    <tr>
+                                        <td class="icn"><a>
+                                            <img src="../../image/folder_common.gif" /></a></td>
+                                        <th><a>每日签到奖励积分专帖</a>
+                                            <span class="partake">70人参与</span>
+                                            <img src="../../image/hot_1.gif" />
+                                            <span>&nbsp;...
+                                        <a>2</a>
+                                                <a>3</a>
+                                                <a>4</a>
+                                                <a>5</a>
+                                                <a>6</a>
+                                                ..
+                                        <a>677</a>
+                                            </span>
+                                        </th>
+                                        <td class="by">
+                                            <a>灌水聊天</a>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>眉湖泊月</a>
+                                            </cite>
+                                            <em>
+                                                <span>2012-9-13 17:19</span>
+                                            </em>
+                                        </td>
+                                        <td class="num">
+                                            <a>6768</a>
+                                            <em>41505</em>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>毛头小子</a>
+                                            </cite>
+                                            <em>2016-7-15 10:28</em>
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="icn"><a>
+                                            <img src="../../image/folder_common.gif" /></a></td>
+                                        <th><a>一年一贴，咳咳咳咳</a>
+                                            <span class="partake">7人参与</span>
+                                           // <%--<img src="../../image/hot.gif" />
+                                        </th>
+                                        <td class="by">
+                                            <a>灌水聊天</a>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>木棉</a>
+                                            </cite>
+                                            <em>
+                                                <span>2016-5-22 21:38</span>
+                                            </em>
+                                        </td>
+                                        <td class="num">
+                                            <a>9</a>
+                                            <em>77</em>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>阳光与淼淼味道</a>
+                                            </cite>
+                                            <em>2016-6-24 12:06</em>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="icn"><a>
+                                            <img src="../../image/folder_common.gif" /></a></td>
+                                        <th><a>刷刷帖，灌灌水</a>
+                                            <span class="partake">4人参与</span>
+                                           // <%--<img src="../../image/hot.gif" />
+                                            <img src="../../image/image_s.gif" title="图片附件" />
+                                            <span>&nbsp;...
+                                                <a>2</a>
+                                            </span>
+                                        </th>
+                                        <td class="by">
+                                            <a>灌水聊天</a>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>pacino</a>
+                                            </cite>
+                                            <em>
+                                                <span>2016-5-7 21:13</span>
+                                            </em>
+                                        </td>
+                                        <td class="num">
+                                            <a>13</a>
+                                            <em>48</em>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>yzg</a>
+                                            </cite>
+                                            <em>2016-6-4 11:12</em>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="icn"><a>
+                                            <img src="../../image/folder_common.gif" /></a></td>
+                                        <th><a>这个论坛还有人么</a>
+                                            <span class="partake">5人参与</span>
+                                            <%--<img src="../../image/hot.gif" />
+                                            //<%--<img src="../../image/image_s.gif" title="图片附件" />
+                                            <img src="../../image/agree.gif" title="帖子被加分" />
+                                            <span>&nbsp;...
+                                                <a>2</a>
+                                            </span>
+                                        </th>
+                                        <td class="by">
+                                            <a>郑大生活</a>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>索北</a>
+                                            </cite>
+                                            <em>
+                                                <span>2016-4-8 15:12</span>
+                                            </em>
+                                        </td>
+                                        <td class="num">
+                                            <a>4</a>
+                                            <em>319</em>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>zimufengli</a>
+                                            </cite>
+                                            <em>2016-4-20 11:24</em>
+                                    </tr>
+                                </tbody>--%>
+                                <%-- <%
+                                    List<Latest_hot> list = TempData["listmodel"] as List<Latest_hot>;
+                                    if(list.Count>0)
+                                    { 
+                                   foreach(var item in list)
+                                    { 
+                                       
+                                     %>--%>
+                              <%--  <tbody>
+                                    <tr>
+                                        <td class="icn">
+                                            <%--<a>
+                                                <img src="../../image/folder_common.gif" />
+                                                <%--<img src="../../image/pin_1.gif" />
+                                            </a>
+                                           
+                                        </td>
+                                        <th><a>请遵守贴吧规则</a>
+                                            <%--<span class="partake">5人参与</span>
+                                            <%--<img src="../../image/hot_1.gif" title="1级热门" />
+                                            <img src="../../image/hot_2.gif" title="2级热门" />
+                                            <img src="../../image/hot_3.gif" title="3级热门" />
+                                            <img src="../../image/digest_1.gif" title="1级精华"/>
+                                            <img src="../../image/digest_2.gif" title="2级精华"/>
+                                            <img src="../../image/digest_3.gif" title="3级精华"/>
+                                            <img src="../../image/common.gif" title="附件"/>
+                                            <img src="../../image/image_s.gif" title="图片附件" />
+                                            <img src="../../image/agree.gif" title="帖子被加分"/>
+                                            <span>&nbsp;...
+                                                <a>2</a>
+                                            </span>
+                                        </th>
+                                        <td class="by">
+                                            <a>帖图版</a>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>yzg</a>
+                                            </cite>
+                                            <em>
+                                                <span>2016-7-18 11:12</span>
+                                            </em>
+                                        </td>
+                                        <td class="num">
+                                            <a>1</a>
+                                            <em>1</em>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>aa123456</a>
+                                            </cite>
+                                            <em>2016-7-18 14:40</em>
+                                        </td>
+                                    </tr>
+                                </tbody>--%>
+                              <%--  <%} }%>--%>
+                                
+                            </table>
+                        </div>
+                    </div>
+                   
+                    <div class="bk" style="display: none" id="Mypo">
+                        <div class="th">
+                            <table cellspacing="0" cellpadding="0">
+                                
+
+<%--                                <%
+                                    List<Latest_hot> list = TempData["listmodel"] as List<Latest_hot>;
+                                   foreach(var item in list)
+                                    { 
+                                     %>--%>
+                                
+                                <tbody>
+                                    <tr>
+                                        <th colspan="2">标题 &nbsp;&nbsp;&nbsp;
+                                        <a onclick="hide1()">主题</a>
+                                            <span class="pipe">|</span>
+                                            <a onclick="show1()">回复</a>
+                                            <span class="pipe">|</span>
+                                            <a onclick="comment()">点评</a>
+                                            <span class="pipe">|</span>
+                                            <a onclick="sel()" id="sx">筛选</a>
+                                        </th>
+                                        <td class="by">版块/群组</td>
+                                        <td class="by">作者</td>
+                                        <td class="num">回复/查看</td>
+                                        <td class="by">最后发表</td>
+                                    </tr>
+                                </tbody>
+
+                              <%--  <%
+                                } %>--%>
+
+
+                                <tbody id="screen" style="display: none">
+                                    <tr>
+                                        <th colspan="6">&nbsp;
+                                        <form class="from">
+                                            <%--<input type="hidden" />
+                                            <input type="hidden" />
+                                            <input type="hidden" />--%>
+                                            状态:
+                                            <select class="sel">
+                                                <option>全部</option>
+                                                <option>已发表</option>
+                                                <option>草稿</option>
+                                                <option>关闭</option>
+                                                <option>待审核</option>
+                                                <option>已忽略</option>
+                                                <option>回收站</option>
+                                            </select>
+                                            选择板块:
+                                            <select class="sele">
+                                                <option>全部</option>
+                                                <optgroup label="--ZZU专版">
+                                                    <option>郑大生活</option>
+                                                    <option>&nbsp; &nbsp; &nbsp; 美术系</option>
+                                                    <option>&nbsp; &nbsp; &nbsp; 郑州介绍</option>
+                                                    <option>郑州大学图片</option>
+                                                    <option>郑大名人&amp;校友资讯&amp;专业介绍</option>
+                                                    <option>&nbsp; &nbsp; &nbsp; 郑大专业介绍</option>
+                                                    <option>大一新生</option>
+                                                    <option>研究生交流</option>
+                                                    <option>毕业生交流</option>
+                                                </optgroup>
+                                                <optgroup label="--灌水休闲">
+                                                    <option>影音动漫</option>
+                                                    <option>&nbsp; &nbsp; &nbsp; 卡通动漫</option>
+                                                    <option>灌水聊天</option>
+                                                    <option>娱乐休闲</option>
+                                                </optgroup>
+                                                <optgroup label="--学习专区">
+                                                    <option>考研交流/考研资料</option>
+                                                    <option>学习考试/公务员考试</option>
+                                                    <option>&nbsp; &nbsp; &nbsp; 图书馆&amp;资料交流</option>
+                                                    <option>英语相关 English Corner</option>
+                                                </optgroup>
+                                                <optgroup label="--图片专区">
+                                                    <option>个人show</option>
+                                                    <option>贴图版</option>
+                                                    <option>美女图片</option>
+                                                </optgroup>
+                                                <optgroup label="--实用信息">
+                                                    <option>自由交易区[二手市场】</option>
+                                                    <option>招聘信息/兼职信息</option>
+                                                    <option>&nbsp; &nbsp; &nbsp; 求职面试技巧</option>
+                                                    <option>租房/床位信息</option>
+                                                </optgroup>
+                                                <optgroup label="--知性情感">
+                                                    <option>征友交友</option>
+                                                    <option>情感驿站</option>
+                                                    <option>美丽女生</option>
+                                                </optgroup>
+                                                <optgroup label="--电脑游戏">
+                                                    <option>电脑网络</option>
+                                                    <option>游戏一族</option>
+                                                    <option>资源共享&amp;软件下载</option>
+                                                </optgroup>
+                                                <optgroup label="--兴趣专区">
+                                                    <option>体育天地</option>
+                                                    <option>舞蹈专栏</option>
+                                                    <option>军事科技</option>
+                                                </optgroup>
+                                                <optgroup label="--人文社科">
+                                                    <option>原创空间</option>
+                                                    <option>文学草坪</option>
+                                                    <option>谈古论今(历史版)</option>
+                                                </optgroup>
+                                                <optgroup label="--站点管理">
+                                                    <option>站点管理</option>
+                                                    <option>论坛帮助和问题反馈</option>
+                                                </optgroup>
+                                                <optgroup label="--新人发帖区">
+                                                    <option>新人发帖区</option>
+                                                </optgroup>
+                                            </select>
+                                            &nbsp; 关键字:
+                                            <input type="text" class="gj" />
+                                            <button class="ss">
+                                                <em>搜索</em>
+                                            </button>
+                                        </form>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="nr" id="con">
+                            <table cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td class="icn"><a>
+                                            <img src="../../image/folder_common.gif" /></a></td>
+                                        <th><a>一年一贴，咳咳咳咳</a>
+                                            <%--<span class="partake">7人参与</span>--%>
+                                            <%--<img src="../../image/hot.gif" />--%>
+                                        </th>
+                                        <td class="by">
+                                            <a>灌水聊天</a>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>木棉</a>
+                                            </cite>
+                                            <em>
+                                                <span>2016-5-22 21:38</span>
+                                            </em>
+                                        </td>
+                                        <td class="num">
+                                            <a>9</a>
+                                            <em>77</em>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>阳光与淼淼味道</a>
+                                            </cite>
+                                            <em>2016-6-24 12:06</em>
+                                        </td>
+                                        <%--<th colspan="5">
+                                    <p class="emp">暂时有帖子</p>
+                                </th>--%>
+                                    </tr>
+                                </tbody>
+                                <tbody class="reply_con">
+                                    <tr>
+                                        <td class=" icn">&nbsp;</td>
+                                        <td colspan="5">
+                                            <div class="reply">
+                                                <a>你有病了</a>
+                                            </div>
+                                            <div class="reply">
+                                                <a>你没病了</a>
+                                            </div>
+                                            <div class="reply">
+                                                <a>你没有病了</a>
+                                            </div>
+                                            <div class="reply">
+                                                <a>你有没有病了</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6"></td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="icn"><a>
+                                            <img src="../../image/folder_common.gif" /></a></td>
+                                        <th><a>每日签到奖励积分专帖</a>
+                                            <span class="partake">70人参与</span>
+                                            <img src="../../image/hot_1.gif" />
+                                            <span>&nbsp;...
+                                        <a>2</a>
+                                                <a>3</a>
+                                                <a>4</a>
+                                                <a>5</a>
+                                                <a>6</a>
+                                                ..
+                                        <a>677</a>
+                                            </span>
+                                        </th>
+                                        <td class="by">
+                                            <a>灌水聊天</a>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>眉湖泊月</a>
+                                            </cite>
+                                            <em>
+                                                <span>2012-9-13 17:19</span>
+                                            </em>
+                                        </td>
+                                        <td class="num">
+                                            <a>6768</a>
+                                            <em>41505</em>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>毛头小子</a>
+                                            </cite>
+                                            <em>2016-7-15 10:28</em>
+                                        </td>
+                                        <%--<th colspan="5">
+                                    <p class="emp">暂时有帖子</p>
+                                </th>--%>
+                                    </tr>
+                                </tbody>
+                                <tbody class="reply_con">
+                                    <tr>
+                                        <td class=" icn">&nbsp;</td>
+                                        <td colspan="5">
+                                            <div class="reply">
+                                                <a>我今天最想说:「怎么办怎么办」.</a>
+                                            </div>
+                                            <div class="reply">
+                                                <a>我今天最想说:「框架怎么弄」.</a>
+                                            </div>
+                                            <div class="reply">...</div>
+                                            <div class="reply">
+                                                <a>我今天最想说:「好想睡一觉」.</a>
+                                            </div>
+                                            <div class="reply">
+                                                <a>我今天最想说:「明天要早起」.</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6"></td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="icn"><a>
+                                            <img src="../../image/folder_common.gif" /></a></td>
+                                        <th><a>加好友缺权限</a>
+                                            <%--<span class="partake">7人参与</span>--%>
+                                            <%--<img src="../../image/hot.gif" />--%>
+                                        </th>
+                                        <td class="by">
+                                            <a><font color="red">原创空间</font></a>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>aa123456</a>
+                                            </cite>
+                                            <em>
+                                                <span class="xi1">2016-7-18 17:58</span>
+                                            </em>
+                                        </td>
+                                        <td class="num">
+                                            <a>0</a>
+                                            <em>1</em>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>aa123456</a>
+                                            </cite>
+                                            <em>2016-7-18 17:58</em>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody class="reply_con">
+                                    <tr>
+                                        <td class=" icn">&nbsp;</td>
+                                        <td colspan="5">
+                                            <div class="reply">
+                                                <a>差两分！</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody> 
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6"></td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="icn"><a>
+                                            <img src="../../image/folder_common.gif" /></a></td>
+                                        <th><a>加好友缺权限</a>
+                                            <%--<span class="partake">7人参与</span>--%>
+                                            <%--<img src="../../image/hot.gif" />--%>
+                                        </th>
+                                        <td class="by">
+                                            <a><font color="red">原创空间</font></a>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>aa123456</a>
+                                            </cite>
+                                            <em>
+                                                <span class="xi1">2016-7-18 17:58</span>
+                                            </em>
+                                        </td>
+                                        <td class="num">
+                                            <a>0</a>
+                                            <em>1</em>
+                                        </td>
+                                        <td class="by">
+                                            <cite>
+                                                <a>aa123456</a>
+                                            </cite>
+                                            <em>2016-7-18 17:58</em>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody class="reply_con">
+                                    <tr>
+                                        <td class=" icn">&nbsp;</td>
+                                        <td colspan="5">
+                                            <div class="reply">
+                                                <a>差两分！</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="commen" class="nr" style="display:none">
+                            <table cellspacing="0" cellpadding="0">
+                            <th colspan="5">
+                                    <p class="emp">暂时没有帖子</p>
+                                </th>
+                               </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="bk cl bj">
+                    <%--<div class="pg cl ">
+                        <a>1</a>
+                        <strong>2</strong>
+                        <a>3</a>
+                        <a>4</a>
+                        <a>5</a>
+                        <a>6</a>
+                        <a>7</a>
+                        <a>8</a>
+                        <a>9</a>
+                        <a>10</a>
+                        <a>... 12</a>
+                        <label>
+                            <input type="text" class="an" value="2" />
+                            <span>/ 12 页</span>
+                        </label>
+                        <a class="Ljt">下一页</a>
+                    </div>--%>
+                    <span class="pgb y">
+                        <a href="Introduction">导读首页</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="p_pop" style="position: absolute; z-index: 301;top:354px;left:524.5px;" id="menu1" onmouseout="dis2()" onmouseover="hide()">
+        <ul>
+            <li><a>投票</a></li>
+            <li><a>商品</a></li>
+            <li><a>悬赏</a></li>
+            <li><a>活动</a></li>
+        </ul>
+    </div>
+
+</asp:Content>

@@ -1,0 +1,212 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <script src="../../Jscript/jquery-2.2.0.min.js"></script>
+    <script src="../../Jscript/TwoLevel.js"></script>
+    <link href="../../Css/TwoLevel.css" rel="stylesheet" />
+    <div class="Roof">
+        <p>roof</p>
+    </div>
+    <div class="ChildSection">
+        <div class="csRoof">
+            <h2>子版块</h2>
+            <img src="../../image/zoom.gif"/>
+        </div>
+        <div class="csContent">
+            <ul>
+                <li class="csLi"><img src="/image/bubble.gif"/><p>子版块信息</p></li>
+                <li><img src="/image/bubble.gif"/><p>子版块信息</p></li>
+            </ul>
+        </div>
+    </div>
+    <div class="Separation">
+        <div class="sLeft">
+            <a><img src="/image/pn_post.png"/></a>
+        </div>
+        <div class="sRight">
+            <div class="sPage">
+                <strong>1</strong>
+                <a>2</a>
+                <a>3</a>
+                <a>4</a>
+                <a>5</a>
+                <a>6</a>
+                <a>7</a>
+                <a>8</a>
+                <a>9</a>
+                <a>10</a>
+                <a class="sLast">...129</a>
+                <label>
+                    <input type="text" size="1" title="输入页码，按回车快速跳转" value="1"/>
+                    <span title="共 129 页"> / 129 页</span>
+                </label>
+                <a class="sNext" style="padding-right:25px;">下一页</a>
+            </div>
+            <div class="sBack">
+                <a>返&nbsp;回</a>
+            </div>
+        </div>
+    </div>
+    <div class="PostsName">
+        <div class="pnRoof">
+            <div class="pnrLeft">
+                <div class="Select">
+                    <span>筛选:</span>
+                    <div class="Together1">
+                        <a>全部主题</a>
+                        <ul class="Only" style="height:35px;">
+                            <li style="margin-top:5px;">全部主题</li>
+                        </ul>
+                    </div>
+                    <div class="Together2">
+                        <a>全部时间</a>
+                        <ul class="Six">
+                            <li class="Pink" style="margin-top:5px;">全部时间</li>
+                            <li class="Pink">一天</li>
+                            <li class="Pink">两天</li>
+                            <li class="Pink">一周</li>
+                            <li class="Pink">一个月</li>
+                            <li style="margin-bottom:5px;">三个月</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="Sort">
+                    <span>排序:</span>
+                    <div class="Together3">
+                        <a>发帖时间</a>
+                        <ul class="TwoSix">
+                            <li class="Pink" style="margin-top:5px;">默认顺序</li>
+                            <li class="Pink">发帖时间</li>
+                            <li class="Pink">回复/查看</li>
+                            <li class="Pink">查看</li>
+                            <li class="Pink">最后发表</li>
+                            <li style="margin-bottom:5px;">热门</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="Essence"><span>|</span><a href="#">精华</a></div>
+            </div>
+            <div class="pnrRight">
+                <div class="NewWindow">
+                    <%--<span id="atarget" onclick="setatarget(-1)" class="y atarget_1" title="在新窗口中打开帖子">新窗</span>--%>
+                    <span id="nwCheck" onclick="setnwCheck(Two)" class="nwCheck_One" title="在新窗口中打开帖子">新窗</span>
+                </div>
+                <p class="Writer">作者</p>
+                <p class="Reply_View">回复/查看</p>
+                <p class="LastPost">最后发表</p>
+            </div>
+        </div>
+        <div class="Stickied">
+            <ul>
+                <li>
+                    <a class="Stick" href="#" title="全局置顶主题 - 新窗口打开" target="_blank">
+                        <img src="../../image/stick.gif"/>
+                    </a>
+                    <div class="sName"><a href="#">置顶帖的名称</a></div>
+                    <div class="wTime">
+                        <div class="One"><a href="#">陌忆心LL</a></div><span>1996-9-4 00:00</span>
+                    </div>
+                    <div class="sCount">
+                        <div class="One"><a href="#">*</a></div><span>****</span>
+                    </div>
+                    <div class="sLastName">
+                        <div class="One"><a href="#">陌忆心LL</a></div><span>2016-7-16 9:54</span>
+                    </div>
+                </li>
+                <li>
+                    <a class="Stick" href="#" title="全局置顶主题 - 新窗口打开" target="_blank">
+                        <img src="../../image/stick.gif"/>
+                    </a>
+                    <div class="sName"><a href="#">置顶帖的名称</a></div>
+                    <div class="wTime">
+                        <div class="One"><a href="#">陌忆心LL</a></div><span>1996-9-4 00:00</span>
+                    </div>
+                    <div class="sCount">
+                        <div class="One"><a href="#">*</a></div><span>****</span>
+                    </div>
+                    <div class="sLastName">
+                        <div class="One"><a href="#">陌忆心LL</a></div><span>2016-7-16 9:54</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="pnSeparation">
+        </div>
+        <div class="Normal">
+            <ul>
+                <li>
+                    <a class="Stick" href="#" title="全局置顶主题 - 新窗口打开" target="_blank">
+                        <img src="../../image/folder_lock.gif"/>
+                    </a>
+                    <div class="sName"><a href="#">关闭主题的名称</a></div>
+                    <div class="wTime">
+                        <div class="One"><a href="#">陌忆心LL</a></div><span>1996-9-4 00:00</span>
+                    </div>
+                    <div class="sCount">
+                        <div class="One"><a href="#">*</a></div><span>****</span>
+                    </div>
+                    <div class="sLastName">
+                        <div class="One"><a href="#">陌忆心LL</a></div><span>2016-7-16 9:54</span>
+                    </div>
+                </li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <div class="Separation">
+        <div class="sLeft">
+            <a><img src="/image/pn_post.png"/></a>
+        </div>
+        <div class="sRight">
+        </div>
+    </div>
+    <div class="FastPost">
+        <div class="fpRoof">
+            <p>快速发帖</p>
+        </div>
+        <div class="Posting">
+            <div class="pTitle">
+                <input type="text"/>
+                <p>还可输入<strong> 80 </strong>个字符</p>
+            </div>
+            <div class="pContent">
+                <div class="pLeft">
+                    <div class="pTop">
+                        <div class="Function">
+                            <a title="文字加粗" class="fBold"></a>
+                            <a title="设置文字颜色" class="fColor"></a>
+                            <a style="margin-top:2px;" title="图片"class="fImg"></a>
+                            <a title="添加链接" class="fUrl"></a>
+                            <a style="margin-top:3px;" title="引用" class="fQuote"></a>
+                            <a title="代码" class="fCode"></a>
+                            <a class="fSmile"></a>
+                        </div>
+                        <div class="Advanced">
+                            <a>高级模式</a>
+                        </div>
+                    </div>
+                    <textarea></textarea>
+                </div>
+                <div class="pRight">
+                    <ul class="Face">
+                        <li><img src="/image/smile.gif"/></li>
+                        <li><img src="/image/sad.gif"/></li>
+                        <li><img src="/image/cry.gif"/></li>
+                        <li><img src="/image/huffy.gif"/></li>
+                        <li><img src="/image/shocked.gif"/></li>
+                        <li><img src="/image/tongue.gif"/></li>
+                        <li><img src="/image/shy.gif"/></li>
+                        <li><img src="/image/titter.gif"/></li>
+                        <li><img src="/image/sweat.gif"/></li>
+                        <li><img src="/image/lol.gif"/></li>
+                        <li><img src="/image/victory.gif"/></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="Publish">
+                <button><strong>发表帖子</strong></button>
+            </div>
+        </div>
+    </div>
+</asp:Content>

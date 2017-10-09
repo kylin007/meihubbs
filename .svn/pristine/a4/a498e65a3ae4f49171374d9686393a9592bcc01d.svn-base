@@ -1,0 +1,456 @@
+﻿$(document).ready(function () {
+    $(".evaluation").click(function () {
+        $(".score").css("display", "block");
+    });
+    
+    var l = parseInt(($(window).height() - $(".score").height()) / 2);
+    var t = parseInt(($(window).width() - $(".score").width()) / 2);
+    
+    $(".score").css("top", l + 'px');
+    $(".score").css("left", t + 'px');
+    
+    $(".detail a").click(function () {
+        $(".grade").css('display', "block" );
+    });
+    $(".detail a").mouseout(function () {
+        $(".grade").css('display', "none");
+    });
+    $(".grade").mouseout(function () {
+        $(".grade").css('display', "none");
+    });
+    $(".grade").mouseover(function () {
+        $(".grade").css('display', "block");
+    });
+    $(".grade div").mouseover(function () {
+        $(this).css('background-color', "pink");
+        $(this).css('color', "red");
+    });
+    $(".grade div").mouseout(function () {
+        $(this).css('background-color', "");
+        $(this).css('color', "");
+    });
+    $(".grade div").first().click(function () {
+        $(".detail input").val("+1");
+    });
+    $(".grade div").eq(1).click(function () {
+        $(".detail input").focus();
+    });
+    $(".grade div").mouseout(function () {
+        $(this).css('background-color', "");
+        $(this).css('color', "");
+    });
+    $(".reason ul li").click(function () {
+        $(".partiRs input").val($(this).text());
+    });
+    $(".reason ul li").mouseover(function () {
+        $(this).css("color", "black");
+    });
+    $(".reason ul li").mouseout(function () {
+        $(this).css("color", "");
+    });
+    $(".close").click(function () {
+        $(".score").css("display", "none");
+    });
+    $(".addRep span").click(function () {
+        alert($(".addRep input").eq(1).css("checked"));
+        $(".addRep input").eq(1).css("checked", "checked");
+    });
+    $(".showmenu").mouseover(function () {
+        $(this).next().show();
+    });
+    $(".showmenu").mouseout(function () {
+        $(this).next().hide();
+    });
+    $(".useTool").mouseover(function () {
+        $(this).show();
+    });
+    $(".useTool").mouseout(function () {
+        $(this).hide();
+    });
+    $(".useTool ul li").mouseover(function () {
+        $(this).css("background-color", "pink");
+        $(this).css("color", "red");
+    });
+    $(".useTool ul li").mouseout(function () {
+        $(this).css("background-color", "");
+        $(this).css("color", "");
+    });
+    $(".useTool ul li").click(function () {
+        $(".toolPlsy").css("display", "block");
+    });
+    $(".toolPlsy .close").click(function () {
+        $(".toolPlsy").css("display", "none");
+    });
+    $(".toolPlsy button").click(function () {
+        $(".toolPlsy").css("display", "none");
+    });
+
+    var lt = parseInt(($(window).height() - $(".toolPlsy").height()) / 2);
+    var tt = parseInt(($(window).width() - $(".toolPlsy").width()) / 2);
+    $(".toolPlsy").css("top", lt + 'px');
+    $(".toolPlsy").css("left", tt + 'px');
+
+    $(".reply").click(function () {
+        $(".replyKey").css("display", "block");
+    });
+    var lr = parseInt(($(window).height() - $(".replyKey").height()) / 2);
+    var tr = parseInt(($(window).width() - $(".replyKey").width()) / 2);
+    $(".replyKey").css("top", lr + 'px');
+    $(".replyKey").css("left", tr + 'px');
+
+    $(".close").click(function () {
+        $(".replyKey").hide();
+    });
+
+    $(".score .endSc button").click(function () {
+        var invel = $(".score .detail input").val();  //评分分数
+        var rjgkf = $(".score .partiRs input").val();  //评分理由
+
+        if ($.trim(rjgkf) == "") {
+            $(".toerro").show();
+            //$(".toerro").show().delay(3000).hide();
+        }
+        else if ($.trim(invel) != $.trim("+1")) {
+            $(".toerro").show();
+            //$(".toerro").show().delay(3000).hide();   
+        }
+        else
+        {
+            var tousid = $("#id").text();// 帖子id
+            $(".evaInfor .linheeva .linhead em").text(parseInt( $(".evaInfor .linheeva .linhead em").text())+1);
+            $(".evaInfor").show();
+            
+            $.ajax({
+                url: '/postInfor/eva',
+                dataType: 'json',
+                async: false,
+                data: {
+                    "tousid": tousid,
+                    "rjgkf": rjgkf,
+                },
+                type: "POST",
+                success: function (result) {
+                    //if ($(".sorPiec".length > 0))
+                    var dat = '<div class="evInPiec sorPiec"><span class="linhead"><img src="../../image/noavatar_small.gif"/><em>' + result["topic_id"] + '</em></span><span class="becRed middevaPie">+1</span><span class="endPiec">' + rjgkf + '</span></div>';
+                    $(".okeva").after(dat);
+                },
+                error:function(result){
+                    alert("评分失败");
+                }
+            });
+
+            $(".score").hide();
+        }
+        
+    });
+});
+//随鼠标移动
+window.onload = function () {
+    var oSco = document.getElementsByClassName('score')[0];
+    var oCon = document.getElementsByClassName('Control')[0];
+    var otolP = document.getElementsByClassName('toolPlsy')[0];
+    var oRepK = document.getElementsByClassName('replyKey')[0];
+    var disX = 0;
+    var disY = 0;
+
+    //ouDow(oSco);
+    //ouDow(otolP);
+    //ouDow(oRepK);
+
+    function ouDow(doething){
+        doething.onmousedown = function (ev) {
+            var oEvent = ev || event;
+
+            disX = oEvent.clientX - doething.offsetLeft;
+            disY = oEvent.clientY - doething.offsetTop;
+
+            document.onmousemove = function (ev) {
+                var oEvent = ev || event;
+                var l = oEvent.clientX - disX;
+                var t = oEvent.clientY - disY;
+                if (l < 0)
+                    l = 0;
+                if (t < 0)
+                    t = 0;
+                doething.style.left = l + 'px';
+                doething.style.top = t + 'px';
+            };
+            doething.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+            };
+        };
+    }
+
+    //oSco.onmousedown = function (ev) {
+    //    var oEvent = ev || event;
+
+    //    disX = oEvent.clientX - oSco.offsetLeft;
+    //    disY = oEvent.clientY - oSco.offsetTop;
+
+    //    document.onmousemove = function (ev) {
+    //        var oEvent = ev || event;
+    //        var l = oEvent.clientX - disX;
+    //        var t = oEvent.clientY - disY;
+    //        if (l < 0)
+    //            l = 0;
+    //        if (t < 0)
+    //            t = 0;
+    //        oSco.style.left = l + 'px';
+    //        oSco.style.top = t + 'px';
+    //    };
+    //    oSco.onmouseup = function () {
+    //        document.onmousemove = null;
+    //        document.onmouseup = null;
+    //    };
+    //};
+
+};
+
+//window.setInterval("func()", 50);
+
+function reset() {
+    $("#pmmessage")[0].value = "";
+    funcit();
+}
+//弹框关闭
+function Quit(n) {
+    var oDiv;
+    if (n == 1) {
+        oDiv = document.getElementById('fwin_friend');
+    }
+    else if (n == 2) {
+        oDiv = document.getElementById('fwin_showmess');
+    }
+    oDiv.style.display = "none";
+}
+
+window.onload = function () {
+
+    var fri_name, et, sbsky;
+    var tousid = $("#id").text();// 帖子id
+
+    $(".sendme").click(function funci() {
+        $(".frinam").text($(this).parent().parent().prev().text());
+        $("#fwin_showmess").show();
+        $(".b_c").css("float", "none");
+        fri_name = $(this).parent().parent().prev().text(); //收件人的昵称
+        et = $(this).parent().parent().parent().next("div").children().eq(0).children("div").children("span").html(); //sb.楼层人
+        var a = new Array();
+        a = et.toString().split('#');
+        et = a[0];
+
+        $.ajax({
+            url: '/postInfor/onlysky',
+            dataType: 'json',
+            async: false,
+            data: {
+                "toid": tousid,
+                "et":et,
+            },
+            type: "POST",
+            success: function (data) {
+                //alert("success");
+                sbsky = parseInt(data["topic_id"].toString());
+            },
+            error: function (data) {
+                alert("falier");
+            }
+        });
+        $("#adher").attr("href", "http://localhost:3741/Home/PersonData?id="+sbsky);
+        
+        $("#pmmessage").val() = "";
+    });
+
+    $("#pmsubmit_btn").click(function funcit() {
+        
+        if ($("#pmmessage").val() == null) {
+            alert("对不起，您输入的信息不能为空");
+        }
+        else {
+            process(fri_name,et);
+        }
+        $("#pmmessage").val() = "";
+    });
+    
+    //回复主题
+    $(".repkyLogin").click(function () {
+        if ($("#usid").text() == 1) {
+            $(".replyKey").hide();
+
+            var s = $(this).parent().prev().find("textarea").val();
+            var lg = $(".userSgle").length;
+            var d = new Date();
+            var vYear = d.getFullYear();
+            var vMon = d.getMonth() + 1;
+            var vDay = d.getDate();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var se = d.getSeconds();
+            var times = vYear + "/" + (vMon < 10 ? "0" + vMon : vMon) + "/" + (vDay < 10 ? "0" + vDay : vDay) + " " + (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (se < 10 ? "0" + se : se);
+            //alert(times);//输出时间
+
+            var id = $("#id").html();
+            $.ajax({
+                url: "/postInfor/process",
+                dataType: 'json',
+                async: false,//请求是否异步，默认异步;
+                type: "POST",
+                data: {
+                    "content": s,
+                    "tim": times,
+                    "length": lg,
+                    "id": id,
+                },
+                success: function (result) {
+                    var folr;
+                    if ($(".userSgle").length == 1) {
+                        flor = "2#抢沙发 ";
+                    }
+                    else if ($(".userSgle").length == 2) {
+                        flor = "3#争茶几";
+                    }
+                    else if ($(".userSgle").length == 3) {
+                        flor = "4#占座椅";
+                    }
+                    else if ($(".userSgle").length == 4) {
+                        flor = "5#梳妆台";
+                    }
+                    else if ($(".userSgle").length == 5) {
+                        flor = "6#裹窗帘";
+                    }
+                    else if ($(".userSgle").length == 6) {
+                        flor = "7#卷地毯";
+                    }
+                    else if ($(".userSgle").length == 7) {
+                        flor = "8#敲地板";
+                    }
+                    else {
+                        flor = $(".userSgle").length + 1 + "#";
+                    }
+
+                    var sign;
+
+                    if (result["expression"] == "该用户从未签到") {
+                        sign = '<div class="od">该用户从未签到</div>';
+                    }
+                    else {
+                        sign = '<div class="mood"><span>TA的每日心情</span><img src="../../image/yl.gif"/><div><h1>' + result["expression"] + '</h1><span>' + result["signtime"] + '</span></div></div><div class="signed"><span>签到天数：' + result["day"] + '天</span><span>[LV.1]初来乍到</span></div>';
+                    }
+                    var htrepl = '<div class="userSgle"><div class="selfCon"><div class="pinkbg"><div class="dashbttom"><a>' + result["ude"] + '</a></div><div><div class="userSin"><img src="../../image/08_avatar_middle.jpg"/><div class="sortOf"><div class="onRight">' + result["theme"] + '<br />主题</div><div class="onRight">' + result["firendNum"] + '<br />好友</div><div>' + result["scoreNum"] + '<br />积分</div></div></div>' + sign + '<div class="onLeft"><span>专业</span>&nbsp&nbsp&nbsp<span>' + result["majorName"] + '</span><br /><span>年级</span>&nbsp&nbsp&nbsp<span>' + result["gradeName"] + '</span></div><div class="onLeft"><span>金钱</span>&nbsp&nbsp&nbsp<span>' + result["moneyNum"] + '</span></div><div class="onLeft"><img src="../../image/medal5.gif  "/></div><div class="onLeft"><img src="../../image/pmto.gif"/><a>发消息</a></div></div></div><div class="whitebg"><div class="dashbttom"><span><img src="../../image/online_member.gif"/>发表于&nbsp ' + times + ' | 只看作者 |  倒序浏览</span><div><span>' + flor + '</span></div></div><div class="concon">' + s + '</div></div></div><div class="collect relHad" title="' + result["collect"] + '人收藏"><img src="../../image/fav.gif"/>收藏<span>0</span></div><div class="collect HadUser evaluation evalfet" title="0人评分"><img src="../../image/agree.gif"/>评分</div><div class="botMost"><div class="pinkMore pinkbg"></div><div class="extraordinary"><span class="reply"><img src="../../image/fastreply.gif"/><em>回复</em></span><div><div class="showmenu">使用道具</div><div class="useTool"><ul><li><img src="../../image/bump.small.gif"/><span>提升卡</span></li><li><img src="../../image/stick.small.gif"/><span>置顶卡</span></li><li><img src="../../image/open.small.gif"/><span>喧嚣卡</span></li><li><img src="../../image/highlight.small.gif"/><span>变色卡</span></li><li><img src="../../image/namepost.small.gif"/><span>显身卡</span></li></ul></div><a>举报</a></div></div></div></div>';
+                    $("#self").append(htrepl);
+                    //请求成功处理
+                },
+                error: function () {
+                    alert("11111出现未知错误 请联系管理员");
+                }
+            });
+        }
+        else {
+            $("#logi").show();
+            alert("请先登录");
+        }
+    });
+    //发帖弹框
+    $(".playPost").click(function func() {
+        if ($("#usid").text() == 0) {
+            //$("#logi").css("display", "block");
+            alert("请先登录");
+        }
+        else {
+            $(".Control").css("display", "block");
+        }
+    });
+    //发表帖子
+    $(".cPublish button").click(function () {
+        var title = $(".posting input").val();
+        var content = $(".posting textarea").val();
+        var id = $("#id").html();
+
+        $.ajax({
+            url: "/postInfor/FastPost",
+            dataType: 'json',
+            data: {
+                "title": title,
+                "content": content,
+                "id": id,
+            },
+            async: false,//请求是否异步，默认异步;
+            type: "POST",
+            success: function (result) {
+                //alert("success");
+                window.location.href = "http://localhost:3741/postInfor/post?id=" + result["topic_id"];
+            },
+            error: function (result) {
+                alert("出现未知错误,请联系管理员!");
+            }
+        });
+    });
+    if ($("#usid").text() == 0) {
+        $(".HadUser").hide();
+        $(".return").css("margin-top", "0px"); 
+        $(".botMost").css("margin-top", "0px");
+        $(".replyEnd").css({ "margin-top": "70px" }, { "position": "relative" });
+        $(".expression ul").css("margin-left", "0px");
+    }
+    else {
+    }
+};
+
+//window.setInterval("sdsdsdsdd()", 50);
+var timer1 = window.setInterval("funci()", 50);
+var timer2 = window.setInterval("funcit()", 50);
+var timerf = window.setInterval("fun()", 50);
+var timeer = window.setInterval("func()", 50);
+
+function process(fri_name, et) {
+
+    var tousid = $("#id").text();// 帖子id
+    var User_name = document.getElementById("SY_Uname").innerText; //当前登录用户昵称
+    var Text = $("#pmmessage").val();
+    $.ajax({
+        url: '/postInfor/sendmess',
+        dataType: 'json',
+        async: false,//请求是否异步，默认异步;
+        data: {
+            "tousid": tousid,
+            "fri_id": fri_name,
+            "text": Text,
+            "et": et,
+        },
+        type: "POST",
+        success: function (data) {
+            //请求成功处理
+            var flag = 0;
+            var result = "";
+            $("#msglist").html('');
+            for (var i = 0; i < data.length; i++) {
+                var text = data[i]["Talk_message"].toString();
+                if (text != "") {
+                    var id = data[i]["用户名"].toString();
+                    if (id == data[0]["登录者"]) {
+                        if (flag == 0) {
+                            flag = 1;
+                            result += "<li class='cl'><h4 class='xg1'>" + data[i]["Talk_time"] + "</h4></li>";
+                        }
+                        result += "<li class='cl pmm'> <div class='pmt'>" + id + " </div><div class='pmd'> " + text + " </div>";
+                        $("#msglist").html(result);
+                    }
+                    else {
+                        if (flag == 0) {
+                            flag = 1;
+                            result += "<li class='cl'><h4 class='xg1'>" + data[i]["Talk_time"] + "</h4></li>";
+                        }
+                        result += "<li class='cl pmm'> <div class='pmtt'>" + id + " </div><div class='pmdd'> " + text + "</div>";
+                        $("#msglist").html(result);
+                    }
+                }
+            }
+        },
+        error: function () {
+            document.getElementById('fwin_showmess').style.display = "none";
+            alert("请您先登录!");
+            //请求出错处理
+        }
+    });
+}

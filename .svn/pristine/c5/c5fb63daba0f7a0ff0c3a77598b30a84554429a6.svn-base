@@ -1,0 +1,63 @@
+﻿using meihu.Models;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace meihu.Controllers
+{
+    public class ClassifyController : Controller
+    {
+        // GET: /Classify/
+
+        public ActionResult OneLevel()
+        {
+            string str = Request.Params["oneclass"];
+            List<OneLevel> list = new List<OneLevel>();
+            List<OneLevel> list1 = new List<OneLevel>();
+            List<OneLevel> list2 = new List<OneLevel>();
+           
+            OneLevel cs = new OneLevel();
+            DataTable dt = cs.selectForm();             
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string R = dt.Rows[i]["Second_forum"].ToString(); 
+                OneLevel level = new OneLevel();
+
+                DataTable dt1 = cs.selectSon(R);
+                DataTable dt2 = cs.is_son(R);
+                DataTable dt3 = cs.selectTime(R);
+
+               level.Create_on_time = dt3.Rows[0]["Create_on_time"].ToString();
+               level.Title = dt3.Rows[0]["Title"].ToString();
+                
+
+                    for (int m = 0; m < dt2.Rows.Count; m++)
+                    {
+                        OneLevel ol = new OneLevel();
+                        ol.Is_son = dt2.Rows[m]["Is_son"].ToString();
+                        list1.Add(ol);
+                    }
+                TempData["list1"] = list1;
+
+                for (int j = 0; j < dt1.Rows.Count; j++)
+                {                    
+                      level.secondlist.Add(dt1.Rows[j]["Son_forum"].ToString());              
+                }       
+
+                level.Second_forum = R; 
+                list.Add(level);
+
+            }
+            TempData["list"] = list;
+            
+                 
+            return View("OneLevel");  
+          
+                
+        }
+
+    }
+}

@@ -1,0 +1,218 @@
+﻿a {
+    color: #333;
+    text-decoration: none;
+}
+
+#friendModel {
+    border: 1px solid #CCC;
+    background: url("../../image/vlineb.png") repeat-y 0 0;
+    font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    color: #444;
+    width:960px;
+    height:660px;
+}
+#fdModel1 {
+    margin:0px;
+    padding: 0px;
+    width:137px;
+    height:221px;
+    float:left;
+}
+#fdModel1 ul {
+    position: relative;
+    top:-10px;
+    left:-51px;
+}
+#fdModel1 ul li {
+    list-style-type: none;
+    margin: 0 10px;
+    padding: 0 12px 0 28px;
+    display: block;
+    height: 33px;
+    line-height: 28px;
+    white-space: nowrap;
+    word-wrap: normal;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 97px;
+}
+#fdModel1 ul li div {
+    position:relative;
+    left:-20px;
+    width: 120px;
+    height: 32px;
+    text-align: left;
+    border-bottom: 1px dashed #CCC;
+    left: -20px;
+}
+#fdModel2 {
+    margin:0px;
+    padding: 0px;
+    width:800px;
+    height:567px;
+    float:right;
+}
+#onlineFriends, #onlineMember, #nearFriends, #myVisitor, #myFootprint, #blackList {
+    display:none;
+}
+
+.fdsList ul{
+    width:800px;
+    height:32px;
+    margin: 0;
+    padding-left: 5px;
+    line-height: 30px;
+    border-bottom:1px solid #CDCDCD;
+    position:relative;
+    top:15px;
+    left:-15px;
+}
+.fdsList ul li {
+    float:left;
+    margin: 0 3px -1px 0;
+    list-style-type: none;
+    background: #FFECEC;
+}
+    .fdsList ul li a {
+        display: block;
+        padding: 0 10px;
+        border: 1px solid #CDCDCD;
+        border-bottom:none ;
+        /*z-index:900;*/
+
+    }
+.fdsList1 div {
+    clear:both;
+    border-bottom:dashed 1px #CDCDCD;
+    height: 50px;
+    line-height: 22px;
+}
+
+.fdsList2 {
+     clear:both;
+     float:left;
+     width:453px;
+}
+.fdsList2 a:hover {
+    text-decoration-line:underline;
+}
+.fdsList3 {
+    float: right;
+    width:245px;
+}
+.fdsList3 h3 {
+    margin: 0;
+    padding: 0;
+    line-height: 31px;
+    font-size: 1em;
+}
+.fdsList3h3{
+    padding: 0 10px;
+    height: 31px;
+    border-top: 1px solid #FFF;
+    line-height: 31px;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #FFECEC;
+    border-bottom-color: #CDCDCD;
+}
+
+/*=====================================搜索模块/*=====================================*/
+#searchFriends {
+    margin:0px;
+    padding: 0px;
+    width:800px;
+    height:567px;
+    float:right;
+}
+.searchList ul{
+    width:800px;
+    height:32px;
+    margin: 0;
+    padding-left: 5px;
+    line-height: 30px;
+    border-bottom:1px solid #CDCDCD;
+    position:relative;
+    top:15px;
+    left:-15px;
+}
+.searchList ul li {
+    float:left;
+    margin: 0 3px -1px 0;
+    list-style-type: none;
+    background: #FFECEC;
+}
+    .searchList ul li a {
+        display: block;
+        padding: 0 10px;
+        border: 1px solid #CDCDCD;
+        border-bottom:none ;
+        /*z-index:900;*/
+    }
+.sea {
+    margin: 20px 0 -10px 0;
+}
+.sea h2{
+    padding-left: 20px;
+    line-height: 2.2;
+    background: url(../../image/scf.gif) no-repeat 0 50%;
+    font-weight: 700;
+    font-size: 14px;
+}
+#sea2, #sea3, #sea4, #sea5, #searchFriends, #mayKnow, #fdsRequest, #group{
+    display:none;
+}
+#sea1-2 {
+    width:800px;
+    height:203px;
+    background:#FFECEC;
+    border: 1px solid rgb(255, 204, 204);
+    position: relative;
+    left: -15px;
+    font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    color: #444;
+    line-height: 35px;
+    text-align: left;
+}
+#sea2-2, #sea3-2 {
+    width:800px;
+    height:129px;
+    background:#FFECEC;
+    border: 1px solid rgb(255, 204, 204);
+    position: relative;
+    left: -15px;
+    font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    color: #444;
+    line-height: 35px;
+    text-align: left;
+}
+#sea4-2 {
+    width:800px;
+    height:129px;
+    background:#FFECEC;
+    border: 1px solid rgb(255, 204, 204);
+    position: relative;
+    left: -15px;
+    font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    color: #444;
+    line-height: 35px;
+    text-align: left;
+}
+#sea5-2 {
+    width:800px;
+    height:467px;
+    background:#FFECEC;
+    border: 1px solid rgb(255, 204, 204);
+    position: relative;
+    left: -15px;
+    font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    color: #444;
+    line-height: 35px;
+    text-align: left;
+}
+
+/*======================================可能认识的人=================================================*/
+#mayKnow a:hover {
+    text-decoration-line:underline;
+}

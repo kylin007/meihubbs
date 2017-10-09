@@ -1,0 +1,257 @@
+﻿
+window.onload= function () {
+    var ss = window.location.href.split('?')[1].toString();                                        //获取我的帖子或者查看新帖的值
+    var oDiv = document.getElementById('bt').getElementsByTagName('li');                           //获取所有 切换菜单
+    var oDiv1 = $("#content").children("div");                                                     //获取所有 内容框架
+    var i, j;
+    if (ss == 1)                                                            //首页点击我的帖子
+    {
+        document.getElementById('bt').getElementsByTagName('li')[3].className = 'ztg a';            //我的帖子 样式赋值  
+        $("#content").children("div")[1].style.display = 'block';                                   //我的帖子 内容显示
+        id(3);                                                                                      //获取帖子
+    }
+    if (ss == 2)                                                            //首页点击查看新帖
+    {
+        document.getElementById('bt').getElementsByTagName('li')[3].className = '';                 //我的帖子 样式清空
+        document.getElementById('bt').getElementsByTagName('li')[2].className = 'ztg a';            //查看新帖 样式赋值
+        $("#content").children("div")[1].style.display = 'none';                                    //我的帖子 内容隐藏
+        $("#content").children("div")[0].style.display = 'block';                                   //查看新帖 内容显示
+        document.getElementById('menu1').style.left = '532.5px';                                    //下拉框 左移
+        id(2);                                                                                      //获取帖子
+
+    }
+  
+    for (i = 0; i < oDiv.length; i++) {
+
+        oDiv[i].index = i;/*位置索引*/
+        oDiv[i].onclick = function () {/*鼠标点击触发操作*/
+            for (j = 0; j < oDiv.length; j++) {
+                oDiv[j].className = '';                                                             //所有样式清空
+                oDiv1[1].style.display = 'none';                                                    //我的帖子 内容隐藏
+                oDiv1[0].style.display = 'block';                                                   //其他 内容显示
+            }
+            this.className = 'ztg a';                                                               //当前切换菜单 样式赋值
+            if (this.index == "3")                                                                  //如果点击切换菜单 我的帖子
+            {
+                oDiv1[0].style.display = 'none';                                                    //其他 内容隐藏
+                oDiv1[1].style.display = 'block';                                                   //我的帖子 内容显示
+            }
+            var name = document.getElementById('bt').getElementsByTagName('a')[this.index].text;    //获取切换菜单的 内容
+            id(this.index);                                                                         //获取帖子
+            document.getElementById('title').textContent = name;                                    //标题为 切换菜单的内容
+            if (this.index < 3)                                                                        //如果点击 最新热门 最新精华 查看新帖
+            {
+                document.getElementById('kg').style.display = 'block';                              //扩大标题
+                document.getElementById('subscribe').style.display = 'block';                       //订阅按钮 显示    
+                document.getElementById('menu1').style.top = '364px';                               //下拉框定位
+                document.getElementById('menu1').style.left = '532.5px';                            //下拉框定位
+            }
+            else {
+                document.getElementById('kg').style.display = 'none';                               //缩小标题                         
+                document.getElementById('subscribe').style.display = 'none';                        //订阅按钮 隐藏
+                document.getElementById('menu1').style.top = '354px';                               //下拉框定位
+                document.getElementById('menu1').style.left = '524.5px';                            //下拉框定位
+            }
+            //var sname = document.getElementById('con').getElementsByClassName("emp")[0].innerText;
+            //if (sname == "暂时还没有帖子") {
+            //    document.getElementById('Nav').style.display = 'none';
+            //}
+            //else {
+            //    document.getElementById('Nav').style.display = 'block';
+            //}
+        }
+    }
+    for (var q = 1; q <= document.getElementById('bt').getElementsByTagName('li').length; q++)          //导读首页 切换
+    {
+        if (ss == 'a' + q) {
+            for (var w = 0; w < document.getElementById('bt').getElementsByTagName('li').length; w++) {
+                document.getElementById('bt').getElementsByTagName('li')[w].className = '';             //所有标题样式清空
+                //$("#content").children("div")[w].style.display = 'none';
+            }
+            if (q < 4) {                                                                              //判断是否点击 最新热门 最新精华 查看新帖
+                document.getElementById('bt').getElementsByTagName('li')[q - 1].className = 'ztg a';        //当前切换菜单 样式赋值
+                var name = document.getElementById('bt').getElementsByTagName('a')[q - 1].text;
+                document.getElementById('title').textContent = name;
+                document.getElementById('kg').style.display = 'block';                               //缩小标题                         
+                document.getElementById('subscribe').style.display = 'block';                        //订阅按钮 隐藏
+                $("#content").children("div")[1].style.display = 'none';                              //我的帖子 内容隐藏
+                $("#content").children("div")[0].style.display = 'block';                             //内容显示
+                id(q - 1);                                                                            //获取帖子
+                document.getElementById('menu1').style.top = '364px';                               //下拉框定位
+                document.getElementById('menu1').style.left = '532.5px';                            //下拉框定位
+            }
+            if (q == 4)                                                                                  //是否点击 我的帖子
+            {
+                document.getElementById('bt').getElementsByTagName('li')[q - 1].className = 'ztg a';        //当前切换菜单 样式赋值
+                var name = document.getElementById('bt').getElementsByTagName('a')[q - 1].text;
+                document.getElementById('title').textContent = name;
+                document.getElementById('kg').style.display = 'none';                               //缩小标题                         
+                document.getElementById('subscribe').style.display = 'none';                        //订阅按钮 隐藏
+                document.getElementById('menu1').style.left = '524.5px';                              //下拉框 右移
+                $("#content").children("div")[0].style.display = 'none';                              //其他 内容隐藏
+                $("#content").children("div")[1].style.display = 'block';                             //我的帖子 内容显示
+                id(q - 1);                                                                            //获取帖子
+
+            }
+        }
+    }
+    dd(4);
+    dd(5);
+    dd(6);
+    var cou = document.getElementById('con').getElementsByTagName('tbody').length;                  //我的帖子 内容长度
+    var ij = 0;
+    for (var i = 1; i <= cou; i++) {
+        if (i == ij + 3) {
+            ij = i;
+            continue;                                                                               //逢3过
+        }
+        document.getElementById('con').getElementsByTagName('tbody')[i].style.display = 'none';     //回复内容 隐藏
+
+    }
+}
+
+function show1() {                                                                                  //回复
+    document.getElementById('con').style.display = 'block';                                         //帖子内容 显示
+    //document.getElementById('sx').style.display = 'inline';                                         //筛选按钮 显示
+    document.getElementById('commen').style.display = 'none';                                       //点评内容 隐藏
+    var cou = document.getElementById('con').getElementsByTagName('tbody').length;                  //我的帖子 内容长度
+    var ij = 0;
+    for (var i = 1; i <= cou; i++) {
+        if (i == ij + 3) {
+            ij = i;
+            continue;
+        }
+        document.getElementById('con').getElementsByTagName('tbody')[i].style.display = '';         //回复内容 显示
+
+    }
+}
+function hide1()                                                                                    //主题
+{
+    document.getElementById('con').style.display = 'block';                                         //帖子内容 显示
+    // document.getElementById('sx').style.display = 'inline';                                         
+    document.getElementById('commen').style.display = 'none';
+    var cou = document.getElementById('con').getElementsByTagName('tbody').length;
+    var ij = 0;
+    for (var i = 1; i <= cou; i++) {
+        if (i == ij + 3) {
+            ij = i;
+            continue;
+        }
+        document.getElementById('con').getElementsByTagName('tbody')[i].style.display = 'none';
+
+    }
+}
+function comment() {
+    document.getElementById('sx').style.display = 'none';
+    document.getElementById('con').style.display = 'none';
+    document.getElementById('comment').style.display = 'block';
+}
+function menu() {
+    document.getElementById('menu1').style.display = 'block';
+}
+
+function dis() {
+
+    document.getElementById('menu1').style.display = 'none';
+}
+function dis2() {
+    document.getElementById('menu1').style.display = 'none';
+}
+function hide() {
+    document.getElementById('menu1').style.display = 'block';
+}
+function sel() {
+    var displayvalue = document.getElementById('screen').style.display == 'none' ? '' : 'none'; document.getElementById('screen').style.display = displayvalue; return false;
+    //var dis = document.getElementById('screen').style.display;
+    //if(dis=='none')
+    //{
+    //    document.getElementById('screen').style.display = 'block';
+    //}
+    //else {
+    //    document.getElementById('screen').style.display = 'none';
+    //}
+}
+
+id(1);
+id(2);
+
+function id(d) {
+    $.ajax({
+        url: "/Home/getlist?id=" + d,    //请求的url地址
+        dataType: "json",   //返回格式为json
+        async: false, //请求是否异步，默认为异步，这也是ajax重要特性              
+        type: "GET",   //请求方式              
+        success: function (req) {
+            // var post = req[1]["Title"].toString();
+            var result = "";
+            for (var i = 0; i < req.length; i++) {
+                result += '<tbody><tr><td class="icn">' + req[i]["Top"] + '</td><th><a>' + req[i]["title"] + '</a><span class="partake">' + req[i]["Partake"] + '</span>' + req[i]["Img"] + req[i]["Good"] + req[i]["Hot"] + req[i]["Evaluation"] + '<span class="tps">' + req[i]["Reply_page"] + '</span></th><td class="by"><a>' + req[i]["Forum_name"] + '</a></td><td class="by"><cite><a>' + req[i]["User_name"] + '</a></cite><em><span>' + req[i]["Create_on_time"] + '</span></em></td><td class="num"><a>' + req[i]["Reply_num"] + '</a><em>' + req[i]["Visit_num"] + '</em></td><td class="by"><cite><a>' + req[i]["Last_reply_name"] + '</a></cite><em><a>' + req[i]["Last_reply_time"] + '</a></em></td></tr></tbody>';
+            }
+            $("#contentval").html('');
+            $("#contentval").html(result);
+        },
+        error: function () {
+            //请求出错处理
+        }
+    });
+}
+
+function dd(q) {
+    $.ajax({
+        url: "/Home/getlist?id=" + q,    //请求的url地址
+        dataType: "json",   //返回格式为json
+        async: false, //请求是否异步，默认为异步，这也是ajax重要特性              
+        type: "GET",   //请求方式              
+        success: function (req) {
+            // var post = req[1]["Title"].toString();
+            var result = "";
+            for (var i = 0; i < req.length; i = i + 2) {
+                if(req.length<=29){
+                    result += '<li>' + req[i]["Create_on_time"] + req[i]["Partake"] + '<i>·<a>' + req[i]["title"] + '</a></i>&nbsp;<span class="xg1"><a>' + req[i]["Forum_name"] + '</a></span></li><li class="xl2_r">' + req[i]["Create_on_time"] + req[i]["Partake"] + '<i>·<a>' + req[i]["title"] + '</a></i>&nbsp;<span class="xg1"><a>' + req[i]["Forum_name"] + '</a></span></li>';
+                }
+                else {
+                    req.length = 29;
+                }
+            }
+            if (q == 4)
+                {
+            $("#q4").html('');
+            $("#q4").html(result);
+            }
+            if(q==5)
+            {
+                $("#q5").html('');
+                $("#q5").html(result);
+            }
+            if (q == 6) {
+                $("#q6").html('');
+                $("#q6").html(result);
+            }
+        },
+        error: function () {
+            //请求出错处理
+        }
+    });
+}
+//function menu2() {
+//    document.getElementById('menu1').style.display = 'block';
+//}
+//$.ajax({
+//    url: "/Home/getlist?id="+this.index,    //请求的url地址
+//    dataType: "json",   //返回格式为json
+//    async: false, //请求是否异步，默认为异步，这也是ajax重要特性              
+//    type: "GET",   //请求方式              
+//    success: function (req) {
+//       // var post = req[1]["Title"].toString();
+//        var result = "";
+//        for (var i = 0; i < req.length; i++)
+//        {
+//            result += '<tbody><tr><td class="icn">' + req[i]["Top"] + '</td><th><a>' + req[i]["title"] + '</a><span class="partake">5人参与</span>' + req[i]["Img"] + req[i]["Good"] + req[i]["Hot"] + req[i]["Evaluation"] + '<span>&nbsp;...<a>2</a></span></th><td class="by"><a>' + req[i]["Forum_name"] + '</a></td><td class="by"><cite><a>' + req[i]["User_name"] + '</a></cite><em><span>' + req[i]["Create_on_time"] + '</span></em></td><td class="num"><a>' + req[i]["Reply_num"] + '</a><em>' + req[i]["Visit_num"] + '</em></td><td class="by"><cite><a>' + req[i]["Last_reply_name"] + '</a></cite><em><a>' + req[i]["Last_reply_time"] + '</a></em></td></tr></tbody>';
+//        }
+//        $("#contentval").html('');
+//        $("#contentval").html(result);
+//    },             
+//    error: function () {
+//请求出错处理
+//    }
+//});

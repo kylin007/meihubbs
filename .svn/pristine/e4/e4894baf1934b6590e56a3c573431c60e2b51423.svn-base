@@ -1,0 +1,321 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+
+<%@ Register Src="~/Posted.ascx" TagPrefix="uc1" TagName="Posted" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    <%List<meihu.Models.Post> modellist = TempData["list"] as List<meihu.Models.Post>; %>
+<%=modellist[0].title %>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <%List<meihu.Models.Post> modellist = TempData["list"] as List<meihu.Models.Post>; %>
+    <link href="../../Css/post.css" rel="stylesheet" />
+    <script src="../../Jscript/jquery-2.2.0.min.js"></script>
+    <script src="../../Jscript/post.js"></script>
+    <div class="score">
+        <div class="blockPiece headEva">
+            <span class="bTitle">评分</span>
+            <a class="close"></a>
+        </div>
+        <div class="blockPiece lineName">
+            <span>评分区间</span>
+            <span class="flRight">今日剩余</span>
+        </div>
+        <div class="blockPiece detail">
+            <span>金钱</span>
+            <input type="text" value="0"/><a></a>
+            <div class="grade">
+                <div class="oneElse">+1</div>
+                <div class="oneElse">自定义</div>
+            </div>
+            <div class="region">
+                0 ~ 1
+            </div>
+            <div class="surplus">
+                num
+            </div>
+        </div>
+        <div class="partiRs">
+            <span>可选评分理由：</span>
+            <div class="reason">
+                <ul class="pt">
+                    <li>元芳认为这个13装的好</li>
+                    <li>智商不在一个层面上</li>
+                    <li>你说的这都是屁啊……</li>
+                    <li>Still growing young all alone</li>
+                    <li>Where is the wonder? where's the awe?</li>
+                    <li>A ballet on a grove'</li>
+                </ul>
+            </div>
+            <input type="text" value=""/>
+        </div>
+        <div class="endSc">
+            <label><input type="checkbox"/>通知作者</label>
+            <button type="submit" value="true"><span>确定</span></button>
+        </div>
+    </div>
+
+    <div class="toolPlsy">
+        <div class="blockPiece headEva" id="toolHead">
+            <span class="bTitle">提示信息</span>
+            <a class="close"></a>
+        </div>
+        <div class="tooCon">
+            <img src="../../image/error.gif"/>
+            <span>抱歉，您所在的用户组不允许使用道具</span>
+        </div>
+        <div class="endSc">
+            <button type="submit" value="true"><span>确定</span></button>
+        </div>
+    </div>
+
+    <div class="toerro toolPlsy">
+        <div class="blockPiece headEva">
+            <span class="bTitle">提示信息</span>
+            <a class="close"></a>
+        </div>
+        <div class="tooCon">
+            <img src="../../image/error.gif"/>
+            <span>抱歉，请输入正确的评分或理由</span>
+        </div>
+        <div class="endSc">
+            <button type="submit" value="true"><span>确定</span></button>
+        </div>
+    </div>
+    
+
+    <div class="Control">
+        <uc1:Posted runat="server" ID="Posted" />
+    </div>
+
+    <div class="replyKey">
+        <div class="blockPiece headEva">
+            <span class="bTitle">参与/回复主题</span>
+            <a class="close"></a>
+        </div>
+        <div class="replyPart">RE: <span>回复主题名称</span><a>[修改]</a></div>
+        <div class="dialogContent">
+            <div class="Function">
+                <a title="文字加粗" class="fBold"></a>
+                <a title="设置文字颜色" class="fColor"></a>
+                <a style="margin-top:2px;" title="图片"class="fImg"></a>
+                <a title="添加链接" class="fUrl"></a>
+                <a style="margin-top:3px;" title="引用" class="fQuote"></a>
+                <a title="代码" class="fCode"></a>
+                <a class="fSmile"></a>
+                <span class="Modeler"><a>高级模式</a></span>
+            </div>
+            <textarea></textarea>
+        </div>
+        <div class="endSc">
+            <button type="submit" value="true" class="repkyLogin"><span>参与/回复主题</span></button>
+        </div>
+    </div>
+
+    
+
+    <div id="from"><a href="../Home/Index.aspx"></a>
+        <div>>&nbsp 论坛&nbsp >&nbsp <span><%=modellist[0].One_forum %> > <%=modellist[0].Second_forum %> > <%=modellist[0].title %></span></div>
+    </div>
+    <div class="before">
+        <div class="relHad playPost"><img src="../../image/bg_post.png"/></div> 
+        <div class="HadUser reply"><img src="../../image/pn_reply.png"/></div>
+        <div class="return"><a>返回列表</a></div>
+    </div>
+    
+    <div id="self">
+        <div id="cushion">
+            <div class="pinkbg">
+                <span class="darker">查看:</span>
+                <span class="reder"><%=modellist[0].vinum %></span>
+                <span>|</span>       
+                <span  class="darker">回复:</span>
+                <span class="reder"><%=modellist[0].ronum %></span>
+            </div>
+            <div class="cRight whitebg">
+                <span class="wbgtitle"><%=modellist[0].title %></span>
+                <span class="darker">[复制链接]</span>
+                <div>
+                    <img src="../../image/print.png" />
+                    <img src="../../image/thread-prev.png" />
+                    <img src="../../image/thread-next.png" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="userSgle">
+        <div class="selfCon">
+            <div class="pinkbg">
+                <div class="dashbttom"><a><%=modellist[0].ude %></a></div>
+                <div>
+                    <div class="userSin">
+                        <img src="<%=modellist[0].portrait %>"/>
+                        <div class="sortOf">
+                            <div class="onRight"><%=modellist[0].theme %><br />主题</div>
+                            <div class="onRight"><%=modellist[0].firendNum %><br />好友</div>
+                            <div><%=modellist[0].scoreNum %><br />积分</div>
+                        </div>
+                    </div>
+                    <div class="mood">
+                        <span>TA的每日心情</span>
+                        <img src="../../image/yl.gif"/>
+                        <div>
+                            <h1><%=modellist[0].expression %></h1>
+                            <span>
+                                <%=modellist[0].signtime %>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="signed">
+                        <span>签到天数：<%=modellist[0].day %>天</span>
+                        <span>[LV.1]初来乍到</span>
+                    </div>
+                    <div class="onLeft">
+                        <span>专业</span>&nbsp&nbsp&nbsp
+                        <span><%=modellist[0].majorName %></span><br />
+                        <span>年级</span>&nbsp&nbsp&nbsp
+                        <span><%=modellist[0].gradeName %></span>
+                    </div>
+                    <div class="onLeft">
+                        <span>金钱</span>&nbsp&nbsp&nbsp
+                        <span><%=modellist[0].moneyNum %></span>
+                    </div>
+                    <div class="onLeft">
+                        <img src="../../image/medal5.gif  "/>
+                    </div>
+                    <div class="onLeft">
+                        <img src="../../image/pmto.gif"/>
+                        <a>发消息</a>
+                    </div>
+                </div>
+            </div>  
+            <div class="whitebg">
+                <div class="dashbttom">
+                    <span>
+                        <img src="../../image/online_member.gif"/>
+                        发表于&nbsp <%=modellist[0].time %> | 只看作者 |  倒序浏览
+                    </span>
+                    <div>
+                        <span>
+                            1#楼主  
+                        </span>
+                        <span>
+                            电梯直达 <input type="text" class="inputIn"/> 
+                            <a><img src="../../image/fj_btn.png"/></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="concon">
+                    <%=modellist[0].content %>
+                </div>
+                <div class="evaInfor">
+                    <div class="evInPiec linheeva">
+                        <span class="linhead">已有<em class="becRed">num</em>人评分</span>
+                        <span class="middevaPie">金钱</span>
+                        <span class="endPiec">理由</span>
+                        <a class="retract">收起</a>
+                    </div>
+                    <div class="evInPiec sorPiec">
+                        <span class="linhead"><img src="../../image/noavatar_small.gif"/><em>评分人昵称</em></span>
+                        <span class="becRed middevaPie">+1</span>
+                        <span class="endPiec">具体理由</span>
+                    </div>
+                    <div class="evInPiec">
+                       <span>总评分：</span>
+                        <span class="becRed">金钱+1</span>
+                        <a class="lookAll">查看全部评分</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="collect relHad" title="<%=modellist[0].collect %>人收藏">
+            <img src="../../image/fav.gif"/>
+            收藏
+            <span>num</span>
+        </div>
+        <div class="collect HadUser evaluation evalfet" title="<%=modellist[0].evaluation %>人评分">
+            <img src="../../image/agree.gif"/>
+            评分
+        </div>
+        <div class="botMost">
+            <div class="pinkMore pinkbg">
+            </div>
+            <div class="extraordinary">
+                <span class="reply"><img src="../../image/fastreply.gif"/><p>回复</p></span>
+                <div>
+                    <div class="showmenu">
+                        使用道具
+                    </div>
+                    <div class="useTool">
+                        <ul>
+                            <li>
+                                <img src="../../image/bump.small.gif"/><span>提升卡</span>
+                            </li>
+                            <li>
+                                <img src="../../image/stick.small.gif"/><span>置顶卡</span>
+                            </li>
+                            <li>
+                                <img src="../../image/open.small.gif"/><span>喧嚣卡</span>
+                            </li>
+                            <li>
+                                <img src="../../image/highlight.small.gif"/><span>变色卡</span>
+                            </li>
+                            <li>
+                                <img src="../../image/namepost.small.gif"/><span>显身卡</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a>举报</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="before">
+        <div class="relHad playPost"><img src="../../image/bg_post.png"/></div> 
+        <div class="HadUser reply"><img src="../../image/pn_reply.png"/></div>
+        <div class="return"><a>返回列表</a></div>
+    </div>
+
+    <div class="replyEnd">
+        <div class="pinkbg">
+            <img src="../../image/noavatar_middle.gif"/>
+        </div>
+        <div class="whitebg">
+            <div class="dialogContent">
+                <div class="Function">
+                    <a title="文字加粗" class="fBold"></a>
+                    <a title="设置文字颜色" class="fColor"></a>
+                    <a style="margin-top:2px;" title="图片"class="fImg"></a>
+                    <a title="添加链接" class="fUrl"></a>
+                    <a style="margin-top:3px;" title="引用" class="fQuote"></a>
+                    <a title="代码" class="fCode"></a>
+                    <a class="fSmile"></a>
+                    <span class="Modeler"><a>高级模式</a></span>
+                </div>
+                <textarea></textarea>
+            </div>
+            <div class="addRep">
+                <button class="annouseRep repkyLogin"><strong>发表回复</strong></button>
+                <input type="checkbox" checked="checked"/>
+                <span>回帖后跳转到最后一页</span>
+            </div>
+            <div class="expression">
+                <ul>
+                    <li><img src="../../image/smile.gif"/></li>
+                    <li><img src="../../image/sad.gif"/></li>
+                    <li><img src="../../image/cry.gif"/></li>
+                    <li><img src="../../image/huffy.gif"/></li>
+                    <li><img src="../../image/shocked.gif"/></li>
+                    <li><img src="../../image/tongue.gif"/></li>
+                    <li><img src="../../image/shy.gif"/></li>
+                    <li><img src="../../image/titter.gif"/></li>
+                    <li><img src="../../image/sweat.gif"/></li>
+                    <li><img src="../../image/lol.gif"/></li>
+                    <li><img src="../../image/victory.gif"/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</asp:Content>

@@ -1,0 +1,42 @@
+﻿using meihu.Models;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace meihu.Controllers
+{
+    public class postInforController : Controller
+    {
+        //
+        // GET: /postInfor/
+
+        public ActionResult post()
+        {
+            List<Post> list = new List<Post>();
+            Post sitem = new Post();
+
+            DataTable dt = sitem.twoClassify(1);
+            DataTable dtOneid = sitem.OneClassify();
+            DataTable dttitle = sitem.postTitle();
+            DataTable divnum = sitem.selectSingleMessage();
+            Post po = new Post();
+
+            po.Second_forum = dt.Rows[0]["Second_forum"].ToString();
+            po.One_forum = dtOneid.Rows[0]["First_forum"].ToString();
+            po.title = dttitle.Rows[0]["title"].ToString();
+            string[] srr = dttitle.Rows[0]["Create_on_time"].ToString().Split(' ');
+            po.time = srr[0] + " " + srr[3];
+            po.vinum = divnum.Rows[0]["Visit_num"].ToString();
+            po.ronum = divnum.Rows[0]["Reply_num"].ToString();
+
+            list.Add(po);
+            TempData["list"] = list;
+
+            return View();
+        }
+
+    }
+}

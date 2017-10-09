@@ -1,0 +1,31 @@
+﻿using meihu.App_Code;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+
+namespace meihu.Models
+{
+    public class HomeModel
+    {
+        DataBase db = new DataBase();
+        
+        SqlConnection con = new SqlConnection();
+        public HomeModel()
+        {
+            //db = new DataBase();
+        }
+        public  DataTable selectUserCount()
+        {
+            
+            //int count = 0;
+            string str = "select * from User_city";
+            DataTable dom = db.getdata(str);
+         
+            return dom;
+        }
+
+    }
+}

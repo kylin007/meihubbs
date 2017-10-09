@@ -1,0 +1,89 @@
+﻿$(document).ready(function () {
+    $(".csRoof img").click(function () {
+        var cs = $(this).parent().siblings();
+        if (cs.css('display') == 'block') {
+            cs.hide();
+            $(this).attr('src', "/image/collapsed_yes.gif");
+        }
+        else {
+            cs.show();
+            $(this).attr('src', "/image/collapsed_no.gif");
+        }
+    });
+    $(".Only li").mouseover(function () {
+        $(this).css("background-color", "#FFECEC");
+        $(this).css("color", "#BA350F");
+    });
+    $(".Only li").mouseout(function () {
+        $(this).css("background-color", "white");
+        $(this).css("color", "#333");
+    });
+    $(".Six li").mouseover(function () {
+        $(this).css("background-color", "#FFECEC");
+        $(this).css("color", "#BA350F");
+    });
+    $(".Six li").mouseout(function () {
+        $(this).css("background-color", "white");
+        $(this).css("color", "#333");
+    });
+    $(".TwoSix li").mouseover(function () {
+        $(this).css("background-color", "#FFECEC");
+        $(this).css("color", "#BA350F");
+    });
+    $(".TwoSix li").mouseout(function () {
+        $(this).css("background-color", "white");
+        $(this).css("color", "#333");
+    });
+    $(".Together1").click(function () {
+        $(".Only").show();
+    });
+    $(".Together2").click(function () {
+        $(".Six").show();
+    });
+    $(".Together3").click(function () {
+        $(".TwoSix").show();
+    });
+    $(".Together1").mouseout(function () {
+        $(".Only").hide();
+    });
+    $(".Together2").mouseout(function () {
+        $(".Six").hide();
+    });
+    $(".Together3").mouseout(function () {
+        $(".TwoSix").hide();
+    });
+    $(".Only").mouseover(function () {
+        $(".Only").show();
+    });
+    $(".Six").mouseover(function () {
+        $(".Six").show();
+    });
+    $(".TwoSix").mouseover(function () {
+        $(".TwoSix").show();
+    });
+    $(".Face li").click(function () {
+        var str = $("textarea").val() + $(this).html();
+        $("textarea").val(str);
+    });
+    $(".fBold").click(function () {
+        var bStr = $("textarea").val() + "<b></b>";
+        $("textarea").val(bStr);
+    });
+    $(".sRight a").mouseover(function () {
+        $(this).css("border-color", "#369");
+        $(this).css("color", "#369");
+    });
+    $(".sRight a").mouseout(function () {
+        $(this).css("border-color", "#FCC");
+        $(this).css("color", "#444");
+    });
+    $(".sBack a").mouseover(function () {
+        $(this).css("border-color", "#369");
+        $(this).css("color", "#369");
+    });
+    $(".sBack a").mouseout(function () {
+        $(this).css("border-color", "#FCC");
+        $(this).css("color", "#444");
+    });
+
+});

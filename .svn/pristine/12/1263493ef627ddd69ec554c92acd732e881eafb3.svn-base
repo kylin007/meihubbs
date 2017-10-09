@@ -1,0 +1,37 @@
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<div class="FastPost">
+    <div class="Border-top">
+        <>
+    </div>
+    <div class="fpRoof">
+        <p>快速发帖</p>
+    </div>
+    <div class="Posting">
+        <div class="pTitle">
+            <input type="text" />
+            <p>还可输入<strong> 80 </strong>个字符</p>
+        </div>
+        <div class="pContent">
+            <div class="pLeft">
+                <div class="pTop">
+                    <div class="Function">
+                        <a title="文字加粗" class="fBold"></a>
+                        <a title="设置文字颜色" class="fColor"></a>
+                        <a style="margin-top: 2px;" title="图片" class="fImg"></a>
+                        <a title="添加链接" class="fUrl"></a>
+                        <a style="margin-top: 3px;" title="引用" class="fQuote"></a>
+                        <a title="代码" class="fCode"></a>
+                        <a class="fSmile"></a>
+                    </div>
+                    <div class="Advanced">
+                        <a>高级模式</a>
+                    </div>
+                </div>
+                <textarea></textarea>
+            </div>
+        </div>
+        <div class="Publish">
+            <button><strong>发表帖子</strong></button>
+        </div>
+    </div>
+</div>

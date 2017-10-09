@@ -1,0 +1,144 @@
+﻿using meihu.Models;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace meihu.Controllers
+{
+    public class ClassifyController : Controller
+    {
+        // GET: /Classify/
+
+        public ActionResult OneLevel()
+        {
+
+            List<I_indexModel> list4 = new List<I_indexModel>();
+            I_indexModel hm = new I_indexModel();
+            DataTable dt1 = hm.selectTopics();
+            DataTable dt2 = hm.selectReply();
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                I_indexModel model = new I_indexModel();
+                model.Title = dt1.Rows[i]["Title"].ToString();
+                model.ID = dt1.Rows[i]["ID"].ToString();
+                for (int j = 0; j < dt2.Rows.Count; j++)
+                {
+                    model.Topic_id = dt2.Rows[j]["Topic_id"].ToString();
+
+                    model.is_img = dt2.Rows[j]["is_img"].ToString();
+                    if (model.Topic_id == model.ID)
+                    {
+                        model.Title1 = model.Title;
+                        if (num2 < 9)
+                        {
+                            list2.Add(model);
+                            num2++;
+                        }
+                        if (num4 < 2 && model.is_img == "1")
+                        {
+                            model.img = dt2.Rows[j]["img_url"].ToString();
+                            list4.Add(model);
+                            num4++;
+                        }
+                    }
+                    model.Is_good = dt2.Rows[j]["Is_good"].ToString();
+                    if (model.Is_good == "1" && model.Topic_id == model.ID)
+                    {
+                        model.Title2 = model.Title;
+                        if (num3 < 9)
+                        {
+                            list3.Add(model);
+                            num3++;
+                        }
+                    }
+                }
+                if (num1 < 9)
+                {
+                    list1.Add(model);
+                    num1++;
+                }
+            }
+            TempData["list1"] = list1;
+            TempData["list2"] = list2;
+            TempData["list3"] = list3;
+            TempData["list4"] = list4;
+            //刘彩迪
+            string str = Request.Params["name"];//接收传过来的数据
+            List<OneLevel> mlist = new List<OneLevel>(); 
+            List<OneLevel> mlist0 = new List<OneLevel>();           
+            List<OneLevel> mlist1 = new List<OneLevel>();
+            List<OneLevel> mlist2 = new List<OneLevel>();
+            List<OneLevel> mlist3 = new List<OneLevel>();       
+            List<OneLevel> mlist5 = new List<OneLevel>();//定义集合类型
+            
+            OneLevel cs = new OneLevel();
+            DataTable mdt = cs.selectForm(str);//从表中取数据
+            int num = 0;
+            for (int i = 0; i < mdt.Rows.Count; i++)
+            {               
+                string R = mdt.Rows[i]["Second_forum"].ToString();                
+                OneLevel level = new OneLevel();                                                 
+                DataTable mdt1 = cs.selectSon(R);
+                DataTable mdt2 = cs.is_son(R);
+                DataTable mdt3 = cs.selectTime(R);
+                DataTable mdt5 = cs.selectnum(R);
+                DataTable mdt6 = cs.selectnumber(mdt.Rows[i]["ID"].ToString());
+                
+                 string S = mdt3.Rows[0]["User_id"].ToString();
+                DataTable mdt4 = cs.selectname(S);//取出用户名存在表mdt4中  
+                                                             
+                OneLevel os = new OneLevel();
+                OneLevel ou = new OneLevel();                
+                ou.str = Request.Params["name"].ToString();
+                mlist0.Add(ou); //获取以及类目的名字             
+                os.number = mdt5.Rows[0]["Column1"].ToString();               
+                 mlist3.Add(os);//获取的主题数  
+               
+                        OneLevel on = new OneLevel();
+                        on.Create_on_time = mdt3.Rows[0]["Create_on_time"].ToString();
+                        on.Title = mdt3.Rows[0]["Title"].ToString();
+                        on.ID = mdt3.Rows[0]["ID"].ToString();
+                        on.User_name = mdt4.Rows[0]["User_name"].ToString();                                                                     
+                        mlist2.Add(on); //帖子的创建时间、帖子标题、用户名、用户ID
+
+                        for (int k = 0; k < mdt6.Rows.Count; k++)
+                        {
+                          OneLevel OT = new OneLevel();                                                        
+                          num += Convert.ToInt32(mdt6.Rows[k]["Reply_num"].ToString())+Convert.ToInt32(os.number); 
+                          OT.addnum = num.ToString();
+                          mlist5.Add(OT);                       
+                        }//得到帖子回复数和主题数总和
+               
+                    for (int m = 0; m < mdt2.Rows.Count; m++)
+                    {
+                        OneLevel ol = new OneLevel();
+                        ol.Is_son = mdt2.Rows[m]["Is_son"].ToString();
+                        mlist1.Add(ol);
+                    }//子版块的值
+                TempData["mlist1"] = mlist1;
+
+                for (int j = 0; j < mdt1.Rows.Count; j++)
+                {
+                    level.secondlist.Add(mdt1.Rows[j]["Son_forum"].ToString());
+                }//子版块
+
+                level.Second_forum = R;
+                mlist.Add(level);
+                         
+                TempData["mlist"] = mlist;
+                
+
+      }           
+               TempData["mlist2"] =mlist2;
+               TempData["mlist3"] = mlist3;
+               TempData["mlist5"] = mlist5;
+               TempData["mlist0"] = mlist0;             
+                return View("OneLevel");           
+
+        }       
+
+    }
+}

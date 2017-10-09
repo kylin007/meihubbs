@@ -1,0 +1,115 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+贴子主题
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../../Css/post.css" rel="stylesheet" />
+    <div id="from"><a href="http://www.meihuboyue.com/"></a>
+        <div>>&nbsp 论坛&nbsp >&nbsp <span>一级分类 > 二级分类 > 帖子主题</span></div>
+
+    </div>
+    <div id="before">
+        <div><img src="../../image/pn_post.png"/></div> 
+        <div id="return"><a>返回列表</a></div>
+    </div>
+    
+    <div id="self">
+        <div id="cushion">
+            <div class="pinkbg">
+                <span class="darker">查看:</span>
+                <span class="reder">Look</span>
+                <span>|</span>
+                <span  class="darker">回复:</span>
+                <span class="reder">reply</span>
+            </div>
+            <div class="cRight whitebg">
+                <span class="wbgtitle">主题名</span>
+                <span class="darker">[复制链接]</span>
+                <div>
+                    <img src="../../image/print.png" />
+                    <img src="../../image/thread-prev.png" />
+                    <img src="../../image/thread-next.png" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="selfCon">
+            <div class="pinkbg">
+                <div class="dashbttom"><a>Tinami</a></div>
+                <div>
+                    <div class="userSin">
+                        <img src="../../image/08_avatar_middle.jpg"/>
+                        <div class="sortOf">
+                            <div>theme<br>主题</div>
+                            <div>friend<br>好友</div>
+                            <div>point<br>积分</div>
+                        </div>
+                    </div>
+                    <div class="mood">
+                        <span>TA的每日心情</span>
+                        <img src="../../image/yl.gif"/>
+                        <div>
+                            <h1>慵懒</h1>
+                            <span>
+                                2016-7-15
+                                16:37
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <span>签到天数：1天</span><br />
+                        <span>[LV.1]初来乍到</span>
+                    </div>
+                    <div>
+                        <span>专业</span>
+                        <span>信息科学与技术</span><br />
+                        <span>年级</span>
+                        <span>2014</span>
+                    </div>
+                    <div>
+                        <span>金钱</span>
+                        <span>24788郑大</span>
+                    </div>
+                    <div>
+                        <img src="../../image/medal5.gif  "/>
+                    </div>
+                    <div>
+                        <img src="../../image/pmto.gif"/>
+                        <a>发消息</a>
+                    </div>
+                </div>
+            </div>
+            <div class="whitebg">
+                <div class="dashbttom">
+                    <span>
+                        <img src="../../image/online_member.gif"/>
+                        发表于&nbsp 2016-7-15 15:36 | 只看作者 |  倒序浏览
+                    </span>
+                    <div>
+                        <span>
+                            1#楼主  
+                        </span>
+                        <span>
+                            电梯直达 <input id="Text1" type="text" /> 
+                            <a><img src="../../image/fj_btn.png"/></a>
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <img src="../../image/fav.gif"/>
+                    收藏
+                    <span>num</span>
+                </div>
+                <div>
+                    <span><img src="../../image/fastreply.gif"/>回复</span>
+                    <div class="showmenu">
+                        使用道具
+                        <a>举报</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</asp:Content>

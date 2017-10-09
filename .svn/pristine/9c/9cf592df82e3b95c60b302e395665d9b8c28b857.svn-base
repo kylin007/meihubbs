@@ -1,0 +1,82 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using meihu.App_Code;
+using System.Data;
+using System.Security.Cryptography;
+
+namespace meihu.Controllers
+{
+    public class SettingController : Controller
+    {
+        //
+        // GET: /Setting/
+
+        DataBase dom = new DataBase();
+        public ActionResult Index()
+        {
+            string str = "select *from Year order by Year desc";
+            DataTable ds=dom.getdata(str);
+            ViewData["Year"] = ds;
+            string str1 = "select *from Month";
+            DataTable ds1 = dom.getdata(str1);
+            ViewData["Month"] = ds1;
+            string str2 = "select* from Day where Flag <= 3";
+            #region
+            //int month =Convert.ToInt32(Request["month"]);
+            //int  year = Convert.ToInt32(Request["year"]);
+
+            //if ((year % 400 == 0 || year % 4 == 0 && year % 100 != 0) && month == 2)
+            //{
+            //    str2 = "select *from Day where Flag<=1";
+            //}
+            //else if (month == 2)
+            //{
+            //    str2 = "select *from Day where Flag<1";
+            //}
+            //else if (month == 4 || month == 6 || month == 9 || month == 11)
+            //{
+            //    str2 = "select *from Day where Flag<=2";
+            //}
+            //else if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8|| month == 10|| month == 12)
+            //{
+            //    str2 = "select *from Day where Flag<=3";
+            //}
+            #endregion
+            DataTable ds2 = dom.getdata(str2);
+            ViewData["Day"] = ds2;
+            return View();
+        }
+        public ActionResult integral()
+        {
+            return View();
+        }
+        public ActionResult updateimage()
+        {
+            return View();
+        }
+        public ActionResult PassWord()
+        {
+            return View();
+        }
+        public ActionResult   QQxiu()
+        {
+            return View();
+        }
+        public ActionResult QQbinding()
+        {
+            return View();
+        }
+        public ActionResult Extension()
+        {
+            return View();
+        }
+        public ActionResult screen()
+        {
+            return View();
+        }
+
+    }
+}

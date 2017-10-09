@@ -1,0 +1,500 @@
+﻿body {
+    font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+}
+
+.pipe {
+    margin: 0 5px;
+    color: #ccc;
+}
+
+select {
+    padding: 2px 2px 2px 1px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul a:hover {
+    color: #369;
+    text-decoration: none;
+}
+
+h1,h2 {
+    font-size: 1em;
+    display: block;
+}
+
+h1, ul, li, table, .emp,h2 {
+    margin: 0;
+    padding: 0;
+}
+
+th {
+    text-align: left;
+    font-weight: 400;
+}
+
+.bk {
+    border: 1px solid #CDCDCD;
+    background: #FFF;
+}
+
+
+    .bk th, .bk td {
+        padding: 5px 0;
+        border-bottom: 1px solid #C2D5E3;
+        border-bottom-color: #CDCDCD;
+    }
+
+    .bk .icn {
+        padding-left: 5px;
+        width: 25px;
+    }
+
+.xi1 {
+    color: #BA350F;
+}
+.tps a{
+    padding: 2px 4px;
+    color: #444;
+}
+.tps a:hover {
+    background-color: #F2F2F2;
+    color: #007CD5;
+}
+.z {
+    float: left;
+}
+
+.y {
+    float: right;
+}
+
+ul li ,.xl2 li{
+    list-style: none;
+}
+
+em, cite,i{
+    font-style: normal;
+}
+
+.Mytop {
+    height: 18px;
+    width: 960px;
+    margin-bottom: 5px;
+}
+
+.chart, .dy {
+    padding-left: 22px;
+    background: url(../../image/chart.png) no-repeat 0 50%;
+    color: #999;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+    .chart em {
+        color: #444;
+    }
+
+.Mytop a:hover {
+    text-decoration: underline;
+}
+
+.Mytop .a {
+    color: #000;
+    text-decoration: none;
+}
+
+.My_top {
+    width: 960px;
+    height: auto;
+}
+
+.My_top #ct {
+    min-height: 300px;
+}
+
+.mn {
+    overflow: hidden;
+}
+
+.gd {
+    border: 1px solid #CDCDCD;
+    background: #FFF;
+    padding-bottom: 5px;
+}
+
+.bk {
+    margin-bottom: 10px;
+}
+
+ .bk_n {
+    padding-top: 5px;
+    border: none;
+    background: transparent;
+    padding: 0 10px;
+    line-height: 31px;
+    padding: 5px 10px 0px 10px;
+}
+
+.My_top .dy {
+    background-image: url(../../image/feed.gif);
+    color: #000;
+}
+
+.zt {
+    font-size: 14px !important;
+    width: 938px;
+    height: 31px;
+    margin: 0px;
+}
+
+ .k {
+    padding: 0px 10px 5px 10px;
+}
+
+ #jz {
+    margin: 0px auto;
+    width: 938px;
+}
+
+ .btn {
+    padding-top: 5px !important;
+}
+
+.My_top h1 {
+    display: block;
+}
+
+.My_top .bj {
+    background: transparent;
+    border: none;
+    height: 33px;
+}
+
+.My_top .pg, .pgb {
+    /*margin-top: 5px;*/
+    line-height: 26px;
+    float: right;
+}
+
+.pg label {
+    border-color: #C2D5E3 !important;
+}
+
+.My_top .pg a, .pg strong, .pg label, .pgb a {
+    float: left;
+    display: inline;
+    margin-left: 4px;
+    padding: 0 8px;
+    height: 26px;
+    border: 1px solid;
+    border-color: #fcc;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    color: #333;
+    text-decoration: none;
+}
+
+.My_top strong {
+    background-color: #fcc;
+}
+
+.My_top .an {
+    border: 1px solid;
+    border-color: #848484 #e0e0e0 #e0e0e0 #848484;
+    background: #fff url(../../image/line.png) repeat-x 0 0;
+    width: 25px;
+    height: 16px;
+    padding: 0px;
+}
+
+.My_top .pg .Rjt {
+    background-image: url(../../image/Rarrow.gif);
+    background-position: 50% 50%;
+    width: 8px;
+}
+
+.My_top .Ljt {
+    padding: 0px 25px 0px 10px !important;
+    background-image: url(../../image/Larrow.gif);
+    background-position: 90% 50%;
+}
+
+ .ti {
+    margin-bottom: 5px;
+    padding-top: 10px;
+    border-width: 2px 0 0;
+    background: transparent;
+    height: 32px;
+}
+
+ .cl a:hover {
+    border-color: #369;
+}
+
+ .ti a {
+    float: left;
+    margin-right: 5px;
+    padding: 4px 8px 3px;
+    height: 18px;
+    border: 1px solid #CDCDCD;
+    background: #FFF;
+    white-space: nowrap;
+}
+
+.My_top .ti .a a {
+    padding-right: 12px;
+    padding-left: 12px;
+    border-color: #369;
+    background: #E5EDF2;
+    color: #369;
+    background-color: #FFECEC;
+}
+
+.My_top .ztg {
+    font-weight: 700;
+}
+
+.My_top .th {
+    margin-top: 1px;
+    padding: 0 10px;
+    border-bottom: 1px solid #cdcdcd;
+    background: #f2f2f2;
+    text-align: left;
+    /*padding-right: 1.5em;*/
+}
+
+    .My_top .th th, .th td {
+        padding: 0px;
+    }
+
+    .My_top .th th, .th td {
+        height: 20px;
+        border: none;
+        vertical-align: baseline;
+        padding: 5px 0;
+        font-weight: 400;
+    }
+
+    .My_top .th .from {
+        width: 920px;
+        height: 25px;
+    }
+
+.My_top table {
+    width: 100%;
+}
+
+.My_top .by {
+    width: 105px;
+    line-height: 14px;
+}
+
+    .My_top .by cite, .My_top .num a {
+        display: block;
+    }
+
+.My_top .num {
+    width: 60px;
+    line-height: 14px;
+}
+
+.My_top .sel {
+    width: 63px;
+    height: 24px;
+}
+
+.My_top .sele {
+    width: 203px;
+    height: 24px;
+}
+
+.My_top select, .My_top .gj {
+    border: 1px solid;
+    border-color: #848484 #E0E0E0 #E0E0E0 #848484;
+    background: #FFF url(../../static/image/common/px.png) repeat-x 0 0;
+}
+
+.My_top .gj {
+    padding: 2px 4px;
+    line-height: 17px;
+    width: 139px;
+    height: 17px;
+}
+
+
+.My_top .ss {
+    padding: 0px;
+    border: 1px solid #999;
+    background: #E5E5E5 url(../../image/ss.png) repeat-x 0 0;
+    width: 50px;
+    height: 23px;
+    font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+}
+
+    .My_top .ss em {
+        color: #007CD5;
+        font-weight: 700;
+        line-height: 21px;
+        padding: 0 10px;
+        font-style: normal;
+        margin-right: 4px;
+    }
+
+.My_top .nr {
+    padding: 10px;
+    padding-top: 0px;
+}
+
+    .My_top .nr td em, .My_top .nr td em a {
+        color: #999;
+    }
+
+    .My_top .nr .emp {
+        padding: 20px 10px;
+    }
+     .My_top .nr th a{
+             font-size: 14px;
+     }
+.My_top .reply {
+    padding-left: 10px;
+    background: url(../../image/dot.gif) no-repeat 0 7px;
+    padding-bottom: 10px !important;
+    color: #999 !important;
+}
+
+.My_top .reply_con td, .reply_con th {
+    border: none !important;
+}
+
+.My_top .partake {
+    color: #BA350F;
+}
+
+.My_top .pgb a {
+    padding-left: 25px;
+    background-image: url(../../image/Rarrow.gif);
+    background-position: 10px 50%;
+}
+
+.p_pop {
+    padding: 4px;
+    border: 1px solid;
+    min-width: 60px;
+    border-color: #DDD;
+    background: #FEFEFE;
+    box-shadow: 1px 2px 2px rgba(0,0,0,0.3);
+    display: none;
+}
+
+    .p_pop li {
+        border-bottom: 1px solid #ffecec;
+    }
+
+        .p_pop li:hover {
+            background-color: #FFECEC;
+        }
+
+    .p_pop a {
+        padding: 3px 5px;
+        white-space: nowrap;
+    }
+
+        .p_pop a:hover {
+            color: #BA350F;
+            /*border-bottom-color: #FFECEC;*/
+        }
+
+.zy {
+    margin: 2px 0;
+    height: 29px;
+    border: none;
+    background: transparent;
+    line-height: 29px;
+}
+.zy .z a{
+    float: left;
+    height: 29px;
+}
+
+.Introduction .wp {
+    margin: 0 auto;
+    width: 960px;
+}
+.Introduction a{
+        color: #333;
+    text-decoration: none;
+}
+.House{
+    width: 16px;
+    background:url(../../image/search.png) no-repeat -8px -119px;
+    line-height: 200px;
+    overflow: hidden;
+}
+.bkw{
+    border: 1px solid #CDCDCD;
+}
+.bkw .bk_n{
+    border-top-color:#fff;
+    border-right:1px solid #fff;
+    border-bottom-color:#c2d5e3;
+    border-left:1px solid #fff;
+    background:#e5edf2 !important;
+}
+.bkw .bk_n a{
+    color:#369;
+}
+.bkw a:hover {
+    text-decoration: underline;
+}
+.mn .bk_h{
+        padding: 0 10px;
+    height: 31px;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #C2D5E3;
+    background: #F2F2F2;
+    line-height: 31px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.mn .bk_h a:hover{
+    text-decoration: underline;
+}
+.bk_c{
+        padding: 10px;
+}
+.xl2 {
+    background: url(../../image/vline.png) repeat-y 50% 0;
+}
+.xl2 li{
+    float:left;
+    margin:2px 0;
+    padding:0;
+    width:49.9%;
+    height:1.5em;
+    overflow:hidden;
+}
+.xl2 em{
+    float:right;
+}
+.xl2 li em{
+        padding-right: 10px;
+}
+.xl2 em, .xl2 em a {
+    color: #999;
+}
+.xl2 .xl2_r i {
+    padding-left: 10px;
+}
+.xg1,.xg1 a{
+      color: #999 !important;
+}
+.cl:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
